@@ -149,10 +149,39 @@ def valid_receipt(data, key, receipt, cid, memo=None):
     # (signatory name asked before its condition, or a confirmation extended to derived
     # data). Any other change, an exclusion or a deferral invalidates it.
     answers = (data.get("dialogue") or {}).get("answers", {})
-    return all(now == seen.get(c) or (
-        seen.get(c, {}).get("applies") in {None, True} and now.get("applies") is True
-        and valid_receipt(data, "condition:" + c, answers.get("condition:" + c, {}), cid, memo))
-        for c, now in _checked(data, key, receipt, ids, None, memo)[0]["user_conditions"].items())
+    own = _capacity_option_conditions(data, key, cid)
+
+    def stands(c, now):
+        if own is not None and c not in own:
+            return True  # Said about another option of the region: this one is still the choice.
+        if now == seen.get(c):
+            return True
+        later = answers.get("condition:" + c, {})
+        # Its own branch re-confirmed: the box is never in that receipt's scope (see question_pool).
+        anchor = later.get("affected_fields", [cid])[0] if own is not None and later.get(
+            "affected_fields") else cid
+        return (seen.get(c, {}).get("applies") in {None, True} and now.get("applies") is True
+                and valid_receipt(data, "condition:" + c, later, anchor, memo))
+
+    return all(stands(c, now) for c, now in _checked(
+        data, key, receipt, ids, None, memo)[0]["user_conditions"].items())
+
+
+def _capacity_option_conditions(data, key, cid):
+    """What this option of a FORM capacity choice depends on; None for any other receipt.
+
+    Real runs: the receipt checks the conditions of every option, so a «no» about another option,
+    or a later extension of the chosen branch, made the explicit «4» unverifiable and it was asked
+    again. Any change to this option's own conditions other than a re-confirmation still voids it.
+    """
+    if data.get("dialogue_state_revision") != 1 or not key.startswith("choice:"):
+        return None
+    audit = data.get("audit") or {}
+    group = audit.get("choice_groups", {}).get(key.removeprefix("choice:"), {})
+    if group.get("origin") != "FORM_capacity_choice":
+        return None
+    field = next((f for f in audit.get("fields", []) if f["candidate_id"] == cid), {})
+    return set(group.get("applicable", {}).get(cid, [])) | set(field.get("conditions", []))
 
 
 def blocked_source_fields(data, *, linked_user_controls=False):

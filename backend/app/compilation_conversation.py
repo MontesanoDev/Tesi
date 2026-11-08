@@ -9,6 +9,12 @@ from copy import deepcopy
 
 MAX_TURN_PARTS = 4
 MIN_BRANCH_UNLOCKS = 3
+BARE_OPTION = re.compile(r"\W*(?:(?:l[ao]\s+)?(?:opzione|numero|n\.?)|l[ao])?\s*(\d{1,2})\W*", re.I)
+SENTENCE = re.compile(r"(?<=[.!?;])\s+(?=[A-ZÀ-Ý«\"(\d])|\n+")
+# A label naming a capacity is a branch of the FORM, never a mere label of the participant.
+CAPACITY_WORD = re.compile(r"\b(?:rappresentant\w*|professionist\w*|prestator\w*|societ\w*|studio|"
+                           r"consorzi\w*|raggruppament\w*|mandatari\w*|mandant\w*|capogruppo|"
+                           r"sottoscritt\w*|firmatari\w*|procurator\w*|associat\w*)\b", re.I)
 
 
 def enabled(data):
@@ -146,12 +152,21 @@ def without_repeated_edits(replies, edits):
         and (r.get("value"), r.get("user_quote")) in given)]
 
 
-def literal_choice_values(replies, compilation):
+def state_revision(compilation):
+    return bool(compilation and (compilation.get("conversation_data") or {}).get(
+        "dialogue_state_revision") == 1)
+
+
+def literal_choice_values(replies, compilation, message=None):
     """A choice is its option numbers, which the guard checks against the user's sentence.
 
     The value of a choice reply is that sentence, as the router contract says. Real runs copied the
     FORM label there and a correct, verified choice was refused as not grounded. Any span of the
     quote already passed that check, so nothing about the choice itself is taken on trust here.
+
+    A message that is only the number of the chosen option is itself the quote. Real manual turn:
+    «4» after the numbered question; the model quoted the previous message, the guard agreed on the
+    option and the literal check answered «not in the USER message». Another number stays refused.
     """
     from app.compilation_chat import contains_span
 
@@ -159,12 +174,179 @@ def literal_choice_values(replies, compilation):
         return replies
     kinds = {q.get("slot"): q.get("kind")
              for q in (compilation.get("question") or {}).get("slots", [])}
-    return [{**r, "value": r["user_quote"]} if (
-        isinstance(r, dict) and kinds.get(r.get("slot")) == "choice"
-        and r.get("action") == "VALUE" and r.get("selected_options") is not None
-        and r.get("user_quote")
-        and not (r.get("value") and contains_span(r["user_quote"], r["value"]))) else r
-        for r in replies]
+    bare = BARE_OPTION.fullmatch(message or "") if state_revision(compilation) else None
+    result = []
+    for r in replies:
+        chosen = (isinstance(r, dict) and kinds.get(r.get("slot")) == "choice"
+                  and r.get("action") == "VALUE" and r.get("selected_options") is not None)
+        if chosen and bare and r["selected_options"] == [int(bare[1])]:
+            r = {**r, "user_quote": message.strip(), "value": message.strip()}
+        elif chosen and r.get("user_quote") and not (
+                r.get("value") and contains_span(r["user_quote"], r["value"])):
+            r = {**r, "value": r["user_quote"]}
+        result.append(r)
+    return result
+
+
+def literal_quotes(replies, compilation, message):
+    """(replies, the ones quoting what the message does not say).
+
+    A value literally in the message is quoted with its sentence: real manual turn, «puoi mettere
+    …» quoted as «metti …» and a verified name was refused. A quote with no such value goes back to
+    the router: only the current message authorizes anything, never the history or the sources.
+    """
+    from app.compilation_chat import contains_span
+
+    if not state_revision(compilation):
+        return replies, []
+    result, invented = [], []
+    for r in replies:
+        quote = r.get("user_quote") if isinstance(r, dict) else None
+        if not quote or contains_span(message, quote):
+            result.append(r)
+            continue
+        value = r.get("value")
+        sentence = next((s for s in sentences(message) if value and contains_span(s, value)), None)
+        if r.get("action") == "VALUE" and sentence:
+            result.append({**r, "user_quote": sentence})
+            continue
+        result.append(r)
+        invented.append(r)
+    return result, invented
+
+
+def sentences(message):
+    return [s.strip() for s in SENTENCE.split(message or "") if s and s.strip()]
+
+
+def unrouted_sentences(message, quotes):
+    """Sentences of the message no reply quoted: what a turn with many intents may have dropped."""
+    from app.compilation_chat import contains_span
+
+    rest = []
+    for sentence in sentences(message):
+        if len(sentence.split()) < 3 and not re.search(r"\d", sentence):
+            continue  # «Grazie.», «Ok.»: nothing to route.
+        if not any(q and (contains_span(sentence, q) or contains_span(q, sentence))
+                   for q in quotes):
+            rest.append(sentence)
+    return rest
+
+
+def _label_only(item, governed, candidates):
+    """The condition's FORM quote is the text right before a slot it governs: no clause at all."""
+    def clean(text):
+        text = re.sub(r"\[\[[^\]]*\]\]|[._…]{2,}|[☐☑☒“”\"]", " ", str(text or ""))
+        return " ".join(text.casefold().split()).strip(" ,;:.")
+
+    quote = clean((item.get("form_evidence") or {}).get("quote"))
+    if not quote or CAPACITY_WORD.search(quote):
+        return False
+    return any(before and (quote == before or (
+        quote.startswith(before + " ") and len(quote) <= len(before) + 30))
+        for before in (clean((candidates.get(c, {}).get("slot_context") or {}).get("before"))
+                       for c in governed))
+
+
+def _company_of(audit, field):
+    fact = (audit.get("facts") or {}).get(
+        (field.get("proposal") or {}).get("fact_id") or field.get("fact_id")
+        or field.get("proposed_fact_id"), {})
+    if fact.get("entity") == "company" and fact.get("subject"):
+        return " ".join(str(fact["subject"]).casefold().split())
+    return None
+
+
+def _label_company(data, key, field_ids):
+    """The one company of a condition that is only the FORM label of a field it governs, or None."""
+    audit = data.get("audit") or {}
+    item = audit.get("conditions", {}).get(key, {})
+    if item.get("aspect") not in {"participation", "identity"} or not _label_only(
+            item, field_ids, (data.get("catalog") or {}).get("candidates") or {}):
+        return None
+    fields = {f["candidate_id"]: f for f in audit.get("fields", [])}
+    found = {c for c in (_company_of(audit, fields.get(cid, {})) for cid in field_ids) if c}
+    return found.pop() if len(found) == 1 else None
+
+
+def hide_labels_under_open_branch(data, pool):
+    """While the branch about the same company is open, its label is not a question of its own.
+
+    Real manual run: «dell'operatore economico», the literal label of its own field, held the
+    company's 11 header fields as if it were a clause. Its answer comes from the branch
+    (imply_label_receipts). Without such a branch the label is still asked, on its own.
+    """
+    if data.get("dialogue_state_revision") != 1:
+        return pool
+    audit = data.get("audit") or {}
+    fields = {f["candidate_id"]: f for f in audit.get("fields", [])}
+
+    def plain(q):
+        return (q.get("kind") == "applicability" and not q.get("authorization")
+                and not q.get("extension") and not q.get("stale_receipt"))
+
+    labels = {q["key"]: company for q in pool if plain(q) and len(q.get("condition_ids", [])) == 1
+              and (company := _label_company(data, q["condition_ids"][0], q["field_ids"]))}
+    branches = [{_company_of(audit, fields.get(cid, {})) for cid in q["field_ids"]}
+                for q in pool if plain(q) and q["key"] not in labels]
+    return [q for q in pool if q["key"] not in labels
+            or not any(labels[q["key"]] in companies for companies in branches)]
+
+
+def imply_label_receipts(data):
+    """A label takes the accepted USER confirmation of the branch about the same company.
+
+    Same verified reply, own proof recomputed by the backend, `implied_by` naming its origin. It
+    follows the branch at every turn: gone as soon as the branch is withdrawn, while an explicit
+    USER answer on the label is never touched. It frees no person's data: a person's SOURCE
+    proposal stays out unless another condition still governs it or the USER named that person.
+    Returns the labels newly covered, for the receipt shown to the USER.
+    """
+    if data.get("dialogue_state_revision") != 1:
+        return []
+    from app.compilation_global_dialogue import documented_proposal
+    from app.compilation_scope_review import proof, target, valid_receipt
+    from app.compilation_source_reuse import pending_signatory_conditions
+
+    audit = data.get("audit") or {}
+    conditions = audit.get("conditions", {})
+    answers = (data.get("dialogue") or {}).setdefault("answers", {})
+    earlier = {k for k, r in answers.items() if r.get("implied_by")}
+    for key in earlier:
+        del answers[key]
+    fields = {f["candidate_id"]: f for f in audit.get("fields", [])}
+    branches = []
+    for key, item in conditions.items():
+        receipt = answers.get("condition:" + key, {})
+        covered = receipt.get("affected_fields") or []
+        if (item.get("aspect") in {"participation", "representation"} and covered
+                and receipt.get("applies") is True
+                and valid_receipt(data, "condition:" + key, receipt, covered[0])):
+            branches.append(("condition:" + key, receipt,
+                             {_company_of(audit, fields.get(cid, {})) for cid in covered}))
+    branches.sort(key=lambda branch: -len(branch[1]["affected_fields"]))
+    postponed, shown = pending_signatory_conditions(data), []
+    for key, item in conditions.items():
+        slot = "condition:" + key
+        if (slot in answers or key in postponed or item.get("result", "unknown") != "unknown"
+                or item.get("validation_errors") or not item.get("form_evidence")):
+            continue
+        governed = [f for f in fields.values() if key in f.get("conditions", [])
+                    and not any(answers.get("condition:" + c, {}).get("applies") is False
+                                for c in f.get("conditions", []))]
+        company = _label_company(data, key, [f["candidate_id"] for f in governed])
+        branch = company and next((b for b in branches if company in b[2]), None)
+        if not branch:
+            continue
+        ids = [f["candidate_id"] for f in governed
+               if _company_of(audit, f) == company or not documented_proposal(f)
+               or f.get("source_reuse") or len(f.get("conditions", [])) > 1]
+        receipt = {**deepcopy(branch[1]), "implied_by": branch[0], "affected_fields": ids}
+        receipt["scope_validation"] = proof(target(data, slot, ids), receipt)
+        answers[slot] = receipt
+        if slot not in earlier:
+            shown.append(item["form_evidence"]["quote"])
+    return shown
 
 
 def fit_turn_parts(replies, edits):

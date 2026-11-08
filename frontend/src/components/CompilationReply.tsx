@@ -44,7 +44,9 @@ export function CompilationReply({ session, response, pending, processing, locke
   }
 
   if (pending) return null
-  const state = processing ? null : compilationState(session)
+  // A global draft lives in the one bar above the composer, not in every reply.
+  const draftInBar = session.engine === 'global' && Boolean(session.last_generation)
+  const state = processing || draftInBar ? null : compilationState(session)
   const dialogue = session.global_compilation?.dialogue
   // Only beside the dialogue message these questions belong to, never a stale or other reply.
   const details = session.engine === 'global' && !processing && !error && !session.chat?.paused
@@ -66,7 +68,7 @@ export function CompilationReply({ session, response, pending, processing, locke
       || (session.engine === 'global' ? 'Analisi interrotta: nessun valore applicato. Chiedimi di riprendere per ritentare.'
         : 'Ho conservato il lavoro fatto finora, ma non sono riuscito a completare il modulo. Possiamo riprendere o preparare una bozza parziale.')}</p>}
     {error && <button type="button" className="button" disabled={locked} onClick={onRetry}>Riprova</button>}
-    {session.last_generation && <>
+    {session.last_generation && !draftInBar && <>
       {session.engine !== 'global' && (session.open_issues.length > 0
         ? <p>Ho preparato una bozza parziale: restano informazioni da chiarire per completare il modulo.</p>
         : !paragraphs.length && <p>Ho preparato la bozza. Puoi scaricarla e verificarla.</p>)}

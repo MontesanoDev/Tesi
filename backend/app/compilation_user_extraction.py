@@ -154,7 +154,8 @@ def frames(data, slots):
                    and cid in data["writable_ids"]}
         if group["name_id"] in members:
             result[str(slot["slot"])] = {"name_id": group["name_id"], "members": members,
-                                        "question": slot.get("question", "")}
+                                        "question": slot.get("question", ""),
+                                        "trim_role": data.get("dialogue_state_revision") == 1}
     return result
 
 
@@ -178,6 +179,12 @@ def extract(frame, quote):
     if not matches:
         return None
     name = PREFIX.sub("", quote[:matches[0].start()].strip()).strip(" ,;:.")
+    # «Leonardo Rossi, amministratore unico e rappresentante legale della società»: the name is
+    # before the comma, the role has its own question. Never the whole phrase in the name field.
+    role_tail = bool(frame.get("trim_role") and "," in name
+                     and simple_name(name.split(",")[0].strip()))
+    if role_tail:
+        name = name.split(",")[0].strip()
     if not simple_name(name):
         return {"values": {}, "issues": ["Indica un solo nome e cognome per la persona richiesta."]}
     properties, issues, ambiguous = {"name": name}, [], set()
@@ -185,7 +192,9 @@ def extract(frame, quote):
     for i, match in enumerate(matches):
         kind = match.lastgroup
         if kind == "boundary":
-            issues.append("Gli altri soggetti, ruoli e dichiarazioni richiedono domande distinte.")
+            if not role_tail:
+                issues.append(
+                    "Gli altri soggetti, ruoli e dichiarazioni richiedono domande distinte.")
             break
         if kind in seen:
             properties = {"name": name}

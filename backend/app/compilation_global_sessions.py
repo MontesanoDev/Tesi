@@ -9,6 +9,7 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import json
+import logging
 import time
 from datetime import UTC, datetime, timedelta
 from uuid import uuid4
@@ -168,6 +169,15 @@ def chat_view(state):
             "steps_used": data["attempts"], "max_steps": 1}
 
 
+def dialogue_digest(data):
+    """What the USER decided: a pause or a new question is not a change to export."""
+    from app.compilation_segments import request_digest
+
+    dialogue = data.get("dialogue") or {}
+    return request_digest({k: dialogue.get(k) for k in ("answers", "user_values",
+                                                        "excluded_fields")})
+
+
 def session_payload(row, state):
     from app.compilation_branch_evidence import effective_user_values
 
@@ -195,8 +205,14 @@ def session_payload(row, state):
         view["dialogue"]["reviewed_candidate_ids"] = list(reviewed_candidates(data))
     if "coverage_summary" in audit:
         view["coverage_summary"] = audit["coverage_summary"]
-    return {**{k: v for k, v in state.items() if k != "global_compilation"},
-            "global_compilation": view, "chat": chat_view(state),
+    exported = state.get("last_generation")
+    if exported and exported.get("state_digest"):
+        exported = {**exported, "changes_since_export": exported["state_digest"] != dialogue_digest(
+            data)}
+        exported.pop("state_digest")
+    return {**{k: v for k, v in state.items() if k not in {"global_compilation",
+                                                           "last_generation"}},
+            "last_generation": exported, "global_compilation": view, "chat": chat_view(state),
             **{k: row[k] for k in ["id", "project_id", "form_id", "conversation_id", "version",
                                    "created_at", "updated_at"]},
             "blocked_previous_writes": [], "open_issues": [],
@@ -834,7 +850,8 @@ async def resolve_global(project_id, session_id, version, field_ids=None):
                          "format_retry_revision", "hold_review_revision",
                          "omission_recovery_revision", "subject_check_revision",
                          "identifier_type_revision", "role_proof_revision",
-                         "conversation_turn_revision", "checkbox_policy_revision"):
+                         "conversation_turn_revision", "checkbox_policy_revision",
+                         "dialogue_state_revision"):
             if revision in claimed["global_compilation"]:
                 effective_data[revision] = claimed["global_compilation"][revision]
             else:
@@ -911,7 +928,83 @@ def control_session(project_id, session_id, version, kind):
         return sessions.save_state(db, row, state, f"global_{kind}")
 
 
+logger = logging.getLogger(__name__)
+REST_SECONDS = 60  # The second routing pass of one message; never holds the first one back.
 REFRESH_STEPS = 10  # Same bound as an automatic continuation: never an unbounded loop.
+
+
+async def _settled(project_id, current):
+    """The review of an accepted reply completed, as an automatic continuation does."""
+    for _ in range(REFRESH_STEPS):
+        if (current["global_compilation"].get("dialogue") or {}).get("phase") != "PENDING":
+            break
+        current = await resolve_global(project_id, current["id"], current["version"])
+    return current
+
+
+def append_dialogue_notice(project_id, session_id, version, notice):
+    """Say it in the message the USER reads, without touching answers or receipts."""
+    with connection() as db:
+        db.execute("BEGIN IMMEDIATE")
+        row, state = _row_state(db, project_id, session_id, version)
+        dialogue = state["global_compilation"].get("dialogue") or {}
+        dialogue["message"] = f"{dialogue.get('message') or ''}\n\n{notice}".strip()
+        return sessions.save_state(db, row, state, "dialogue_unrouted_notice")
+
+
+async def answer_with_rest(project_id, conversation_id, decision, session, message,
+                           expected_version=None, *, history=()):
+    """Apply the replies, then route once what the message said and no reply quoted.
+
+    Real manual turn: branch, signatory, «scelgo l'opzione 4» and deferrals in one message. The
+    choice has no target until its branch is confirmed, and the router gave at most four parts: the
+    rest vanished in silence and the choice was asked again. The second pass meets the same router,
+    guard and receipts, on the state the first one produced. If it cannot help, it is said.
+    """
+    from app.compilation_chat import ClarificationDecision, handle_group_decision, planner_context
+    from app.compilation_conversation import unrouted_sentences
+    from app.compilation_global_dialogue import readable
+    from app.intents import plan_chat_turn
+
+    data = session.get("global_compilation") or {}
+    if data.get("dialogue_state_revision") != 1:
+        return await handle_group_decision(project_id, conversation_id, decision, session,
+                                           message, expected_version)
+    # What stays unrouted is said only if the second pass cannot place it either.
+    text, command = await handle_group_decision(
+        project_id, conversation_id, decision.model_copy(update={"ignored_quotes": []}), session,
+        message, expected_version)
+    rest = unrouted_sentences(message, decision.routed_quotes)
+    if not rest:
+        return text, command
+    tail = " ".join(rest)
+    current = await run_in_threadpool(sessions.get_session, project_id, session["id"])
+    try:
+        async with asyncio.timeout(REST_SECONDS):
+            current = await _settled(project_id, current)
+            dialogue = current["global_compilation"].get("dialogue") or {}
+            if current["global_compilation"].get("paused") or dialogue.get("phase") != "READY":
+                raise GenerationError("Conversazione non disponibile per la seconda lettura")
+            planned = await plan_chat_turn(tail, list(history),
+                                           compilation=planner_context(current))
+            second = planned.decision
+            if isinstance(second, ClarificationDecision) and second.replies:
+                handler = answer_then_finish if second.then_finish else handle_group_decision
+                further, outcome = await handler(
+                    project_id, conversation_id,
+                    second.model_copy(update={"earlier_turn": dialogue.get("latest_turn")}),
+                    current, tail, current["version"])
+                return further, outcome  # Its receipt already includes the first pass.
+    except (GenerationError, HTTPException, ValueError, TimeoutError) as exc:
+        logger.warning("Second routing pass not applied: %s", type(exc).__name__)
+    notice = ("Non ho registrato questa parte del messaggio: "
+              + "; ".join(f"«{readable(s, 120)}»" for s in rest[:3])
+              + ". Se ti serve, indicala di nuovo riferendola a un campo del modulo.")
+    current = await run_in_threadpool(sessions.get_session, project_id, session["id"])
+    current = await _settled(project_id, current)
+    await run_in_threadpool(append_dialogue_notice, project_id, session["id"], current["version"],
+                            notice)
+    return f"{text}\n\n{notice}", command
 
 
 async def answer_then_finish(project_id, conversation_id, decision, session, message,
@@ -931,10 +1024,7 @@ async def answer_then_finish(project_id, conversation_id, decision, session, mes
         project_id, conversation_id, decision.model_copy(update={"then_finish": False}),
         session, message, expected_version)
     current = await run_in_threadpool(sessions.get_session, project_id, session["id"])
-    for _ in range(REFRESH_STEPS):
-        if (current["global_compilation"].get("dialogue") or {}).get("phase") != "PENDING":
-            break
-        current = await resolve_global(project_id, current["id"], current["version"])
+    current = await _settled(project_id, current)
     dialogue = current["global_compilation"].get("dialogue") or {}
     refused = decision.unaccepted_slots or (dialogue.get("latest_turn") or {}).get("unaccepted")
     if refused or command.get("action") == "clarify" or dialogue.get("phase") != "READY":
@@ -1242,9 +1332,16 @@ def generate_draft(project_id, session_id, request):
         current, latest = _row_state(db, project_id, session_id, request.version)
         _selected(current, latest, request, db)  # Sources and revision atomically checked again.
         checked_user_fields(current, latest, request)
+        earlier = latest.get("last_generation")
         latest.update(status="GENERATED", last_generation={"session_version": request.version,
                                                           **generated})
         latest["last_generation"].pop("report", None)
+        if latest["global_compilation"].get("dialogue_state_revision") == 1:
+            latest["last_generation"]["state_digest"] = dialogue_digest(
+                latest["global_compilation"])
+            if earlier:
+                latest.setdefault("draft_history", []).append(
+                    {k: earlier.get(k) for k in ("id", "created_at", "session_version")})
         latest["global_compilation"]["last_review"] = report["user_review"]
         if latest["global_compilation"].get("dialogue"):
             latest["global_compilation"]["dialogue"].update(phase="READY", question=None,

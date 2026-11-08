@@ -477,6 +477,9 @@ def continuation_receipt(dialogue, *, newly_held=False):
         if records := [r for r in accepted if r["action"] == action]:
             # The FORM clause the USER answered, not the model's note on what was missing.
             parts.append(f"{outcome}: {labels(records, 'form_clause')}.")
+    if implied := latest.get("implied_labels"):
+        names = "; ".join(dict.fromkeys(f"«{short_form_text(text)}»" for text in implied))
+        parts.append(f"La stessa conferma vale per {names}: riguarda la stessa società.")
     if records := [r for r in accepted if r["action"] == "VALUE"
                    and r.get("write_authorized") is not False and "usable_for_draft" not in r]:
         parts.append(f"Ho registrato: {labels(records)}.")
@@ -509,6 +512,9 @@ def continuation_receipt(dialogue, *, newly_held=False):
             f"Non ho usato la risposta su «{label}»{why}. Te la richiedo: "
             f"{CLARIFY.get(refused.get('kind'), 'precisa la risposta')}, oppure rinvia; "
             "nulla è stato scritto.")
+    if accepted and latest.get("after_export"):
+        parts.append("Il file già esportato resta com'è: per includere queste modifiche chiedimi "
+                     "una nuova bozza.")
     if latest.get("ignored_quotes"):
         shown = "; ".join(f"«{readable(q, 120)}»" for q in latest["ignored_quotes"])
         parts.append(f"Non ho registrato questa parte del messaggio: {shown}. Se ti serve, "
@@ -580,11 +586,14 @@ def question_pool(data, *, selective=False, all_targets=False):
     # Segments may each declare the same FORM clause as their own condition: one question per
     # FORM paragraph, one receipt per condition (apply_replies), never a second request.
     by_paragraph = {}
-    from app.compilation_branch_evidence import decided_peers
+    from app.compilation_branch_evidence import decided_peers, other_capacity_branches
     from app.compilation_scope_review import enabled as scope_enabled
     from app.compilation_scope_review import valid_receipt
 
     peers = decided_peers(data)
+    if data.get("dialogue_state_revision") == 1:
+        # Its data stay empty whatever the answer: the question could change nothing.
+        peers |= other_capacity_branches(data, only_valid=True)
     # Options of a derived capacity group are marked by the explicit choice or the receipt
     # link, never by a condition receipt: gaining a FORM target is not a new destination.
     derived_options = {cid for g in audit.get("choice_groups", {}).values()
@@ -609,6 +618,8 @@ def question_pool(data, *, selective=False, all_targets=False):
             continue
         # A confirmation is asked again only for destinations its receipt never showed (e.g.
         # derived from SOURCE after the USER chose a person), naming them: never silently lost.
+        if (receipt or {}).get("implied_by"):
+            continue  # Follows its branch; what it left out waits for the person it belongs to.
         covered = (receipt or {}).get("affected_fields") or []
         new = [shown_label(f) or "dato collegato" for f in impacted
                if f["candidate_id"] not in covered and f["candidate_id"] not in derived_options]
@@ -660,6 +671,8 @@ def question_pool(data, *, selective=False, all_targets=False):
         pool.append(entry)
         if clause:
             by_paragraph[clause] = entry
+    if not all_targets:
+        pool = conversation.hide_labels_under_open_branch(data, pool)
     pool.sort(key=lambda q: -q["impact"])
     held_choices = {r["resolution"]["key"] for cid, r in dialogue.get("hold_records", {}).items()
                     if cid in set(dialogue.get("held_candidate_ids", []))
@@ -2175,7 +2188,7 @@ def condition_receipts(data, slot, record, reply):
 
 def apply_replies(project_id, session_id, version, replies, message, unaccepted_slots=(),
                   scope_verifications=None, unaccepted_reasons=None, value_extractions=(),
-                  addressed_keys=(), addressed_from=1, ignored_quotes=()):
+                  addressed_keys=(), addressed_from=1, ignored_quotes=(), earlier_turn=None):
     from app.compilation_chat import (
         contains_span,
         has_user_alternatives,
@@ -2311,8 +2324,10 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                 }:
                     if alternatives(reply):
                         raise ValueError("Risposta incerta sulla condizione")
+                    line = (form_line(slot.get("condition") or "", 180)
+                            if data.get("dialogue_state_revision") == 1 else None)
                     record.update(applies=reply.action == "CONDITION_TRUE",
-                                  form_clause=confirmed_text(slot))
+                                  form_clause=line or confirmed_text(slot))
                 elif slot["kind"] == "value" and reply.action == "VALUE":
                     if reply.selected_options is not None:
                         raise ValueError("Opzioni non ammesse per un campo testuale")
@@ -2377,6 +2392,15 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
              "reason": refused.get(n) or REASON_TEXT.get((unaccepted_reasons or {}).get(n), "")}
             for n in sorted(set(errors) | set(unaccepted_slots)) if n in slots],
             **({"ignored_quotes": list(ignored_quotes)} if ignored_quotes else {})}
+        if data.get("dialogue_state_revision") == 1:
+            if state.get("last_generation"):
+                dialogue["latest_turn"]["after_export"] = True
+            if earlier_turn:  # One message, two routing passes: the USER sees one receipt.
+                latest = dialogue["latest_turn"]
+                latest["accepted"] = [*earlier_turn.get("accepted", []), *latest["accepted"]]
+                latest["unaccepted"] = [*earlier_turn.get("unaccepted", []), *latest["unaccepted"]]
+                if earlier_turn.get("implied_labels"):
+                    latest["implied_labels"] = earlier_turn["implied_labels"]
         if conversation.enabled(data):
             # A free router guessed an unrelated destination: the USER did not
             # refuse that field or answer it ambiguously. Retain the rejection for
@@ -2441,6 +2465,8 @@ def apply_replies(project_id, session_id, version, replies, message, unaccepted_
                 data["review_audit_name"] = name
             data["audit"] = extraction.restore_fields(data, data["audit"])
             extraction.mark_usable(data, accepted)
+            if implied := conversation.imply_label_receipts(data):
+                dialogue["latest_turn"]["implied_labels"] = implied
             dialogue.update(phase="PENDING", question=None)
         else:
             question = dialogue.get("question")
