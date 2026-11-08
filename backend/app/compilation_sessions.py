@@ -431,15 +431,10 @@ def save_state(db, row, state: dict, action: str) -> dict:
 
 def read_original(row):
     original = bytes(row["original"])
-    state = json.loads(row["state_json"])
-    if hashlib.sha256(original).hexdigest() != state["template_sha256"]:
+    if hashlib.sha256(original).hexdigest() != json.loads(row["state_json"])["template_sha256"]:
         raise DocumentInputError("Lo snapshot originale non coincide con il suo hash")
-    layout = (inspect_docx(original, require_candidates=False)
-              if state.get("engine") == "global" else inspect_docx(original))
-    if state.get("engine") == "global":
-        layout.text_checkbox_revision = state.get("global_compilation", {}).get(
-            "text_checkbox_revision", 0)
-    return layout
+    return (inspect_docx(original, require_candidates=False)
+            if json.loads(row["state_json"]).get("engine") == "global" else inspect_docx(original))
 
 
 def claim_resolution(project_id: str, session_id: str, version: int, ids: list[str] | None,

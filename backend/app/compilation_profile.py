@@ -30,18 +30,14 @@ SECTIONS = {
     "table_scope_revision": 1,            # Conditional table sections need applicability.
     "hold_rereview_revision": 2,          # One re-review of misattributed or role holds.
     "form_option_scope_revision": 2,      # Data bound to their FORM option or instruction.
-    "text_checkbox_revision": 1,          # Supported ASCII markers; verified USER choice.
 }
 # Earlier canonical profiles, recreated only by the server-side emergency switch.
-PREVIOUS = {"sezioni-2026-10-24": {
-    k: v for k, v in SECTIONS.items()
-    if k not in {"form_option_scope_revision", "text_checkbox_revision"}}}
+PREVIOUS = {"sezioni-2026-10-24": {k: v for k, v in SECTIONS.items()
+                                   if k != "form_option_scope_revision"}}
 
 
 def new_session_flags():
     profile = os.environ.get("MAPI_COMPILATION_PROFILE")
-    if profile == "checkbox-testuali-2026-10-26":
-        return {**SECTIONS, "compilation_profile": profile, "text_checkbox_revision": 1}
     if profile == "storico":
         return historical_flags()
     if profile in PREVIOUS:
