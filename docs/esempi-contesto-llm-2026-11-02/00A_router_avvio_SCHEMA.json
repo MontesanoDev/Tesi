@@ -1,0 +1,34 @@
+{
+  "_guida": {
+    "titolo": "Router di avvio: riconoscere la richiesta di compilazione",
+    "tipo": "SCHEMA ILLUSTRATIVO, non trascrizione di una chiamata acquisita",
+    "nota": "Le etichette dell'input sono esplicative. L'esempio rappresenta il caso con FORM già selezionato; non ricostruisce tutti i percorsi della chat.",
+    "riferimento_codice": "backend/app/intents.py: plan_chat_turn",
+    "messaggio": "Il router sceglie l'operazione; inventario e selezione non sono prove fattuali."
+  },
+  "istruzioni_riassunte": "Interpreta la richiesta e restituisci un intento strutturato. La sola selezione di un documento non avvia la compilazione.",
+  "input_esemplificativo": {
+    "cronologia_non_fattuale": [],
+    "moduli_del_progetto": [
+      {
+        "id": 19,
+        "name": "modulo.docx"
+      }
+    ],
+    "form_selezionato": {
+      "id": 19,
+      "name": "modulo.docx"
+    },
+    "compilazione_attiva": false,
+    "ultimo_messaggio": "compila"
+  },
+  "output_possibile_ILLUSTRATIVO": {
+    "intent": "compile",
+    "answer": "",
+    "queries": [],
+    "target": "form",
+    "form_id": 19,
+    "replies": []
+  },
+  "dopo_il_router": "Il backend verifica FORM e progetto, crea la sessione e prepara l'analisi. Questa decisione non inserisce valori nel DOCX."
+}

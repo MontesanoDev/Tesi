@@ -1,0 +1,126 @@
+{
+  "versione_corrente": "930aeef9aa6b354e267c19dcbd5fa3d9c065bdaa",
+  "acquisizioni": [
+    "a0cc223, prova manuale del 31 ottobre",
+    "930aeef, replay reale del 1 novembre"
+  ],
+  "creato_il": "2026-11-02",
+  "nuove_chiamate_LLM": 0,
+  "originali_soltanto_letti": true,
+  "trasformazioni": [
+    "Selezione di record e campi; conservazione degli ID originali.",
+    "Testi accorciati con marcatori espliciti; nessuna proposta o verdetto nuovo.",
+    "Decodifica dei JSON presenti nelle stringhe messages[].content.",
+    "Omissione di schemi completi, digest e parte degli ambiti strutturali nelle viste."
+  ],
+  "file_originali": {
+    "backend/data/compilation-audit/sottoscrittore-vuoto-20261031/candidate/artifacts/segments/1/request.json": {
+      "sha256": "aef819daa4f68c7419df7de09a69acf936fe1d4c2963f2af50fbfc1d2033ce62",
+      "bytes": 231903
+    },
+    "backend/data/compilation-audit/sottoscrittore-vuoto-20261031/candidate/artifacts/segments/1/response-1.txt": {
+      "sha256": "a0a30d320d4c34b1012fc7ad92e760123b0e86c3924f4ca4436c7f8c42e0f4f4",
+      "bytes": 11779
+    },
+    "backend/data/compilation-audit/sottoscrittore-vuoto-20261031/candidate/artifacts/segments/1-recupero/request.json": {
+      "sha256": "d8d64d0e5051ae5a839f8bfe5f59ad96a9088dff2dd7bc53e8fe1ed183575947",
+      "bytes": 213769
+    },
+    "backend/data/compilation-audit/sottoscrittore-vuoto-20261031/candidate/artifacts/segments/1-recupero/response.txt": {
+      "sha256": "9daffd6abe53407d4bb0e1a8657c63e3f16f3a34d007976f277f03045c79b03b",
+      "bytes": 1014
+    },
+    "backend/data/compilation-audit/sottoscrittore-vuoto-20261031/candidate/artifacts/initial-decisions/request.json": {
+      "sha256": "1b61cf29e5a44d2faddeb167bddeb0338f6d4ff5e91aad7348dd212046667f7e",
+      "bytes": 2794
+    },
+    "backend/data/compilation-audit/sottoscrittore-vuoto-20261031/candidate/artifacts/initial-decisions/response.txt": {
+      "sha256": "c5bb9e45196662f0503a34b957219cbe01756b5801d14caab92b5b7581d77115",
+      "bytes": 16
+    },
+    "backend/data/compilation-audit/sottoscrittore-vuoto-20261031/candidate/artifacts/dialogue/1e3f3a60f10d4fa6a569f9aa50ca3a17/request.json": {
+      "sha256": "7f77982586872ea3604941b4729f5332a24baf1b6a38e06707b59b85e7882fb6",
+      "bytes": 38903
+    },
+    "backend/data/compilation-audit/sottoscrittore-vuoto-20261031/candidate/artifacts/dialogue/1e3f3a60f10d4fa6a569f9aa50ca3a17/response.txt": {
+      "sha256": "40acd3154a572b7e872b6fed49cf9964df643359403d07c773e70e6d0cee2750",
+      "bytes": 1310
+    },
+    "backend/data/compilation-audit/sottoscrittore-vuoto-20261031/candidate/artifacts/dialogue/d3e8d7ad42a74a28ad0ceac03bc145f4/request.json": {
+      "sha256": "56522c6f769d487b9da7b0096c20b4b20c36bc94ef713f1cc56af0e9c378df7d",
+      "bytes": 68206
+    },
+    "backend/data/compilation-audit/sottoscrittore-vuoto-20261031/candidate/artifacts/dialogue/d3e8d7ad42a74a28ad0ceac03bc145f4/response.txt": {
+      "sha256": "a21c2444913883dfea37c044d16927ab5abcf572fa7e1646a21f2e7ce5329bfa",
+      "bytes": 959
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/01-positive-answer/request.json": {
+      "sha256": "e0e449f0498d72fcbab4727055bc6b5d924dd6e8a5c43d241ddd3c5bab8b673b",
+      "bytes": 24670
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/01-positive-answer/response.json": {
+      "sha256": "dd69d2dd9f6a754783c4ddbaa27affe371239fbba3318c57203f0cafef2e4c3e",
+      "bytes": 1379
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/02-positive-answer/request.json": {
+      "sha256": "4da98a4900d64b5e3a6ea64a8eaf192e70303abdaa4ed866f07c56cd145252d8",
+      "bytes": 145119
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/02-positive-answer/response.json": {
+      "sha256": "d602bd2491d6e7d32481ed2c37d70c0dda8ddcbd380584db1f96f39170a3cd54",
+      "bytes": 1785
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/03-positive-answer/request.json": {
+      "sha256": "dd8516f3359fa81fce8649503ed40ce4445a2a45b505aa281d292e8a982fc2f6",
+      "bytes": 93342
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/03-positive-answer/response.json": {
+      "sha256": "add378205eb3dd38934b138a8cb1b95228d2d1c7c4591d5e4bbb45f4a6e68d74",
+      "bytes": 996
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/04-positive-answer/request.json": {
+      "sha256": "4c603f35ff02968e78438986192b5df52287fc633baa19af70c2de441fba1c42",
+      "bytes": 89174
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/04-positive-answer/response.json": {
+      "sha256": "bbf4354d59f4aab4c6279954e51d766328f961d20ae65d604da51e5f5281158a",
+      "bytes": 771
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/05-positive-confirmations/request.json": {
+      "sha256": "c16a17456886db3bce1f13fbf2a73d9d72a13bc0286266acaf220373c486c101",
+      "bytes": 21024
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/05-positive-confirmations/response.json": {
+      "sha256": "0d6ebc864d4d3e49dd1d56f15867d2427011cd00a14f675f26eedec0f9b9ba90",
+      "bytes": 1213
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/06-positive-confirmations/request.json": {
+      "sha256": "7e91113b2bd26181b3d43d70c9a794db39900b645f747c67b8380b4d1ff0c1d9",
+      "bytes": 133625
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/06-positive-confirmations/response.json": {
+      "sha256": "843fca083d8411617f38aa37ca95efb2737546879cf79a3a4efe7f0823e10e77",
+      "bytes": 1194
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/positive-export/http.json": {
+      "sha256": "d15700333e90eb488b430ad524c65dfc43a57216ec2d7bb90894221d0f794772",
+      "bytes": 179366
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/positive-export/report.json": {
+      "sha256": "a1d70695d006eb454335f6c3bf825adb38687ec2cfde93095f1062a1c52392bb",
+      "bytes": 846750
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/07-positive-review-1/request.json": {
+      "sha256": "c33c2adcf8e7def27c9af1467c30b342992224d7419cf78e41a0e74242258005",
+      "bytes": 98487
+    },
+    "backend/data/compilation-audit/user-multivalue-deepseek-20261101/calls/07-positive-review-1/http-response.json": {
+      "sha256": "c85019c93a43fd2221ee93ea8c80f72879c34aca5a4df832e07efa76e7e841f9",
+      "bytes": 225
+    },
+    "backend/app/intents.py": {
+      "sha256": "8789870804ba1f0e367bc5ef61036cba6540be54e1a1d18202a12a607310b77b",
+      "bytes": 46357
+    }
+  }
+}

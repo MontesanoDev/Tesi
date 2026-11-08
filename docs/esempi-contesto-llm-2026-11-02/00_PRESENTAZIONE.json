@@ -1,0 +1,261 @@
+{
+  "_guida": {
+    "titolo": "Da mostrare per primo: che cosa vede il modello",
+    "tipo": "SCHEMI DIDATTICI abbreviati e riorganizzati a partire dagli estratti reali della cartella",
+    "nota": "input_ridotto e output_ridotto sono viste di lettura, non il body API eseguibile. Gli esempi provengono da checkpoint diversi, dichiarati nei rispettivi file.",
+    "versioni": "Analisi/narratore: a0cc223; risposta e guardia multivalore: 930aeef.",
+    "regola": "FORM = che cosa viene richiesto; SOURCE = fatti documentati; USER = dati e decisioni forniti nella conversazione."
+  },
+  "1_analisi": {
+    "compito": "Proporre assegnazioni documentate, mantenendo le condizioni aperte.",
+    "input_ridotto": {
+      "form": {
+        "paragraph": {
+          "id": "paragraph:14",
+          "text": "_______________________ dell’operatore economico ___________________________________ con sede in",
+          "text_with_fields": "[[p14.s0]] dell’operatore economico [[p14.s1]] con sede in"
+        },
+        "candidate_id": "p14.s1"
+      },
+      "sources": [
+        {
+          "chunk_id": -14,
+          "file_id": -3,
+          "source_name": "integrazione-company.md",
+          "role": "source",
+          "scope": "global",
+          "project_id": null,
+          "content": "- **Società:** Mapi Ingegneria S.r.l.\n[... omesso ...]\n- **Sede legale — comune:** Bari."
+        }
+      ],
+      "user_context": [
+        {
+          "kind": "recorded_request",
+          "provenance": "USER",
+          "turn_id": 1,
+          "user_quote": "compila"
+        }
+      ],
+      "responsabilita": "La richiesta completa è il segmento 1 di 5: 59 destinazioni assegnate, contesto FORM e SOURCE completo."
+    },
+    "output_ridotto": {
+      "field": {
+        "p14.s1": {
+          "label": "operatore economico",
+          "kind": "data",
+          "disposition": "conditional",
+          "form": {
+            "paragraph_id": "paragraph:14",
+            "quote": "dell’operatore economico [[p14.s1]] con sede in"
+          },
+          "conditions": [
+            "c_partecipante"
+          ],
+          "fact_id": "f_company_name",
+          "property": "denominazione",
+          "reason": "Dato aziendale documentato; partecipazione non confermata"
+        }
+      },
+      "fact": {
+        "f_company_name": {
+          "subject": "Mapi Ingegneria S.r.l.",
+          "entity": "company",
+          "aspect": "identity",
+          "property": "denominazione",
+          "value": "Mapi Ingegneria S.r.l.",
+          "evidence": [
+            {
+              "chunk_id": -14,
+              "quote": "- **Società:** Mapi Ingegneria S.r.l."
+            },
+            {
+              "chunk_id": -1,
+              "quote": "- Ragione sociale: Mapi Ingegneria S.r.l."
+            }
+          ]
+        }
+      }
+    },
+    "leggere": "conditional è una proposta documentata che attende applicabilità: non è una scrittura."
+  },
+  "2_narratore": {
+    "compito": "Rivedere e spiegare le proposte, scegliere domande del pool, segnalare dubbi motivati.",
+    "input_ridotto": {
+      "document_values": [
+        {
+          "proposal_slot": 1,
+          "label": "con il n.",
+          "value": "5267",
+          "role_context_slot": 1,
+          "form_quote": "con il n. ………………..…",
+          "sources": [
+            {
+              "name": "integrazione-company.md",
+              "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |"
+            }
+          ]
+        }
+      ],
+      "role_contexts": [
+        {
+          "slot": 1,
+          "subject": "Andrea Greco",
+          "entity": "person",
+          "required_role": "socio",
+          "source_role": "socio",
+          "form_quote": "composta da (riportare nominativo, qualifica professionale e C.F. di ogni socio):",
+          "grounding": "literal_match",
+          "semantic_review_required": true,
+          "sources": [
+            {
+              "name": "integrazione-company.md",
+              "quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+              "truncated": false,
+              "role": "source",
+              "scope": "global",
+              "category": "company"
+            }
+          ]
+        },
+        {
+          "slot": 2,
+          "subject": "Elisa Romano",
+          "entity": "person",
+          "required_role": "Direttore Tecnico",
+          "source_role": "direttore tecnico",
+          "form_quote": "la quale ha come Responsabile della Progettazione (per le società di professionisti) o Direttore Tecnico (per le società di ingegneria):",
+          "grounding": "literal_match",
+          "semantic_review_required": true,
+          "sources": [
+            {
+              "name": "integrazione-company.md",
+              "quote": "| Elisa Romano | 40% | Ingegnere | Ordine degli Ingegneri di Bari | A | Bari (BA) | 18/05/2015 | 8421 | RMNLSI85C47A662Y |",
+              "truncated": false,
+              "role": "source",
+              "scope": "global",
+              "category": "company"
+            },
+            {
+              "name": "generalita-mapi.md",
+              "quote": "### Ing. Elisa Romano - direttore tecnico",
+              "truncated": false,
+              "role": "source",
+              "scope": "global",
+              "category": "company"
+            }
+          ]
+        }
+      ],
+      "question_pool": [
+        {
+          "slot": 1,
+          "kind": "applicability",
+          "label": "Sottoscrittore della domanda non individuato",
+          "condition": "Il sottoscritto _____________________________"
+        }
+      ]
+    },
+    "output_ridotto": {
+      "hold_groups": [
+        {
+          "proposal_slots": [
+            1
+          ],
+          "blocker": "source",
+          "reason": "Il numero di iscrizione all'albo è tratto dal record dei soci, dove Andrea Greco figura come socio; il modulo lo richiede per il soggetto indicato nella sezione professionale, e il ruolo di sottoscrittore/legale rappresentante non è attestato per lui.",
+          "missing_information": "Riferimento esplicito del numero di iscrizione al soggetto a cui è destinato il campo",
+          "evidence_quote": "| Andrea Greco | 30% | Architetto | Ordine degli Architetti di Bari | A | Bari (BA) | 12/06/2014 | 5267 | GRCNDR84D20A662P |",
+          "condition_slot": null
+        }
+      ]
+    },
+    "leggere": "Il dubbio è una proposta del narratore. Il backend ne verifica la citazione e il legame con il destinatario; la sospensione non è una nuova prova SOURCE."
+  },
+  "3_router_risposta": {
+    "compito": "Associare la risposta USER a uno slot attivo.",
+    "input_ridotto": {
+      "slot": {
+        "slot": 3,
+        "kind": "value",
+        "label": "Il sottoscritto",
+        "condition": "",
+        "alternatives": [],
+        "context": "Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente",
+        "question": "Chi è il sottoscrittore della domanda: nome, cognome, luogo e data di nascita e residenza?",
+        "affected_field_count": 1,
+        "affected_fields": [],
+        "destinations_shown": false
+      },
+      "messaggio_USER_estratto": "Il sottoscrittore è Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24."
+    },
+    "output_ridotto": {
+      "intent": "answer_fields",
+      "reply": {
+        "action": "VALUE",
+        "slot": 3,
+        "user_quote": "Il sottoscrittore è Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24.",
+        "value": "Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24",
+        "normalized_value": null,
+        "selected_options": null
+      }
+    },
+    "leggere": "Qui il router aveva proposto tutta la frase come valore: la sua proposta resta non affidabile."
+  },
+  "4_guardia": {
+    "compito": "Controllare indipendentemente pertinenza e ambito della singola assegnazione.",
+    "passaggio_backend_precedente": "Il backend del fix ha isolato il nome; i sei dati aggiuntivi passano verifiche separate, mostrate nel file 08.",
+    "input_ridotto": {
+      "message_estratto": "Il sottoscrittore è Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24.",
+      "proposals": [
+        {
+          "slot": 3,
+          "action": "VALUE",
+          "value": "Leonardo Montemurro",
+          "user_quote": "Il sottoscrittore è Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24."
+        }
+      ],
+      "destinazione_FORM": {
+        "candidate_id": "p12.s0",
+        "candidate": {
+          "type": "text",
+          "context_id": "paragraph:12",
+          "slot_context": {
+            "before": "Il sottoscritto ",
+            "after": ", nato a "
+          },
+          "location": {
+            "block_id": "paragraph:12"
+          }
+        },
+        "label": "Il sottoscritto",
+        "form_evidence": {
+          "paragraph_id": "paragraph:12",
+          "quote": "Il sottoscritto _____________________________, nato a __________________ (__) il __________, residente"
+        },
+        "conditions": [
+          "s1_c_firmatario"
+        ]
+      }
+    },
+    "output_ridotto": {
+      "checks": [
+        {
+          "slot": 3,
+          "result": "SUPPORTED",
+          "scope_result": "SUPPORTED",
+          "rationale": "L'utente indica il sottoscrittore Leonardo Montemurro con luogo/data di nascita e residenza, rispondendo alla domanda 3. Il valore 'Leonardo Montemurro' corrisponde al campo 'Il sottoscritto' (p12.s0)."
+        }
+      ]
+    },
+    "leggere": "SUPPORTED valuta questo valore per questo campo. Non conferma automaticamente l’identità o altri rami."
+  },
+  "5_export_backend": {
+    "chi_esegue": "Backend, senza chiamata LLM.",
+    "risultato_reale": {
+      "written_field_count": 7,
+      "ready_for_submission": false,
+      "checkbox_values": {}
+    },
+    "limite": "Nel caso registrato sono stati esportati sette dati USER; CF e carica restano fuori perché la revisione SOURCE è stata interrotta dal provider. Non presentare questo esempio come completamento dei nove campi."
+  }
+}
