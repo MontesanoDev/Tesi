@@ -133,7 +133,7 @@ test('global compilation in chat, explicit partial export and refresh', async ({
   await page.getByRole('textbox', { name: 'Messaggio per l’assistente' }).fill('genera la bozza parziale')
   await page.getByRole('button', { name: 'Invia', exact: true }).click()
   await expect(page.getByRole('button', { name: 'Scarica DOCX' })).toHaveCount(1)
-  await expect(page.getByRole('region', { name: 'Ultima bozza esportata' })).toBeVisible()
+  await expect(page.getByRole('region', { name: 'Bozza 1 esportata' })).toBeVisible()
   expect(exports).toBe(1)
   const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Scarica DOCX' }).click()])
   expect(download.suggestedFilename()).toBe('modulo.compilato.docx')

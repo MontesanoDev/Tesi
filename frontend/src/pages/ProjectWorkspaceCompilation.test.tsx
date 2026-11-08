@@ -2,7 +2,7 @@ import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testi
 import { Link, MemoryRouter, Route, Routes } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { api } from '../api'
-import type { CompilationSession, CompilationSessionField, GroundedAnswer, ProjectDetail } from '../types'
+import type { CompilationChatAction, CompilationSession, CompilationSessionField, GroundedAnswer, ProjectDetail } from '../types'
 import { ProjectWorkspacePage } from './ProjectWorkspacePage'
 
 vi.mock('../api', () => ({ api: {
@@ -718,42 +718,78 @@ describe('CompilationSession nella chat', () => {
     expect(api.resolveCompilationSession).not.toHaveBeenCalled()
   })
 
-  it('mostra una sola volta la bozza globale, anche dopo messaggi ordinari e pausa', async () => {
+  it('lega ogni bozza globale al messaggio che l’ha esportata: né «grazie» né la pausa la ripetono', async () => {
     stored = globalSession(true)
     stored.status = 'GENERATED'
-    stored.global_compilation!.dialogue = { phase: 'READY', message: 'Ho preparato una bozza parziale.' }
-    stored.last_generation = { id: 'run-1', project_id: 'alpha', template_name: form.name,
-      created_at: '2026-11-05T15:17:00+00:00', status: 'needs_review', session_version: 3,
-      changes_since_export: false, downloads: { docx: '/file', report: '/report', template: '/original' } }
+    stored.last_generation = undefined as never
+    stored.global_compilation!.dialogue = { phase: 'READY', message: 'Vuoi una bozza?' }
+    const generation = (id: string, version: number, changed = false) => ({ id, project_id: 'alpha',
+      template_name: form.name, created_at: '2026-11-05T15:17:00+00:00', status: 'needs_review', session_version: version,
+      changes_since_export: changed, downloads: { docx: '/file', report: '/report', template: '/original' } })
     vi.mocked(api.projectAnswer).mockImplementation(async (_p, body) => {
-      const paused = body === 'ok basta'
-      const answer = paused ? 'Metto in pausa la compilazione.' : 'Dati acquisiti per la bozza: Fax.'
       stored!.version++
+      let answer = 'Prego!'
+      let compilation: CompilationChatAction | undefined
+      if (body === 'prima bozza' || body === 'seconda bozza') {
+        const id = body === 'prima bozza' ? 'run-1' : 'run-2'
+        if (stored!.last_generation) stored!.draft_history = [{ id: stored!.last_generation.id,
+          created_at: stored!.last_generation.created_at, session_version: stored!.last_generation.session_version }]
+        stored!.last_generation = generation(id, stored!.version) as never
+        answer = `Ho preparato ${body}.`
+        compilation = { session_id: 'session-1', action: 'generated', generation_id: id }
+      } else if (body === 'il fax è 1') {
+        stored!.last_generation = generation(stored!.last_generation!.id, stored!.last_generation!.session_version, true) as never
+        answer = 'Dati acquisiti: fax.'
+        compilation = { session_id: 'session-1', action: 'updated' }
+      } else if (body === 'ok basta') {
+        stored!.chat = { ...stored!.chat!, paused: true, paused_by_user: true }
+        answer = 'Metto in pausa la compilazione.'
+        compilation = { session_id: 'session-1', action: 'paused' }
+      }
       stored!.global_compilation!.dialogue = { phase: 'READY', message: answer }
-      if (paused) stored!.chat = { ...stored!.chat!, paused: true, paused_by_user: true }
-      else stored!.last_generation = { ...stored!.last_generation!, changes_since_export: true }
       return { conversation_id: 'chat-1', turn_id: stored!.version, question: body, answer,
         citations: [], evidence: [], missing_information: [], generation_status: 'direct',
-        model: 'simulato', total_tokens: 1, notice: null, form_reference: reference,
-        compilation: { session_id: 'session-1', action: paused ? 'paused' : 'updated' } }
+        model: 'simulato', total_tokens: 1, notice: null, form_reference: reference, compilation }
     })
-    await setup('/projects/alpha/conversations/chat-1')
-    await screen.findByText('Ho preparato una bozza parziale.')
-    expect(screen.getAllByRole('button', { name: 'Scarica DOCX' })).toHaveLength(1)
-    expect(screen.queryByRole('button', { name: 'Prepara nuova bozza' })).not.toBeInTheDocument()
-    submit('Il fax è +39 080 000 9999')
-    await screen.findByText('Dati acquisiti per la bozza: Fax.')
-    expect(screen.getAllByRole('button', { name: 'Scarica DOCX' })).toHaveLength(1)
-    expect(screen.getByText(/modifiche non ancora in questo file/)).toBeInTheDocument()
-    expect(screen.queryByText(/precede le ultime modifiche/)).not.toBeInTheDocument()
     const generations = vi.mocked(api.generateGlobalDraft).mock.calls.length
-    fireEvent.click(screen.getByRole('button', { name: 'Prepara nuova bozza' }))
+    const cards = () => screen.queryAllByRole('region', { name: /Bozza \d esportata/ })
+    const turnOf = (card: HTMLElement) => card.parentElement!.querySelector('.user-message')?.textContent
+    await setup('/projects/alpha/conversations/chat-1')
+    await screen.findByText('Vuoi una bozza?')
+    expect(cards()).toHaveLength(0)
+
+    submit('prima bozza')
+    await screen.findByText('Ho preparato prima bozza.')
+    expect(cards()).toHaveLength(1)
+    const first = cards()[0]
+    expect(turnOf(first)).toContain('prima bozza')
+
+    submit('grazie')
+    await screen.findByText('Prego!')
+    expect(cards()).toHaveLength(1)
+    expect(cards()[0]).toBe(first)
+    expect(turnOf(cards()[0])).toContain('prima bozza')
+
+    submit('il fax è 1')
+    await screen.findByText('Dati acquisiti: fax.')
+    expect(cards()).toHaveLength(1)
+    expect(within(first).getByText(/modifiche non ancora in questo file/)).toBeInTheDocument()
+    fireEvent.click(within(first).getByRole('button', { name: 'Prepara nuova bozza' }))
     expect(screen.getByRole('textbox', { name: 'Messaggio per l’assistente' })).toHaveValue(
       'Genera una nuova bozza parziale con i dati verificati.')
     expect(vi.mocked(api.generateGlobalDraft).mock.calls.length).toBe(generations)
+    fireEvent.change(screen.getByRole('textbox', { name: 'Messaggio per l’assistente' }), { target: { value: '' } })
+
+    submit('seconda bozza')
+    await screen.findByText('Ho preparato seconda bozza.')
+    expect(cards().map((card) => card.getAttribute('aria-label'))).toEqual(['Bozza 1 esportata', 'Bozza 2 esportata'])
+    expect(turnOf(cards()[0])).toContain('prima bozza')
+    expect(turnOf(cards()[1])).toContain('seconda bozza')
+    expect(screen.queryByText(/modifiche non ancora in questo file/)).not.toBeInTheDocument()
+
     submit('ok basta')
     await screen.findByText(/in pausa/)
-    expect(screen.getAllByRole('button', { name: 'Scarica DOCX' })).toHaveLength(1)
+    expect(cards()).toHaveLength(2)
     expect(within(screen.getAllByRole('region', { name: 'Risposta' }).at(-1)!)
       .queryByRole('button', { name: 'Scarica DOCX' })).not.toBeInTheDocument()
   })

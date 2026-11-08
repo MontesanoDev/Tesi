@@ -24,7 +24,8 @@ import { readChatDraft, saveChatDraft, sameMessage,
   type ChatSubmission, type RecoverableMessage } from '../chatMessageRecovery'
 import { AppShell } from '../components/AppShell'
 import { AssistantMessage } from '../components/AssistantMessage'
-import { CompilationDraftBar } from '../components/CompilationDraftBar'
+import { CompilationDraftCard } from '../components/CompilationDraftCard'
+import { draftsOfConversation, type CompilationDraft } from '../compilationDrafts'
 import { CompilationReply } from '../components/CompilationReply'
 import { compilationActivity as compilationActivityLabel } from '../compilationStatus'
 import '../components/ChatComposer.css'
@@ -515,6 +516,14 @@ export function ProjectWorkspacePage() {
       error={compilation.error} onRetry={compilation.refresh}
       />
   ) : awaitingSession ? <></> : null
+  const conversationDrafts = draftsOfConversation(activeSession, turns)
+  const draftCard = (draft?: CompilationDraft) => (draft && activeSession
+    ? <CompilationDraftCard session={activeSession} draft={draft}
+      locked={sessionProcessing || searching || changingModel}
+      onRequestDraft={() => {
+        setPrompt('Genera una nuova bozza parziale con i dati verificati.')
+        composerInput.current?.focus()
+      }} /> : null)
 
   const composer = (
     <form
@@ -714,19 +723,15 @@ export function ProjectWorkspacePage() {
                       activity={index === turns.length - 1 && latestTurn?.result?.compilation
                         ? compilationActivity : undefined}
                     />
+                    {draftCard(conversationDrafts.byTurn.get(turn.id))}
                   </div>
                 ))}
+                {conversationDrafts.unclaimed.map((draft) => <div key={draft.id}>{draftCard(draft)}</div>)}
                 {!turns.length && sessionMessage && <AssistantMessage id="recovered-answer"
                   busy={sessionProcessing} activity={compilationActivity}>
                   {sessionMessage}
                 </AssistantMessage>}
               </div>
-              {activeSession && <CompilationDraftBar session={activeSession}
-                locked={sessionProcessing || searching || changingModel}
-                onRequestDraft={() => {
-                  setPrompt('Genera una nuova bozza parziale con i dati verificati.')
-                  composerInput.current?.focus()
-                }} />}
               {composer}
             </>
           )}
