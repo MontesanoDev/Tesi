@@ -246,6 +246,14 @@ nome o della denominazione ha come valore il nuovo soggetto ed è ammessa.
 """
 
 
+PERSON_REQUEST_RULE = """
+Una richiesta di usare i dati documentati di una persona nominata in una sezione del modulo («metti
+tutti i dati di X nel sottoscritto») indica destinazione e soggetto: copre i dati di X in quella
+sezione, compresa la sua carica, anche se i valori non sono nel messaggio perché vengono dalle
+fonti. Resta AMBIGUOUS o UNRELATED se X non è il soggetto atteso o la sezione non è identificabile.
+"""
+
+
 def requires_scope_check(reply, context):
     if reply.action in WRITE_ACTIONS:
         return True
@@ -307,6 +315,7 @@ async def verify_field_replies(message, context, replies, *, request):
             "punto, senza autorizzare valori, condizioni o dichiarazioni. SKIP/REFUSE "
             "ritirano l'uso soltanto dei dati individuati. Nessuna deroga all'ambito FORM."
             if any(s.get("direct_instruction") for s in context["slots"]) else "")
+         + (PERSON_REQUEST_RULE if context.get("person_request_rule") else "")
          + "\nSCHEMA OUTPUT:\n" + json.dumps(schema)},
         {"role": "user", "content": json.dumps({
             "operation": "check_field_reply_scope", "message": message,

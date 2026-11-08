@@ -24,6 +24,7 @@ import { readChatDraft, saveChatDraft, sameMessage,
   type ChatSubmission, type RecoverableMessage } from '../chatMessageRecovery'
 import { AppShell } from '../components/AppShell'
 import { AssistantMessage } from '../components/AssistantMessage'
+import { CompilationDraftBar } from '../components/CompilationDraftBar'
 import { CompilationReply } from '../components/CompilationReply'
 import { compilationActivity as compilationActivityLabel } from '../compilationStatus'
 import '../components/ChatComposer.css'
@@ -720,6 +721,12 @@ export function ProjectWorkspacePage() {
                   {sessionMessage}
                 </AssistantMessage>}
               </div>
+              {activeSession && <CompilationDraftBar session={activeSession}
+                locked={sessionProcessing || searching || changingModel}
+                onRequestDraft={() => {
+                  setPrompt('Genera una nuova bozza parziale con i dati verificati.')
+                  composerInput.current?.focus()
+                }} />}
               {composer}
             </>
           )}
