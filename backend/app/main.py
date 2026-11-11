@@ -5,6 +5,7 @@ import logging
 import os
 from contextlib import asynccontextmanager
 from dataclasses import replace
+from functools import partial
 from pathlib import Path
 from shutil import rmtree
 from typing import Annotated, Literal
@@ -190,7 +191,7 @@ async def lifespan(_: FastAPI):
 
 
 logger = logging.getLogger(__name__)
-app = FastAPI(title="Mapi RAG API", version="0.1.0", lifespan=lifespan)
+app = FastAPI(title="Assistente documentale API", version="0.1.0", lifespan=lifespan)
 
 
 @app.exception_handler(RequestValidationError)
@@ -693,6 +694,28 @@ async def project_evidence(
 
 @app.post("/api/projects/{project_id}/answer", response_model=GroundedAnswerResponse)
 async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
+    from app import chat_submissions
+
+    if payload.request_id:
+        saved = await run_in_threadpool(chat_submissions.claim, project_id, payload)
+        if saved is not None:
+            return saved
+    try:
+        return await _project_answer(project_id, payload)
+    except BaseException:
+        if payload.request_id:
+            chat_submissions.interrupted(project_id, payload.request_id)
+        raise
+
+
+@app.get("/api/projects/{project_id}/answer-submissions/{request_id}")
+def answer_submission(project_id: str, request_id: str):
+    from app.chat_submissions import lookup
+
+    return lookup(project_id, request_id)
+
+
+async def _project_answer(project_id: str, payload: QuestionRequest) -> dict:
     project = get_project(project_id)
     if project is None:
         raise HTTPException(status_code=404, detail="Progetto non trovato")
@@ -735,6 +758,9 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
     )
 
     def persist(response: dict) -> dict:
+        response.update(request_id=payload.request_id, request_retry_safe=(
+            response.get("generation_status") in {"failed", "not_configured"}
+            and compilation_stage == "routing"))
         turn_id = save_conversation_turn(conversation_id, response)
         if turn_id is None:
             raise HTTPException(
@@ -830,7 +856,17 @@ async def project_answer(project_id: str, payload: QuestionRequest) -> dict:
                 )
                 compilation_stage = "workflow"
                 if isinstance(planned.decision, ClarificationDecision):
-                    text, command = await handle_group_decision(
+                    if planned.decision.then_finish:
+                        from app.compilation_global_sessions import answer_then_finish
+
+                        handler = answer_then_finish
+                    elif (compilation_session or {}).get("engine") == "global":
+                        from app.compilation_global_sessions import answer_with_rest
+
+                        handler = partial(answer_with_rest, history=history)
+                    else:
+                        handler = handle_group_decision
+                    text, command = await handler(
                         project_id, conversation_id, planned.decision,
                         compilation_session, payload.question, payload.compilation_version,
                     )

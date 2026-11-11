@@ -52,7 +52,6 @@ router = APIRouter(prefix="/api", tags=["Modelli AI"], route_class=PrivateSettin
 
 class ProfileChoice(BaseModel):
     profile_id: str | None = Field(default=None, max_length=100)
-    thinking: bool | None = None
 
 
 class ProbeInput(ProfileInput):
@@ -102,7 +101,7 @@ def selected_model(project_id: str) -> dict:
 
 @router.put("/projects/{project_id}/ai-model")
 def choose_model(project_id: str, payload: ProfileChoice) -> dict:
-    return select_project_profile(project_id, payload.profile_id, payload.thinking)
+    return select_project_profile(project_id, payload.profile_id)
 
 
 @router.post("/settings/ai/check")
@@ -124,7 +123,8 @@ async def check_connection(payload: ProbeInput) -> dict:
         raise HTTPException(
             502,
             detail="Servizio non raggiungibile o risposta non valida. "
-            "Controlla l'indirizzo e che il servizio sia raggiungibile dal server Mapi, "
+            "Controlla l'indirizzo e che il servizio sia raggiungibile "
+            "dal server dell’applicazione, "
             "anche se si trova su un altro computer.",
         ) from None
     return {

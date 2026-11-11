@@ -11,7 +11,7 @@ BOOTSTRAP_TMP=""
 
 usage() {
   cat <<EOF
-Avvia backend e frontend di Mapi RAG.
+Avvia backend e frontend dell’assistente documentale.
 Installa automaticamente le dipendenze mancanti dai lockfile.
 Installa uv, Node.js e npm mancanti in .tools/ (senza sudo).
 
@@ -171,7 +171,7 @@ PIDS+=("$!")
 ) &
 PIDS+=("$!")
 
-printf '\nMapi RAG in avvio:\n'
+printf '\nAssistente documentale in avvio:\n'
 printf '  Applicazione: http://localhost:%s\n' "$FRONTEND_PORT"
 printf '  API:          http://localhost:%s/docs\n' "$BACKEND_PORT"
 printf 'Premi Ctrl+C per arrestare entrambi i processi.\n\n'

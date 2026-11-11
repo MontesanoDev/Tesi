@@ -24,7 +24,7 @@ const settings = { providers, profiles: [cloud, local], default_profile_id: clou
 beforeEach(() => {
   vi.resetAllMocks()
   vi.mocked(api.aiSettings).mockResolvedValue(settings)
-  vi.mocked(api.projectAiModel).mockResolvedValue({ profile_id: null, effective_profile: cloud, thinking: false })
+  vi.mocked(api.projectAiModel).mockResolvedValue({ profile_id: null, effective_profile: cloud })
 })
 afterEach(() => { cleanup(); vi.restoreAllMocks() })
 
@@ -162,8 +162,8 @@ describe('project model selection', () => {
   }
 
   it('persists a project override and can return to the global default', async () => {
-    vi.mocked(api.setProjectAiModel).mockResolvedValueOnce({ profile_id: 'local', effective_profile: local, thinking: false })
-      .mockResolvedValueOnce({ profile_id: null, effective_profile: cloud, thinking: false })
+    vi.mocked(api.setProjectAiModel).mockResolvedValueOnce({ profile_id: 'local', effective_profile: local })
+      .mockResolvedValueOnce({ profile_id: null, effective_profile: cloud })
     const { onChanging } = setup()
     expect(await openMenu()).toHaveAttribute('aria-checked', 'true')
     fireEvent.click(screen.getByRole('menuitemradio', { name: /Ollama ufficio/ }))
@@ -179,42 +179,12 @@ describe('project model selection', () => {
     expect(await openMenu()).toHaveAttribute('aria-checked', 'true')
   })
 
-  it('attiva il ragionamento approfondito con lo switch accanto al modello', async () => {
-    vi.mocked(api.projectAiModel).mockResolvedValue({
-      profile_id: 'cloud', effective_profile: cloud, thinking: false })
-    vi.mocked(api.setProjectAiModel).mockResolvedValue({
-      profile_id: 'cloud', effective_profile: cloud, thinking: true })
+  it('non offre più lo switch del ragionamento, nemmeno con DeepSeek', async () => {
+    vi.mocked(api.projectAiModel).mockResolvedValue({ profile_id: 'cloud', effective_profile: cloud })
     setup()
-    const toggle = await screen.findByRole('switch', { name: 'Ragionamento approfondito' })
-    expect(toggle).toHaveAttribute('aria-checked', 'false')
-    fireEvent.click(toggle)
-    await waitFor(() => expect(api.setProjectAiModel)
-      .toHaveBeenCalledWith('project', 'cloud', true))
-    expect(toggle).toHaveAttribute('aria-checked', 'true')
-    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
-  })
-
-  it('salva il thinking usando il predefinito senza selezionare un profilo specifico', async () => {
-    vi.mocked(api.setProjectAiModel).mockResolvedValue({
-      profile_id: null, effective_profile: cloud, thinking: true })
-    setup()
-    const toggle = await screen.findByRole('switch', { name: 'Ragionamento approfondito' })
-    expect(toggle).toBeEnabled()
-    fireEvent.click(toggle)
-    await waitFor(() => expect(api.setProjectAiModel).toHaveBeenCalledWith('project', null, true))
-    expect(toggle).toHaveAttribute('aria-checked', 'true')
-    expect(await openMenu()).toHaveAttribute('aria-checked', 'true')
-  })
-
-  it('conserva lo stato del thinking quando il salvataggio fallisce', async () => {
-    vi.mocked(api.setProjectAiModel).mockRejectedValue(new Error('Salvataggio non riuscito'))
-    setup()
-    const toggle = await screen.findByRole('switch', { name: 'Ragionamento approfondito' })
-    fireEvent.click(toggle)
-    await openMenu()
-    expect(await screen.findByRole('alert')).toHaveTextContent('Salvataggio non riuscito')
-    expect(toggle).toHaveAttribute('aria-checked', 'false')
-    expect(toggle).toBeEnabled()
+    expect(await openMenu()).toBeEnabled()
+    expect(screen.queryByRole('switch')).not.toBeInTheDocument()
+    expect(screen.queryByText('thinking')).not.toBeInTheDocument()
   })
 
   it('keeps the old selection when saving fails', async () => {
@@ -229,7 +199,6 @@ describe('project model selection', () => {
 
   it('disables changes while an operation is running', async () => {
     setup(true)
-    expect(await screen.findByRole('switch', { name: 'Ragionamento approfondito' })).toBeDisabled()
     expect(await openMenu()).toBeDisabled()
     expect(screen.getByRole('menuitemradio', { name: /Ollama ufficio/ })).toBeDisabled()
   })
@@ -244,7 +213,7 @@ describe('project model selection', () => {
     rerender(<MemoryRouter><ProjectModelSelector projectId="another" onChanging={onChanging} /></MemoryRouter>)
     const defaultOption = await openMenu()
     expect(defaultOption).toBeEnabled()
-    await act(async () => resolve({ profile_id: 'local', effective_profile: local, thinking: false }))
+    await act(async () => resolve({ profile_id: 'local', effective_profile: local }))
     expect(defaultOption).toHaveAttribute('aria-checked', 'true')
     expect(screen.getByRole('menu')).toBeVisible()
     expect(api.projectAiModel).toHaveBeenLastCalledWith('another', expect.any(AbortSignal))
@@ -252,7 +221,7 @@ describe('project model selection', () => {
 
   it('links to settings when no model is configured', async () => {
     vi.mocked(api.aiSettings).mockResolvedValue({ providers, profiles: [], default_profile_id: null })
-    vi.mocked(api.projectAiModel).mockResolvedValue({ profile_id: null, effective_profile: null, thinking: false })
+    vi.mocked(api.projectAiModel).mockResolvedValue({ profile_id: null, effective_profile: null })
     setup()
     expect(await openMenu()).toBeDisabled()
     expect(screen.getByRole('menuitem', { name: 'Gestisci modelli' })).toHaveAttribute('href', '/settings')
@@ -261,7 +230,7 @@ describe('project model selection', () => {
 
   it('opens the composer menu, navigates with the keyboard and saves without submitting the chat', async () => {
     const submit = vi.fn((event) => event.preventDefault())
-    vi.mocked(api.setProjectAiModel).mockResolvedValue({ profile_id: 'local', effective_profile: local, thinking: false })
+    vi.mocked(api.setProjectAiModel).mockResolvedValue({ profile_id: 'local', effective_profile: local })
     render(<MemoryRouter><form onSubmit={submit}>
       <ProjectModelSelector projectId="project" />
     </form></MemoryRouter>)

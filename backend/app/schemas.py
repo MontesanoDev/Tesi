@@ -231,6 +231,8 @@ class CompilationChatAction(BaseModel):
 
 
 class ConversationTurn(BaseModel):
+    request_id: str | None = None
+    request_retry_safe: bool = False
     id: int
     question: str
     answer: str | None
@@ -259,7 +261,8 @@ class EvidenceSearch(BaseModel):
 
 
 class QuestionRequest(BaseModel):
-    question: str = Field(min_length=2, max_length=MAX_QUESTION_LENGTH)
+    question: str = Field(min_length=1, max_length=MAX_QUESTION_LENGTH)
+    request_id: str | None = Field(default=None, min_length=1, max_length=100)
     conversation_id: str | None = Field(default=None, max_length=80)
     form_id: int | None = Field(default=None, gt=0)
     document_id: int | None = Field(default=None, gt=0)
@@ -275,6 +278,8 @@ class QuestionRequest(BaseModel):
 
 
 class GroundedAnswerResponse(BaseModel):
+    request_id: str | None = None
+    request_retry_safe: bool = False
     conversation_id: str
     turn_id: int
     question: str

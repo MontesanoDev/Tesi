@@ -1,7 +1,7 @@
 [project]
-name = "mapi-rag-api"
+name = "document-assistant-api"
 version = "0.1.0"
-description = "API FastAPI e persistenza SQLite per il prototipo Mapi RAG"
+description = "API FastAPI e persistenza SQLite per l’assistente documentale"
 requires-python = ">=3.14"
 dependencies = [
     "cryptography>=50.0.1",

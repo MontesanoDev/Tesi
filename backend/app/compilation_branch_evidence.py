@@ -1,0 +1,717 @@
+"""Bounded FORM/USER/SOURCE conjunctions and positive receipt-to-control links.
+
+No general semantic inference: unsupported syntax/cardinality remains unknown.
+Original model proposals and USER receipts are never rewritten.
+"""
+
+import re
+from copy import deepcopy
+
+from app.compilation_role_records import _uncertain
+
+
+def _text(value):
+    return " ".join(value.replace("**", "").casefold().split()).strip(" .☐☑")
+
+
+def _accepted(condition, receipt):
+    from app.compilation_chat import has_user_alternatives
+
+    return (
+        condition.get("validation") == "GROUNDED_PROPOSAL"
+        and not condition.get("validation_errors")
+        and condition.get("form_evidence")
+        and receipt.get("provenance") == "USER"
+        and receipt.get("action") == "CONDITION_TRUE"
+        and receipt.get("applies") is True
+        and receipt.get("question")
+        and receipt.get("user_quote")
+        and (receipt.get("ambiguity_check") == "SEMANTIC_GUARD"
+             or not has_user_alternatives(receipt['user_quote']))
+    )
+
+
+def _capacity_region(catalog, cid):
+    """The literal capacity heading bounds all options, including intervening data."""
+    paragraphs = [p for b in catalog["blocks"] for p in b["paragraphs"]]
+    position = {p["id"]: i for i, p in enumerate(paragraphs)}
+    candidate = catalog["candidates"][cid]
+    if "table_id" in candidate["location"]:
+        return None
+    index = position[candidate["context_id"]]
+
+    def boundary(p):
+        text = p["text"].strip()
+        if p.get("text_with_fields") or p.get("controls"):
+            return False
+        return p.get("outline_level") is not None or (text and text.isupper())
+
+    start = next((i for i in range(index - 1, -1, -1) if boundary(paragraphs[i])), None)
+    if start is None or _text(paragraphs[start]["text"]) != "in qualità di":
+        return None
+    end = next((i for i in range(index + 1, len(paragraphs)) if boundary(paragraphs[i])), None)
+    if end is None or end - start > 64:
+        return None
+    options = {}
+    for option_id, c in catalog["candidates"].items():
+        if c["type"] != "checkbox" or not start < position[c["context_id"]] < end:
+            continue
+        p = paragraphs[position[c["context_id"]]]
+        siblings = [
+            x
+            for x in catalog["candidates"].values()
+            if x["type"] == "checkbox" and x["context_id"] == c["context_id"]
+        ]
+        if (
+            len(siblings) != 1
+            or "table_id" in c["location"]
+            or c["section_ids"] != candidate["section_ids"]
+        ):
+            return None
+        label = p["text"].strip(" ☐☑")
+        if not 1 <= len(label) <= 250:
+            return None
+        options[option_id] = {
+            "label": label,
+            "form": {"paragraph_id": p["id"], "quote": p["text_with_choices"]},
+        }
+    if cid not in options or not 2 <= len(options) <= 32:
+        return None
+    return paragraphs[start], options
+
+
+def _representation_receipt(data, key, condition, receipt, cid, paragraph):
+    """A verified representation condition already includes this native option in its scope.
+
+    The control need not be an independently valued text destination in the receipt.
+    Its explicit condition scope and the entire FORM were part of the checked digest.
+    Never extend that scope, remint the proof or infer a declaration from company identity.
+    """
+    from app.compilation_scope_review import enabled, valid_receipt
+
+    if (not enabled(data) or receipt.get('ambiguity_check') != 'SEMANTIC_GUARD'
+            or data['catalog']['candidates'][cid].get('control_type') != 'content_control'
+            or {'kind': 'candidate', 'id': cid} not in condition.get('scope', [])
+            or _uncertain(receipt.get('user_quote', ''))):
+        return False
+    ids = receipt.get('affected_fields') or []
+    if not ids or not valid_receipt(data, 'condition:' + key, receipt, ids[0]):
+        return False
+    full, quote = _text(paragraph['text']), _text(condition['form_evidence']['quote'])
+    if not full.startswith(quote) or full[len(quote):].strip() not in {
+            '', 'avente la seguente', 'avente la seguente denominazione'}:
+        return False  # A legal assertion or an omitted alternative is not a neutral lead-in.
+    clause = _text(re.sub(r'\([^()]*\)', '', quote))
+    match = re.fullmatch(r'legale rappresentante di società di (professionisti|ingegneria)'
+                         r'(?: o di società di (professionisti|ingegneria))?', clause)
+    answer = _text(receipt['user_quote'])
+    return bool(match and 'legale rappresentante' in answer and any(
+        kind and 'società di ' + kind in answer for kind in match.groups()))
+
+
+def _receipt_control(data, key, condition, receipt):
+    if not _accepted(condition, receipt) or condition.get("aspect") not in {
+        "legal_type",
+        "participation",
+        "representation",
+    }:
+        return None
+    catalog = data["catalog"]
+    form = condition["form_evidence"]
+    matches = [
+        (cid, c)
+        for cid, c in catalog["candidates"].items()
+        if c["type"] == "checkbox" and c["context_id"] == form["paragraph_id"]
+    ]
+    if len(matches) != 1:
+        return None
+    cid, _ = matches[0]
+    paragraph = next(
+        p for b in catalog["blocks"] for p in b["paragraphs"] if p["id"] == form["paragraph_id"]
+    )
+    representation = condition.get('aspect') == 'representation'
+    if (
+        (representation and not _representation_receipt(data, key, condition, receipt,
+                                                       cid, paragraph))
+        or (not representation and _text(paragraph["text"]) != _text(form["quote"]))
+        or cid not in condition.get("applies_to", [])
+        or not (region := _capacity_region(catalog, cid))
+    ):
+        return None
+    _, options = region
+    if any(catalog["candidates"][peer].get("initial_checked") for peer in options if peer != cid):
+        return None  # Unknown cardinality cannot safely clear an existing peer.
+    # Another positive decision in this same capacity list is not silently combined.
+    for other_key, other in data["audit"].get("conditions", {}).items():
+        if other_key == key or not _accepted(
+            other, data.get("dialogue", {}).get("answers", {}).get("condition:" + other_key, {})
+        ):
+            continue
+        if any(
+            peer != cid
+            and peer in other.get("applies_to", [])
+            and other["form_evidence"]["paragraph_id"] == catalog["candidates"][peer]["context_id"]
+            for peer in options
+        ):
+            return None
+    return cid, region
+
+
+def _capacity_trigger(data, key, condition, receipt):
+    """An accepted condition whose own native option no receipt link can mark.
+
+    Only an explicit USER choice of the FORM region may mark it; nothing is selected here.
+    """
+    from app.compilation_scope_review import enabled
+
+    # A confirmation given as a free instruction was guarded like any other but has no question
+    # text. Ignoring it removed the region's choice from the audit, and with it the FORM target
+    # its own receipt had just bound (real Minervino dialogue: 16 values, then none).
+    shown = receipt
+    if data.get("conversation_turn_revision") == 1 and receipt.get("scope_validation"):
+        shown = {"question": "direct_instruction", **{k: v for k, v in receipt.items() if v}}
+    if not enabled(data) or not _accepted(condition, shown) or condition.get("aspect") not in {
+        "legal_type",
+        "participation",
+        "representation",
+    }:
+        return None
+    catalog = data["catalog"]
+    matches = [
+        cid
+        for cid, c in catalog["candidates"].items()
+        if c["type"] == "checkbox" and c["context_id"] == condition["form_evidence"]["paragraph_id"]
+    ]
+    if len(matches) != 1 or matches[0] not in condition.get("applies_to", []):
+        return None
+    region = _capacity_region(catalog, matches[0])
+    if not region or (data.get("checkbox_policy_revision") != 1 and any(
+            catalog["candidates"][peer].get("initial_checked") for peer in region[1])):
+        return None  # Unknown cardinality: an existing mark is never combined or cleared.
+    return matches[0], region
+
+
+def other_capacity_branches(data, *, only_valid=False):
+    """Data of another FORM capacity option, once the USER explicitly chose one.
+
+    Real dialogue: the scripted USER also confirmed the consortium branch, whose company data the
+    narrator held. The later choice of the fourth option released them too, on another destination
+    of the same company. A choice settles its own branch; changing it reopens the other.
+    With `only_valid`, only for a choice that still verifies (no question is dropped otherwise).
+    """
+    audit, blocked = data.get("audit") or {}, set()
+    answers = (data.get("dialogue") or {}).get("answers", {})
+    for group_id, group in audit.get("choice_groups", {}).items():
+        answer = answers.get("choice:" + group_id, {})
+        options, selected = list(group.get("options", {})), answer.get("selected_options") or []
+        if (group.get("origin") != "FORM_capacity_choice" or answer.get("action") != "VALUE"
+                or len(selected) != 1 or not 1 <= selected[0] <= len(options)
+                or only_valid and not capacity_choice_valid(data, options[selected[0] - 1])):
+            continue
+        applicable = group.get("applicable", {})
+        own = set(applicable.get(options[selected[0] - 1], []))
+        others = {c for keys in applicable.values() for c in keys} - own
+        if only_valid:  # `applicable` lists accepted conditions; a branch nobody answered counts.
+            of_option = {f["candidate_id"]: f.get("conditions", [])
+                         for f in audit.get("fields", [])}
+            own |= set(of_option.get(options[selected[0] - 1], []))
+            others |= {c for o in options for c in of_option.get(o, [])} - own
+        if own:
+            blocked |= {f["candidate_id"] for f in audit.get("fields", [])
+                        if set(f.get("conditions", [])) & others
+                        and not set(f.get("conditions", [])) & own}
+    return blocked
+
+
+def _option_anchors(catalog, conditions):
+    """condition -> (box of the capacity option it is anchored on, id of the region's heading)."""
+    boxes = {}
+    for cid, candidate in (catalog.get("candidates") or {}).items():
+        if candidate.get("type") == "checkbox":
+            boxes.setdefault(candidate.get("context_id"), cid)
+    regions, result = {}, {}
+    for key, condition in (conditions or {}).items():
+        box = boxes.get((condition.get("form_evidence") or {}).get("paragraph_id"))
+        if box is None:
+            continue
+        if box not in regions:
+            regions[box] = _capacity_region(catalog, box)
+        if regions[box]:
+            result[key] = (box, regions[box][0]["id"])
+    return result
+
+
+def release_header_from_options(audit, catalog):
+    """A destination above the capacity options cannot depend on one of them.
+
+    Real manual run: the model wrote «the operator is an organization, not a single professional»,
+    anchored it on the option «Libero professionista singolo» and gave it the company header. The
+    question made no sense, the USER's correct «no» excluded the header, and the signatory's office
+    was never derived. It keeps its other conditions; with none left the condition moves onto the
+    destination's own FORM line, so no gate is lost and an accepted branch can answer it
+    (imply_label_receipts). What is inside the region or below it is untouched: those data do
+    depend on their option.
+    """
+    conditions = audit.get("conditions") or {}
+    anchors = _option_anchors(catalog, conditions)
+    if not anchors:
+        return audit
+    candidates = catalog.get("candidates") or {}
+    position = {p["id"]: i for i, p in enumerate(
+        p for block in catalog["blocks"] for p in block["paragraphs"])}
+    report = {"revision": 1, "origin": "BACKEND", "detached": {}, "moved": {}}
+
+    def line(cid):
+        before = (candidates.get(cid, {}).get("slot_context") or {}).get("before")
+        text = re.sub(r"[._…]{2,}|[☐☑☒“”\"]", " ", str(before or ""))
+        return " ".join(text.split()).strip(" ,;:.")
+
+    for key, (_, heading) in anchors.items():
+        condition = conditions[key]
+        above = sorted((f for f in audit.get("fields", []) if key in f.get("conditions", [])
+                        and position.get(candidates.get(f["candidate_id"], {}).get("context_id"),
+                                         position[heading]) < position[heading]),
+                       key=lambda f: position[candidates[f["candidate_id"]]["context_id"]])
+        if not above or condition.get("validation_errors"):
+            continue
+        alone = [f for f in above
+                 if not any(c != key and c not in anchors for c in f["conditions"])]
+        new = None
+        if alone:
+            new = key + "__sopra"
+            label = next((text for f in alone if (text := line(f["candidate_id"]))), None)
+            first = candidates[alone[0]["candidate_id"]]["context_id"]
+            derived = deepcopy(condition)
+            derived.pop("form_clause", None)
+            derived.update(
+                aspect="participation", derived_from=key,
+                form_evidence={"paragraph_id": first, "quote": label or (
+                    condition.get("form_evidence") or {}).get("quote")},
+                reason="Dati del modulo che precedono le opzioni di qualità.",
+                applies_to=sorted(f["candidate_id"] for f in alone),
+                scope=[{"kind": "candidate", "id": f["candidate_id"]} for f in alone])
+            conditions[new] = derived
+            report["moved"][key] = sorted(f["candidate_id"] for f in alone)
+        moved = {f["candidate_id"] for f in alone}
+        for field in above:
+            checks = field.get("condition_checks") or {}
+            if field["candidate_id"] in moved:
+                field["conditions"] = [new if c == key else c for c in field["conditions"]]
+                if key in checks:
+                    checks[new] = checks.pop(key)
+            else:
+                field["conditions"] = [c for c in field["conditions"] if c != key]
+                checks.pop(key, None)
+                report["detached"].setdefault(key, []).append(field["candidate_id"])
+        gone = {f["candidate_id"] for f in above}
+        if "applies_to" in condition:
+            condition["applies_to"] = [c for c in condition["applies_to"] if c not in gone]
+        if isinstance(condition.get("scope"), list):
+            condition["scope"] = [s for s in condition["scope"]
+                                  if not isinstance(s, dict) or s.get("id") not in gone]
+    if report["detached"] or report["moved"]:
+        audit["capacity_anchor"] = report
+    return audit
+
+
+def incompatible_option_conditions(data):
+    """Conditions on another option of a region where the USER already settled on one.
+
+    Only the question goes: their data stay empty, and asking again what the USER has just excluded
+    is noise (real: «si applica Libero professionista singolo?» after option 4). It returns as soon
+    as that decision is withdrawn or stops being valid; an explicit instruction still reaches it.
+    """
+    if data.get("export_completeness_revision") != 1:
+        return set()
+    audit = data.get("audit") or {}
+    answers = (data.get("dialogue") or {}).get("answers", {})
+    anchors = _option_anchors(data.get("catalog") or {}, audit.get("conditions"))
+    settled = {box for key, (box, _) in anchors.items()
+               if answers.get("condition:" + key, {}).get("applies") is True}
+    for group_id, group in audit.get("choice_groups", {}).items():
+        answer = answers.get("choice:" + group_id, {})
+        options, selected = list(group.get("options", {})), answer.get("selected_options") or []
+        if (group.get("origin") == "FORM_capacity_choice" and answer.get("action") == "VALUE"
+                and len(selected) == 1 and 1 <= selected[0] <= len(options)
+                and capacity_choice_valid(data, options[selected[0] - 1])):
+            settled.add(options[selected[0] - 1])
+    headings = {heading for box, heading in anchors.values() if box in settled}
+    return {key for key, (box, heading) in anchors.items()
+            if heading in headings and box not in settled}
+
+
+def capacity_choice_valid(data, cid, key=None):
+    """The exact USER choice of this option, under a condition that made it applicable."""
+    from app.compilation_scope_review import valid_receipt
+
+    dialogue = data.get("dialogue") or {}
+    value = dialogue.get("user_values", {}).get(cid) or {}
+    group_id = str(value.get("choice_group_id"))
+    group = (data.get("audit") or {}).get("choice_groups", {}).get(group_id, {})
+    answer = dialogue.get("answers", {}).get("choice:" + group_id, {})
+    options = list(group.get("options", {}))
+    return bool(
+        group.get("origin") == "FORM_capacity_choice"
+        and group.get("validation") == "GROUNDED_GROUP"
+        and cid in group.get("applicable", {})
+        and (key is None or key in group["applicable"][cid])
+        and value.get("value") is True
+        and value.get("provenance") == "USER"
+        and answer.get("selected_options") == [options.index(cid) + 1]
+        and answer.get("user_quote") == value.get("user_quote")
+        and valid_receipt(data, "choice:" + group_id, answer, cid)
+    )
+
+
+def decided_peers(data):
+    """The other options of each capacity region whose box already has a positive decision.
+
+    A question about one of them could change no box: a positive answer is never silently
+    combined with the decided option, a negative one marks nothing. Their conditions stay
+    open (neither excluded nor confirmed); only the question is not asked.
+    """
+    catalog = data.get("catalog") or {}
+    peers = set()
+    for cid, value in effective_user_values(data).items():
+        candidate = catalog.get("candidates", {}).get(cid) or {}
+        if value.get("value") is not True or candidate.get("type") != "checkbox" or not (
+                receipt_choice_value(data, cid) or capacity_choice_valid(data, cid)):
+            continue
+        if region := _capacity_region(catalog, cid):
+            peers |= set(region[1]) - {cid}
+    return peers
+
+
+def linked_receipt_valid(data, cid, key=None):
+    """Check the original verified condition receipt, not an invented choice receipt."""
+    value = receipt_choice_value(data, cid)
+    if not value or (key is not None and value.get('receipt_key') != key):
+        return False
+    receipt_key = value.get('receipt_key', '')
+    condition = data['audit'].get('conditions', {}).get(
+        receipt_key.removeprefix('condition:'), {})
+    # This bridge is deliberately restricted to the separately proved representation link.
+    return condition.get('aspect') == 'representation'
+
+
+def effective_user_values(data):
+    """Derived links reuse the exact receipt; they are not new USER answers."""
+    values = dict((data.get("dialogue") or {}).get("user_values", {}))
+    answers = (data.get("dialogue") or {}).get("answers", {})
+    for cid, value in (data.get("audit") or {}).get("receipt_choice_values", {}).items():
+        key = value.get("receipt_key", "").removeprefix("condition:")
+        receipt = answers.get("condition:" + key, {})
+        condition = data["audit"].get("conditions", {}).get(key, {})
+        group = data["audit"].get("choice_groups", {}).get(value.get("choice_group_id"), {})
+        match = _receipt_control(data, key, condition, receipt)
+        if (
+            cid not in values
+            and value.get("value") is True
+            and value.get("provenance") == "USER"
+            and receipt == value.get("receipt")
+            and receipt.get("user_quote") == value.get("user_quote")
+            and group.get("validation") == "GROUNDED_GROUP"
+            and group.get("selection") == "unknown"
+            and match
+            and match[0] == cid
+            and set(group.get("options", {})) == set(match[1][1])
+            and all(
+                group["options"][peer]["label"] == option["label"]
+                for peer, option in match[1][1].items()
+            )
+        ):
+            values[cid] = value
+    return values
+
+
+def receipt_choice_value(data, cid):
+    if cid in (data.get('dialogue') or {}).get('user_values', {}):
+        return None
+    value = (data.get('audit') or {}).get('receipt_choice_values', {}).get(cid)
+    return value if value and effective_user_values(data).get(cid) == value else None
+
+
+def _participation(receipt, operator):
+    # Full literal subject and explicit affirmative participation clause only.
+    # A quoted statement, hypothetical, generic yes or company role is insufficient.
+    quote = receipt.get("user_quote", "")
+    pattern = (
+        r"(?:^|[.;]\s*)"
+        r"(?:Confermo(?: quanto già indicato(?: nella richiesta iniziale)?)?:\s*)?"
+        + re.escape(operator)
+        + r"\s+partecipa\s+(?:soltanto\s+|solo\s+)?come\s+([^;.!?]+)(?:[;.]|$)"
+    )
+    matches = list(re.finditer(pattern, quote, re.I))
+    if len(matches) != 1 or _uncertain(matches[0][1]):
+        return None
+    return matches[0][1].strip()
+
+
+def _role_proof(binding, subject, role, operator, sources):
+    prefix = _text(subject + ": " + role + " di " + operator)
+    proofs = []
+    for proof in binding.get("source_evidence", []):
+        source = sources.get(proof["chunk_id"])
+        if not source or source.get("category") == "general":
+            continue
+        for line in source["content"].splitlines():
+            text = _text(line.lstrip(" -"))
+            if not re.match(re.escape(prefix) + r"\.?(?:;|$)", text):
+                continue
+            if _text(proof["quote"]) not in _text(line) or _uncertain(line.split(";")[0]):
+                continue
+            proofs.append({**proof, "quote": line})
+    # Conflicting/uncertain named statements about this exact role/operator veto reuse.
+    for source in sources.values():
+        for line in source["content"].splitlines():
+            text = _text(line)
+            if all(_text(x) in text for x in [subject, role, operator]) and _uncertain(text):
+                return []
+    return proofs
+
+
+def _branch(data, key, condition, sources):
+    audit = data["audit"]
+    answer = (data.get("dialogue") or {}).get("answers", {}).get("condition:" + key, {})
+    if (
+        condition.get("result") != "unknown"
+        or condition.get("validation_errors")
+        or condition.get("validation") != "GROUNDED_PROPOSAL"
+        or condition.get("operator") != "semantic"
+        or answer.get("applies") is False
+        or answer.get("action") == "REFUSE"
+        or re.search(
+            r"\b(?:non compil\w*|non inser\w*|lasci\w*.*(?:bianco|vuot\w*))\b",
+            answer.get("user_quote", ""),
+            re.I,
+        )
+    ):
+        return None
+    form = condition.get("form_evidence") or {}
+    paragraph = next(
+        (
+            p["text"]
+            for b in data["catalog"]["blocks"]
+            for p in b["paragraphs"]
+            if p["id"] == form.get("paragraph_id")
+        ),
+        "",
+    )
+    if paragraph != form.get("quote"):
+        return None
+    match = re.fullmatch(r"(?:la quale|il quale|che) ha come (.+):", paragraph, re.I)
+    if not match:
+        return None
+    alternatives = []
+    for part in re.split(r"\s+o\s+", match[1]):
+        alternative = re.fullmatch(r"(.+?)\s*\(per le (.+?)\)", part)
+        if not alternative:
+            return None
+        alternatives.append((alternative[1], alternative[2]))
+    if len(alternatives) < 2:
+        return None
+    fields = [f for f in audit["fields"] if key in f.get("conditions", [])]
+    if not fields or any(
+        f.get("proposal_grounding") != "GROUNDED_PROPOSAL" or f.get("validation_errors")
+        for f in fields
+    ):
+        return None
+    roles = set()
+    for field in fields:
+        fact = audit["facts"].get(field.get("proposed_fact_id"), {})
+        check = field.get("subject_binding") or {}
+        binding = audit.get("bindings", {}).get(check.get("binding_id"), {})
+        if (
+            fact.get("entity") != "person"
+            or fact.get("validation") != "GROUNDED_PROPOSAL"
+            or check.get("result") != "literal_match"
+            or check.get("validation_errors")
+            or binding.get("validation") != "GROUNDED_PROPOSAL"
+            or binding.get("validation_errors")
+            or binding.get("form_evidence") != form
+            or _text(binding.get("required_role", "")) != _text(binding.get("source_role", ""))
+        ):
+            return None
+        roles.add((fact["subject"], check["binding_id"]))
+    if len(roles) != 1:
+        return None
+    subject, binding_id = next(iter(roles))
+    binding = audit["bindings"][binding_id]
+    proofs = []
+    for parent_key, parent in audit["conditions"].items():
+        receipt = (data.get("dialogue") or {}).get("answers", {}).get("condition:" + parent_key, {})
+        if (
+            parent_key == key
+            or not _accepted(parent, receipt)
+            or not {f["candidate_id"] for f in fields} <= set(parent.get("applies_to", []))
+            or not _receipt_control(data, parent_key, parent, receipt)
+        ):
+            continue
+        owners = {
+            audit["facts"][f.get("fact_id") or f.get("proposed_fact_id")]["subject"]
+            for f in audit["fields"]
+            if parent_key in f.get("conditions", [])
+            and (
+                f.get("validation") == "GROUNDED_PROPOSAL"
+                or f.get("proposal_grounding") == "GROUNDED_PROPOSAL"
+            )
+            and audit["facts"].get(f.get("fact_id") or f.get("proposed_fact_id"), {}).get("entity")
+            == "company"
+            and _text(audit["facts"][f.get("fact_id") or f.get("proposed_fact_id")]["value"])
+            == _text(audit["facts"][f.get("fact_id") or f.get("proposed_fact_id")]["subject"])
+        }
+        if len(owners) != 1:
+            continue
+        operator = next(iter(owners))
+        selected_type = _participation(receipt, operator)
+        choices = [
+            (role, kind)
+            for role, kind in alternatives
+            if selected_type
+            and _text(kind) == _text(selected_type)
+            and _text(kind) in _text(parent["form_evidence"]["quote"])
+            and _text(role) == _text(binding["required_role"])
+        ]
+        if len(choices) != 1:
+            continue
+        role, kind = choices[0]
+        evidence = _role_proof(binding, subject, role, operator, sources)
+        if evidence:
+            proofs.append(
+                {
+                    "receipt_key": "condition:" + parent_key,
+                    "receipt": deepcopy(receipt),
+                    "form_evidence": deepcopy(form),
+                    "participation_type": kind,
+                    "role": role,
+                    "subject": subject,
+                    "operator": operator,
+                    "source_evidence": evidence,
+                    "binding_id": binding_id,
+                }
+            )
+    return proofs[0] if len(proofs) == 1 else None
+
+
+def reconcile_branches(data, layout, project_id, sources):
+    from app.compilation_choices import validate_groups
+    from app.compilation_global import _allowed_sources, _form_bindings
+
+    result = deepcopy(data["audit"])
+    if result.get("version") != 12 or data["catalog"].get("template_sha256") != layout.sha256:
+        return result
+    catalog = data["catalog"]
+    source_map = _allowed_sources(project_id, sources)
+    current = {**data, "audit": result}
+    for key, condition in result.get("conditions", {}).items():
+        proof = _branch(current, key, condition, source_map)
+        if not proof:
+            continue
+        condition.update(
+            result="true", grounding_basis="verified_FORM_USER_SOURCE_branch", branch_evidence=proof
+        )
+        for field in result["fields"]:
+            if key in field.get("condition_checks", {}):
+                field["condition_checks"][key]["result"] = "true"
+                field["condition_checks"][key]["grounding_basis"] = condition["grounding_basis"]
+    paragraphs, local = _form_bindings(catalog)
+    # Only a valid group owns its options: a rejected MODEL group is never asked (E2E Minervino,
+    # 30 Oct: 3 of 7 «IN QUALITÀ DI» options, rejected as incomplete, hid the capacity choice).
+    used = {
+        cid
+        for group in result.get("choice_groups", {}).values()
+        if group.get("validation") == "GROUNDED_GROUP"
+        for cid in group.get("options", {})
+    }
+    capacity = {}
+    for key, condition in result.get("conditions", {}).items():
+        receipt = (data.get("dialogue") or {}).get("answers", {}).get("condition:" + key, {})
+        match = _receipt_control(current, key, condition, receipt)
+        # Only a representation link is ever exported (linked_receipt_valid). Where the
+        # explicit FORM choice is available, a participation/legal-type link must not occupy
+        # the region: the box could then never be written and the USER choice would be lost.
+        trigger = None if match and condition.get("aspect") == "representation" else (
+            _capacity_trigger(current, key, condition, receipt))
+        if trigger:
+            cid, (heading, options) = trigger
+            capacity.setdefault(heading["id"], (heading, options, {}))[2].setdefault(
+                cid, []).append(key)
+            continue
+        if not match:
+            continue
+        cid, (heading, options) = match
+        if used & options.keys():
+            continue
+        group_id = "form_receipt_" + cid
+        record = dict(
+            label=heading["text"],
+            subject="Richiedente",
+            property="qualità di partecipazione",
+            form={"paragraph_id": heading["id"], "quote": heading["text"]},
+            selection="unknown",
+            min_selected=0,
+            options=options,
+            conditions=[],
+        )
+        group = validate_groups(
+            {group_id: record}, catalog, paragraphs, local, result["conditions"]
+        )[group_id]
+        if group["validation"] != "GROUNDED_GROUP":
+            continue
+        group["origin"] = "FORM_receipt_link"
+        result.setdefault("choice_groups", {})[group_id] = group
+        used.update(options)
+        for field in result["fields"]:
+            if field["candidate_id"] in options:
+                field.update(
+                    choice_group_id=group_id,
+                    kind="choice",
+                    form_evidence=group["options"][field["candidate_id"]]["form_evidence"],
+                    label=options[field["candidate_id"]]["label"],
+                )
+        result.setdefault("receipt_choice_values", {})[cid] = {
+            "value": True,
+            "provenance": "USER",
+            "label": options[cid]["label"],
+            "user_quote": receipt["user_quote"],
+            "receipt_key": "condition:" + key,
+            "receipt": deepcopy(receipt),
+            "choice_group_id": group_id,
+        }
+    # A derived link or a MODEL group already owns the region: no second question.
+    for heading_id, (heading, options, applicable) in capacity.items():
+        if used & options.keys():
+            continue
+        group_id = "form_capacity_" + heading_id.removeprefix("paragraph:")
+        record = dict(
+            label=heading["text"],
+            subject="Richiedente",
+            property="qualità di partecipazione",
+            form={"paragraph_id": heading["id"], "quote": heading["text"]},
+            selection="unknown",
+            min_selected=0,
+            options=options,
+            conditions=[],
+        )
+        group = validate_groups(
+            {group_id: record}, catalog, paragraphs, local, result["conditions"]
+        )[group_id]
+        if group["validation"] != "GROUNDED_GROUP":
+            continue
+        group.update(origin="FORM_capacity_choice", applicable=applicable)
+        result.setdefault("choice_groups", {})[group_id] = group
+        used.update(options)
+        for field in result["fields"]:
+            cid = field["candidate_id"]
+            if cid not in options:
+                continue
+            field["choice_group_id"] = group_id
+            # Only applicable options get a FORM target: no new branch question opens
+            # for the others, and existing targets (and their receipts) stay unchanged.
+            if cid in applicable:
+                for name, value in [("kind", "choice"),
+                                    ("form_evidence", group["options"][cid]["form_evidence"]),
+                                    ("label", options[cid]["label"])]:
+                    if not field.get(name):
+                        field[name] = value
+    return result

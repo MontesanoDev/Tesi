@@ -748,6 +748,10 @@ def save_conversation_turn(conversation_id: str, response: dict) -> int | None:
         turn_id = cursor.lastrowid
         if turn_id is None:
             raise RuntimeError("Il turno non ha ricevuto un identificativo")
+        from app.chat_submissions import complete
+
+        complete(db, conversation["project_id"], response.get("request_id"), {
+            **response, "conversation_id": conversation_id, "turn_id": int(turn_id)})
         turn_count = db.execute(
             "SELECT COUNT(*) FROM conversation_turns WHERE conversation_id = ?",
             (conversation_id,),
@@ -800,12 +804,14 @@ def get_conversation(project_id: str, conversation_id: str) -> dict | None:
                 id, question, answer, citations_json,
                 missing_information_json, evidence_json,
                 generation_status, model, total_tokens, notice,
-                form_reference_json, compilation_json, document_reference_json
+                form_reference_json, compilation_json, document_reference_json,
+                (SELECT response_json FROM chat_submissions s
+                 WHERE s.turn_id=conversation_turns.id AND s.project_id=?) AS submission_response
             FROM conversation_turns
             WHERE conversation_id = ?
             ORDER BY id
             """,
-            (conversation_id,),
+            (project_id, conversation_id),
         )
 
         selected_form = db.execute(
@@ -827,6 +833,9 @@ def get_conversation(project_id: str, conversation_id: str) -> dict | None:
     result["turns"] = [
         {
             "id": turn["id"],
+            "request_id": json.loads(turn["submission_response"] or "{}").get("request_id"),
+            "request_retry_safe": json.loads(turn["submission_response"] or "{}").get(
+                "request_retry_safe", False),
             "question": turn["question"],
             "answer": turn["answer"],
             "citations": json.loads(turn["citations_json"]),

@@ -81,14 +81,25 @@ class RoutingTrace:
                                 http_response=response.text[:65536])
         self.save()
 
+    def guard(self, verification):
+        """The reply guard's raw verdicts and backend codes, for later diagnosis only."""
+        self.result["guard"] = {"raw": verification.raw, "reasons": verification.reasons,
+                                "accepted_slots": sorted(verification.allowed_slots)}
+        self.save()
+
     def validation_error(self, exc):
         errors = (exc.errors(include_input=False, include_url=False)
                   if hasattr(exc, "errors") else str(exc))
         self.attempts[-1].update(status="invalid", validation_error=str(errors)[:4000])
         self.save()
 
+    def extractions(self, records, checks):
+        self.result["user_value_extraction"] = {"records": records, "checks": checks}
+        self.save()
+
     def complete(self, intent):
-        self.result = {"status": "routed", "intent": intent}
+        kept = {k: v for k, v in self.result.items() if k in {"guard", "user_value_extraction"}}
+        self.result = {"status": "routed", "intent": intent, **kept}
         self.save()
 
     def fail(self, exc, stage):

@@ -1,0 +1,3089 @@
+{
+  "version": 5,
+  "role": "form",
+  "template_sha256": "9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795",
+  "candidate_scope": "document_body",
+  "checkbox_write_supported": false,
+  "blocks": [
+    {
+      "id": "paragraph:0",
+      "paragraphs": [
+        {
+          "id": "paragraph:0",
+          "text": "ALLEGATO A",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:1",
+      "paragraphs": [
+        {
+          "id": "paragraph:1",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:2",
+      "paragraphs": [
+        {
+          "id": "paragraph:2",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:3",
+      "paragraphs": [
+        {
+          "id": "paragraph:3",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:4",
+      "paragraphs": [
+        {
+          "id": "paragraph:4",
+          "text": "Al Comune di Cesano Maderno"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:5",
+      "paragraphs": [
+        {
+          "id": "paragraph:5",
+          "text": "Settore Servizi al Territorio Ambiente e Imprese"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:6",
+      "paragraphs": [
+        {
+          "id": "paragraph:6",
+          "text": "Uo Segreteria di Area e Staff"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:7",
+      "paragraphs": [
+        {
+          "id": "paragraph:7",
+          "text": "protocollo@pec.comune.cesano-maderno.mb.it  "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:8",
+      "paragraphs": [
+        {
+          "id": "paragraph:8",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:9",
+      "paragraphs": [
+        {
+          "id": "paragraph:9",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:10",
+      "paragraphs": [
+        {
+          "id": "paragraph:10",
+          "text": "OGGETTO: ISTANZA PER L’INSERIMENTO NELL’ELENCO DI PROFESSIONISTI E OPERATORI ECONOMICI PER L’AFFIDAMENTO DI SERVIZI DI INGEGNERIA E ARCHITETTURA E DI SERVIZI TECNICI DI SUPPORTO SPECIALISTICO PER IL COMUNE DI CESANO MADERNO ",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:11",
+      "paragraphs": [
+        {
+          "id": "paragraph:11",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:12",
+      "paragraphs": [
+        {
+          "id": "paragraph:12",
+          "text": "Il sottoscritto       Nato a       il       con studio in       via       numero         Partita IVA       Numero posizione INAIL        Numero matricola INPS        Numero Posizione INARCASSA       Indirizzo mail       Pec       numero di telefono       iscritto all’ordine professionale       al n.       ",
+          "text_with_fields": "Il sottoscritto [[p12.ft0]] Nato a [[p12.ft1]] il [[p12.ft2]] con studio in [[p12.ft3]] via [[p12.ft4]] numero  [[p12.ft5]]  Partita IVA [[p12.ft6]] Numero posizione INAIL [[p12.ft7]]  Numero matricola INPS  [[p12.ft8]] Numero Posizione INARCASSA [[p12.ft9]] Indirizzo mail [[p12.ft10]] Pec [[p12.ft11]] numero di telefono [[p12.ft12]] iscritto all’ordine professionale [[p12.ft13]] al n. [[p12.ft14]] "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:0",
+        "paragraph:4",
+        "paragraph:5",
+        "paragraph:6",
+        "paragraph:7",
+        "paragraph:10"
+      ]
+    },
+    {
+      "id": "paragraph:13",
+      "paragraphs": [
+        {
+          "id": "paragraph:13",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:14",
+      "paragraphs": [
+        {
+          "id": "paragraph:14",
+          "text": "In nome e per conto: "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:15",
+      "paragraphs": [
+        {
+          "id": "paragraph:15",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:16",
+      "paragraphs": [
+        {
+          "id": "paragraph:16",
+          "text": "  Proprio ",
+          "controls": [
+            {
+              "id": "p16.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p16.cb0]]  Proprio "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:5",
+        "paragraph:6",
+        "paragraph:7",
+        "paragraph:10",
+        "paragraph:12",
+        "paragraph:14"
+      ]
+    },
+    {
+      "id": "paragraph:17",
+      "paragraphs": [
+        {
+          "id": "paragraph:17",
+          "text": "  Della Associazione di professionisti (1) ",
+          "controls": [
+            {
+              "id": "p17.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p17.cb0]]  Della Associazione di professionisti (1) "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:6",
+        "paragraph:7",
+        "paragraph:10",
+        "paragraph:12",
+        "paragraph:14",
+        "paragraph:16"
+      ]
+    },
+    {
+      "id": "paragraph:18",
+      "paragraphs": [
+        {
+          "id": "paragraph:18",
+          "text": "  Associazione Temporanea (2)      ",
+          "controls": [
+            {
+              "id": "p18.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p18.cb0]]  Associazione Temporanea (2)      ",
+          "text_with_fields": "  Associazione Temporanea (2) [[p18.ft0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:7",
+        "paragraph:10",
+        "paragraph:12",
+        "paragraph:14",
+        "paragraph:16",
+        "paragraph:17"
+      ]
+    },
+    {
+      "id": "paragraph:19",
+      "paragraphs": [
+        {
+          "id": "paragraph:19",
+          "text": "  Della Società di Ingegneria (3)      ",
+          "controls": [
+            {
+              "id": "p19.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p19.cb0]]  Della Società di Ingegneria (3)      ",
+          "text_with_fields": "  Della Società di Ingegneria (3) [[p19.ft0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:10",
+        "paragraph:12",
+        "paragraph:14",
+        "paragraph:16",
+        "paragraph:17",
+        "paragraph:18"
+      ]
+    },
+    {
+      "id": "paragraph:20",
+      "paragraphs": [
+        {
+          "id": "paragraph:20",
+          "text": "  Della Società professionale (3)       ",
+          "controls": [
+            {
+              "id": "p20.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p20.cb0]]  Della Società professionale (3)       ",
+          "text_with_fields": "  Della Società professionale (3)  [[p20.ft0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:12",
+        "paragraph:14",
+        "paragraph:16",
+        "paragraph:17",
+        "paragraph:18",
+        "paragraph:19"
+      ]
+    },
+    {
+      "id": "paragraph:21",
+      "paragraphs": [
+        {
+          "id": "paragraph:21",
+          "text": "  Altro (4)      ",
+          "controls": [
+            {
+              "id": "p21.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p21.cb0]]  Altro (4)      ",
+          "text_with_fields": "  Altro (4) [[p21.ft0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:14",
+        "paragraph:16",
+        "paragraph:17",
+        "paragraph:18",
+        "paragraph:19",
+        "paragraph:20"
+      ]
+    },
+    {
+      "id": "paragraph:22",
+      "paragraphs": [
+        {
+          "id": "paragraph:22",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:23",
+      "paragraphs": [
+        {
+          "id": "paragraph:23",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:24",
+      "paragraphs": [
+        {
+          "id": "paragraph:24",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:25",
+      "paragraphs": [
+        {
+          "id": "paragraph:25",
+          "text": "1) specificare il nome del raggruppamento/associazione o altro; "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:26",
+      "paragraphs": [
+        {
+          "id": "paragraph:26",
+          "text": "2) riportare il nominativo di ciascun soggetto facente parte del raggruppamento e corredare la domanda dalla fotocopia di documento di identità valido, indicare il professionista designato come capogruppo;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:27",
+      "paragraphs": [
+        {
+          "id": "paragraph:27",
+          "text": "3) specificare la denominazione della Società di Ingegneria o della Società professionale. "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:28",
+      "paragraphs": [
+        {
+          "id": "paragraph:28",
+          "text": "4) specificare altre forma del soggetto e caratteristiche dello stesso; "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:29",
+      "paragraphs": [
+        {
+          "id": "paragraph:29",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:30",
+      "paragraphs": [
+        {
+          "id": "paragraph:30",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:31",
+      "paragraphs": [
+        {
+          "id": "paragraph:31",
+          "text": "CHIEDE",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:32",
+      "paragraphs": [
+        {
+          "id": "paragraph:32",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:33",
+      "paragraphs": [
+        {
+          "id": "paragraph:33",
+          "text": "Di essere inserito nell’elenco dei professionisti a cui affidare gli incarichi professionali ai sensi dell’art. art. 66 del D. Lgs. 36/2023 per le seguenti attività e categorie di servizi e classi di attività: "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:34",
+      "paragraphs": [
+        {
+          "id": "paragraph:34",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:35",
+      "paragraphs": [
+        {
+          "id": "paragraph:35",
+          "text": " Prestazioni di progettazione di fattibilità tecnica ed economica, definitiva ed esecutiva o supporto al RUP secondo le seguenti tipologie di opere:",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p35.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p35.cb0]] Prestazioni di progettazione di fattibilità tecnica ed economica, definitiva ed esecutiva o supporto al RUP secondo le seguenti tipologie di opere:"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:25",
+        "paragraph:26",
+        "paragraph:27",
+        "paragraph:28",
+        "paragraph:31",
+        "paragraph:33"
+      ]
+    },
+    {
+      "id": "paragraph:36",
+      "paragraphs": [
+        {
+          "id": "paragraph:36",
+          "text": "     Opere architettoniche;",
+          "controls": [
+            {
+              "id": "p36.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p36.cb0]]     Opere architettoniche;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:26",
+        "paragraph:27",
+        "paragraph:28",
+        "paragraph:31",
+        "paragraph:33",
+        "paragraph:35"
+      ]
+    },
+    {
+      "id": "paragraph:37",
+      "paragraphs": [
+        {
+          "id": "paragraph:37",
+          "text": "     Opere strutturali;",
+          "controls": [
+            {
+              "id": "p37.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p37.cb0]]     Opere strutturali;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:27",
+        "paragraph:28",
+        "paragraph:31",
+        "paragraph:33",
+        "paragraph:35",
+        "paragraph:36"
+      ]
+    },
+    {
+      "id": "paragraph:38",
+      "paragraphs": [
+        {
+          "id": "paragraph:38",
+          "text": "     Impianti elettrici;",
+          "controls": [
+            {
+              "id": "p38.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p38.cb0]]     Impianti elettrici;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:28",
+        "paragraph:31",
+        "paragraph:33",
+        "paragraph:35",
+        "paragraph:36",
+        "paragraph:37"
+      ]
+    },
+    {
+      "id": "paragraph:39",
+      "paragraphs": [
+        {
+          "id": "paragraph:39",
+          "text": "     Impianti meccanici;",
+          "controls": [
+            {
+              "id": "p39.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p39.cb0]]     Impianti meccanici;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:31",
+        "paragraph:33",
+        "paragraph:35",
+        "paragraph:36",
+        "paragraph:37",
+        "paragraph:38"
+      ]
+    },
+    {
+      "id": "paragraph:40",
+      "paragraphs": [
+        {
+          "id": "paragraph:40",
+          "text": "     Verde e arredo urbano;",
+          "controls": [
+            {
+              "id": "p40.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p40.cb0]]     Verde e arredo urbano;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:33",
+        "paragraph:35",
+        "paragraph:36",
+        "paragraph:37",
+        "paragraph:38",
+        "paragraph:39"
+      ]
+    },
+    {
+      "id": "paragraph:41",
+      "paragraphs": [
+        {
+          "id": "paragraph:41",
+          "text": "     Infrastrutture varie, strade;",
+          "controls": [
+            {
+              "id": "p41.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p41.cb0]]     Infrastrutture varie, strade;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:35",
+        "paragraph:36",
+        "paragraph:37",
+        "paragraph:38",
+        "paragraph:39",
+        "paragraph:40"
+      ]
+    },
+    {
+      "id": "paragraph:42",
+      "paragraphs": [
+        {
+          "id": "paragraph:42",
+          "text": "     Immobili vincolati;",
+          "controls": [
+            {
+              "id": "p42.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p42.cb0]]     Immobili vincolati;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:36",
+        "paragraph:37",
+        "paragraph:38",
+        "paragraph:39",
+        "paragraph:40",
+        "paragraph:41"
+      ]
+    },
+    {
+      "id": "paragraph:43",
+      "paragraphs": [
+        {
+          "id": "paragraph:43",
+          "text": " Prestazioni di direzione dei lavori secondo le seguenti tipologie di opere:",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p43.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p43.cb0]] Prestazioni di direzione dei lavori secondo le seguenti tipologie di opere:"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:37",
+        "paragraph:38",
+        "paragraph:39",
+        "paragraph:40",
+        "paragraph:41",
+        "paragraph:42"
+      ]
+    },
+    {
+      "id": "paragraph:44",
+      "paragraphs": [
+        {
+          "id": "paragraph:44",
+          "text": "     Opere architettoniche;",
+          "controls": [
+            {
+              "id": "p44.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p44.cb0]]     Opere architettoniche;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:38",
+        "paragraph:39",
+        "paragraph:40",
+        "paragraph:41",
+        "paragraph:42",
+        "paragraph:43"
+      ]
+    },
+    {
+      "id": "paragraph:45",
+      "paragraphs": [
+        {
+          "id": "paragraph:45",
+          "text": "     Opere strutturali;",
+          "controls": [
+            {
+              "id": "p45.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p45.cb0]]     Opere strutturali;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:39",
+        "paragraph:40",
+        "paragraph:41",
+        "paragraph:42",
+        "paragraph:43",
+        "paragraph:44"
+      ]
+    },
+    {
+      "id": "paragraph:46",
+      "paragraphs": [
+        {
+          "id": "paragraph:46",
+          "text": "     Impianti elettrici;",
+          "controls": [
+            {
+              "id": "p46.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p46.cb0]]     Impianti elettrici;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:40",
+        "paragraph:41",
+        "paragraph:42",
+        "paragraph:43",
+        "paragraph:44",
+        "paragraph:45"
+      ]
+    },
+    {
+      "id": "paragraph:47",
+      "paragraphs": [
+        {
+          "id": "paragraph:47",
+          "text": "     Impianti meccanici;",
+          "controls": [
+            {
+              "id": "p47.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p47.cb0]]     Impianti meccanici;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:41",
+        "paragraph:42",
+        "paragraph:43",
+        "paragraph:44",
+        "paragraph:45",
+        "paragraph:46"
+      ]
+    },
+    {
+      "id": "paragraph:48",
+      "paragraphs": [
+        {
+          "id": "paragraph:48",
+          "text": "     Verde e arredo urbano;",
+          "controls": [
+            {
+              "id": "p48.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p48.cb0]]     Verde e arredo urbano;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:42",
+        "paragraph:43",
+        "paragraph:44",
+        "paragraph:45",
+        "paragraph:46",
+        "paragraph:47"
+      ]
+    },
+    {
+      "id": "paragraph:49",
+      "paragraphs": [
+        {
+          "id": "paragraph:49",
+          "text": "     Infrastrutture varie, strade;",
+          "controls": [
+            {
+              "id": "p49.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p49.cb0]]     Infrastrutture varie, strade;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:43",
+        "paragraph:44",
+        "paragraph:45",
+        "paragraph:46",
+        "paragraph:47",
+        "paragraph:48"
+      ]
+    },
+    {
+      "id": "paragraph:50",
+      "paragraphs": [
+        {
+          "id": "paragraph:50",
+          "text": "     Immobili vincolati;",
+          "controls": [
+            {
+              "id": "p50.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p50.cb0]]     Immobili vincolati;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:44",
+        "paragraph:45",
+        "paragraph:46",
+        "paragraph:47",
+        "paragraph:48",
+        "paragraph:49"
+      ]
+    },
+    {
+      "id": "paragraph:51",
+      "paragraphs": [
+        {
+          "id": "paragraph:51",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:52",
+      "paragraphs": [
+        {
+          "id": "paragraph:52",
+          "text": " Prestazioni di coordinamento della sicurezza dei cantieri in fase di progettazione e          esecuzione secondo le seguenti tipologie di opere:",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p52.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p52.cb0]] Prestazioni di coordinamento della sicurezza dei cantieri in fase di progettazione e          esecuzione secondo le seguenti tipologie di opere:"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:45",
+        "paragraph:46",
+        "paragraph:47",
+        "paragraph:48",
+        "paragraph:49",
+        "paragraph:50"
+      ]
+    },
+    {
+      "id": "paragraph:53",
+      "paragraphs": [
+        {
+          "id": "paragraph:53",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:54",
+      "paragraphs": [
+        {
+          "id": "paragraph:54",
+          "text": "     Opere architettoniche;",
+          "controls": [
+            {
+              "id": "p54.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p54.cb0]]     Opere architettoniche;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:46",
+        "paragraph:47",
+        "paragraph:48",
+        "paragraph:49",
+        "paragraph:50",
+        "paragraph:52"
+      ]
+    },
+    {
+      "id": "paragraph:55",
+      "paragraphs": [
+        {
+          "id": "paragraph:55",
+          "text": "     Opere strutturali;",
+          "controls": [
+            {
+              "id": "p55.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p55.cb0]]     Opere strutturali;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:47",
+        "paragraph:48",
+        "paragraph:49",
+        "paragraph:50",
+        "paragraph:52",
+        "paragraph:54"
+      ]
+    },
+    {
+      "id": "paragraph:56",
+      "paragraphs": [
+        {
+          "id": "paragraph:56",
+          "text": "     Impianti elettrici;",
+          "controls": [
+            {
+              "id": "p56.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p56.cb0]]     Impianti elettrici;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:48",
+        "paragraph:49",
+        "paragraph:50",
+        "paragraph:52",
+        "paragraph:54",
+        "paragraph:55"
+      ]
+    },
+    {
+      "id": "paragraph:57",
+      "paragraphs": [
+        {
+          "id": "paragraph:57",
+          "text": "     Impianti meccanici;",
+          "controls": [
+            {
+              "id": "p57.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p57.cb0]]     Impianti meccanici;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:49",
+        "paragraph:50",
+        "paragraph:52",
+        "paragraph:54",
+        "paragraph:55",
+        "paragraph:56"
+      ]
+    },
+    {
+      "id": "paragraph:58",
+      "paragraphs": [
+        {
+          "id": "paragraph:58",
+          "text": "     Verde e arredo urbano;",
+          "controls": [
+            {
+              "id": "p58.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p58.cb0]]     Verde e arredo urbano;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:50",
+        "paragraph:52",
+        "paragraph:54",
+        "paragraph:55",
+        "paragraph:56",
+        "paragraph:57"
+      ]
+    },
+    {
+      "id": "paragraph:59",
+      "paragraphs": [
+        {
+          "id": "paragraph:59",
+          "text": "     Infrastrutture varie, strade;",
+          "controls": [
+            {
+              "id": "p59.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p59.cb0]]     Infrastrutture varie, strade;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:52",
+        "paragraph:54",
+        "paragraph:55",
+        "paragraph:56",
+        "paragraph:57",
+        "paragraph:58"
+      ]
+    },
+    {
+      "id": "paragraph:60",
+      "paragraphs": [
+        {
+          "id": "paragraph:60",
+          "text": "     Immobili vincolati;",
+          "controls": [
+            {
+              "id": "p60.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p60.cb0]]     Immobili vincolati;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:54",
+        "paragraph:55",
+        "paragraph:56",
+        "paragraph:57",
+        "paragraph:58",
+        "paragraph:59"
+      ]
+    },
+    {
+      "id": "paragraph:61",
+      "paragraphs": [
+        {
+          "id": "paragraph:61",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:62",
+      "paragraphs": [
+        {
+          "id": "paragraph:62",
+          "text": " Collaudi di opere pubbliche (finali o in corso d’opera);",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p62.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p62.cb0]] Collaudi di opere pubbliche (finali o in corso d’opera);"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:55",
+        "paragraph:56",
+        "paragraph:57",
+        "paragraph:58",
+        "paragraph:59",
+        "paragraph:60"
+      ]
+    },
+    {
+      "id": "paragraph:63",
+      "paragraphs": [
+        {
+          "id": "paragraph:63",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:64",
+      "paragraphs": [
+        {
+          "id": "paragraph:64",
+          "text": "     Opere architettoniche;",
+          "controls": [
+            {
+              "id": "p64.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p64.cb0]]     Opere architettoniche;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:56",
+        "paragraph:57",
+        "paragraph:58",
+        "paragraph:59",
+        "paragraph:60",
+        "paragraph:62"
+      ]
+    },
+    {
+      "id": "paragraph:65",
+      "paragraphs": [
+        {
+          "id": "paragraph:65",
+          "text": "     Opere strutturali;",
+          "controls": [
+            {
+              "id": "p65.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p65.cb0]]     Opere strutturali;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:57",
+        "paragraph:58",
+        "paragraph:59",
+        "paragraph:60",
+        "paragraph:62",
+        "paragraph:64"
+      ]
+    },
+    {
+      "id": "paragraph:66",
+      "paragraphs": [
+        {
+          "id": "paragraph:66",
+          "text": "     Impianti elettrici;",
+          "controls": [
+            {
+              "id": "p66.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p66.cb0]]     Impianti elettrici;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:58",
+        "paragraph:59",
+        "paragraph:60",
+        "paragraph:62",
+        "paragraph:64",
+        "paragraph:65"
+      ]
+    },
+    {
+      "id": "paragraph:67",
+      "paragraphs": [
+        {
+          "id": "paragraph:67",
+          "text": "     Impianti meccanici;",
+          "controls": [
+            {
+              "id": "p67.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p67.cb0]]     Impianti meccanici;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:59",
+        "paragraph:60",
+        "paragraph:62",
+        "paragraph:64",
+        "paragraph:65",
+        "paragraph:66"
+      ]
+    },
+    {
+      "id": "paragraph:68",
+      "paragraphs": [
+        {
+          "id": "paragraph:68",
+          "text": "     Verde e arredo urbano;",
+          "controls": [
+            {
+              "id": "p68.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p68.cb0]]     Verde e arredo urbano;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:60",
+        "paragraph:62",
+        "paragraph:64",
+        "paragraph:65",
+        "paragraph:66",
+        "paragraph:67"
+      ]
+    },
+    {
+      "id": "paragraph:69",
+      "paragraphs": [
+        {
+          "id": "paragraph:69",
+          "text": "     Infrastrutture varie, strade;",
+          "controls": [
+            {
+              "id": "p69.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p69.cb0]]     Infrastrutture varie, strade;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:62",
+        "paragraph:64",
+        "paragraph:65",
+        "paragraph:66",
+        "paragraph:67",
+        "paragraph:68"
+      ]
+    },
+    {
+      "id": "paragraph:70",
+      "paragraphs": [
+        {
+          "id": "paragraph:70",
+          "text": "     Immobili vincolati;",
+          "controls": [
+            {
+              "id": "p70.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p70.cb0]]     Immobili vincolati;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:64",
+        "paragraph:65",
+        "paragraph:66",
+        "paragraph:67",
+        "paragraph:68",
+        "paragraph:69"
+      ]
+    },
+    {
+      "id": "paragraph:71",
+      "paragraphs": [
+        {
+          "id": "paragraph:71",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:72",
+      "paragraphs": [
+        {
+          "id": "paragraph:72",
+          "text": " Studi di impatto / verifiche ambientali suddivise nelle seguenti categorie di servizi:",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p72.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p72.cb0]] Studi di impatto / verifiche ambientali suddivise nelle seguenti categorie di servizi:"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:65",
+        "paragraph:66",
+        "paragraph:67",
+        "paragraph:68",
+        "paragraph:69",
+        "paragraph:70"
+      ]
+    },
+    {
+      "id": "paragraph:73",
+      "paragraphs": [
+        {
+          "id": "paragraph:73",
+          "text": "     Indagini e relazioni acustiche;",
+          "controls": [
+            {
+              "id": "p73.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p73.cb0]]     Indagini e relazioni acustiche;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:66",
+        "paragraph:67",
+        "paragraph:68",
+        "paragraph:69",
+        "paragraph:70",
+        "paragraph:72"
+      ]
+    },
+    {
+      "id": "paragraph:74",
+      "paragraphs": [
+        {
+          "id": "paragraph:74",
+          "text": "     Indagini e relazioni in ambito forestale; ",
+          "controls": [
+            {
+              "id": "p74.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p74.cb0]]     Indagini e relazioni in ambito forestale; "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:67",
+        "paragraph:68",
+        "paragraph:69",
+        "paragraph:70",
+        "paragraph:72",
+        "paragraph:73"
+      ]
+    },
+    {
+      "id": "paragraph:75",
+      "paragraphs": [
+        {
+          "id": "paragraph:75",
+          "text": "     Indagini e relazioni in ambito di agronomia; ",
+          "controls": [
+            {
+              "id": "p75.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p75.cb0]]     Indagini e relazioni in ambito di agronomia; "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:68",
+        "paragraph:69",
+        "paragraph:70",
+        "paragraph:72",
+        "paragraph:73",
+        "paragraph:74"
+      ]
+    },
+    {
+      "id": "paragraph:76",
+      "paragraphs": [
+        {
+          "id": "paragraph:76",
+          "text": "     Studi di invarianza idraulica; ",
+          "controls": [
+            {
+              "id": "p76.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p76.cb0]]     Studi di invarianza idraulica; "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:69",
+        "paragraph:70",
+        "paragraph:72",
+        "paragraph:73",
+        "paragraph:74",
+        "paragraph:75"
+      ]
+    },
+    {
+      "id": "paragraph:77",
+      "paragraphs": [
+        {
+          "id": "paragraph:77",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:78",
+      "paragraphs": [
+        {
+          "id": "paragraph:78",
+          "text": " Relazioni geologiche;",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p78.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p78.cb0]] Relazioni geologiche;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:70",
+        "paragraph:72",
+        "paragraph:73",
+        "paragraph:74",
+        "paragraph:75",
+        "paragraph:76"
+      ]
+    },
+    {
+      "id": "paragraph:79",
+      "paragraphs": [
+        {
+          "id": "paragraph:79",
+          "text": " Pianificazione urbanistica secondo le seguenti attività:",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p79.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p79.cb0]] Pianificazione urbanistica secondo le seguenti attività:"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:72",
+        "paragraph:73",
+        "paragraph:74",
+        "paragraph:75",
+        "paragraph:76",
+        "paragraph:78"
+      ]
+    },
+    {
+      "id": "paragraph:80",
+      "paragraphs": [
+        {
+          "id": "paragraph:80",
+          "text": "     Stesura e predisposizione del PGT;",
+          "controls": [
+            {
+              "id": "p80.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p80.cb0]]     Stesura e predisposizione del PGT;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:73",
+        "paragraph:74",
+        "paragraph:75",
+        "paragraph:76",
+        "paragraph:78",
+        "paragraph:79"
+      ]
+    },
+    {
+      "id": "paragraph:81",
+      "paragraphs": [
+        {
+          "id": "paragraph:81",
+          "text": "     Stesura di VAS e VIA; ",
+          "controls": [
+            {
+              "id": "p81.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p81.cb0]]     Stesura di VAS e VIA; "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:74",
+        "paragraph:75",
+        "paragraph:76",
+        "paragraph:78",
+        "paragraph:79",
+        "paragraph:80"
+      ]
+    },
+    {
+      "id": "paragraph:82",
+      "paragraphs": [
+        {
+          "id": "paragraph:82",
+          "text": " Rilievi topografici e di manufatti;",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p82.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p82.cb0]] Rilievi topografici e di manufatti;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:75",
+        "paragraph:76",
+        "paragraph:78",
+        "paragraph:79",
+        "paragraph:80",
+        "paragraph:81"
+      ]
+    },
+    {
+      "id": "paragraph:83",
+      "paragraphs": [
+        {
+          "id": "paragraph:83",
+          "text": "     Effettuazione e restituzione di rilievi topografici;",
+          "controls": [
+            {
+              "id": "p83.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p83.cb0]]     Effettuazione e restituzione di rilievi topografici;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:76",
+        "paragraph:78",
+        "paragraph:79",
+        "paragraph:80",
+        "paragraph:81",
+        "paragraph:82"
+      ]
+    },
+    {
+      "id": "paragraph:84",
+      "paragraphs": [
+        {
+          "id": "paragraph:84",
+          "text": "     Effettuazione e restituzione di rilievi di fabbricati;",
+          "controls": [
+            {
+              "id": "p84.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p84.cb0]]     Effettuazione e restituzione di rilievi di fabbricati;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:78",
+        "paragraph:79",
+        "paragraph:80",
+        "paragraph:81",
+        "paragraph:82",
+        "paragraph:83"
+      ]
+    },
+    {
+      "id": "paragraph:85",
+      "paragraphs": [
+        {
+          "id": "paragraph:85",
+          "text": "     Effettuazione e restituzione di rilievi di manufatti;",
+          "controls": [
+            {
+              "id": "p85.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p85.cb0]]     Effettuazione e restituzione di rilievi di manufatti;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:79",
+        "paragraph:80",
+        "paragraph:81",
+        "paragraph:82",
+        "paragraph:83",
+        "paragraph:84"
+      ]
+    },
+    {
+      "id": "paragraph:86",
+      "paragraphs": [
+        {
+          "id": "paragraph:86",
+          "text": " Pratiche catastali e ipotecarie suddivise nelle seguenti competenze:",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p86.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p86.cb0]] Pratiche catastali e ipotecarie suddivise nelle seguenti competenze:"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:80",
+        "paragraph:81",
+        "paragraph:82",
+        "paragraph:83",
+        "paragraph:84",
+        "paragraph:85"
+      ]
+    },
+    {
+      "id": "paragraph:87",
+      "paragraphs": [
+        {
+          "id": "paragraph:87",
+          "text": "     pratiche di aggiornamento catasto terreni;",
+          "controls": [
+            {
+              "id": "p87.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p87.cb0]]     pratiche di aggiornamento catasto terreni;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:81",
+        "paragraph:82",
+        "paragraph:83",
+        "paragraph:84",
+        "paragraph:85",
+        "paragraph:86"
+      ]
+    },
+    {
+      "id": "paragraph:88",
+      "paragraphs": [
+        {
+          "id": "paragraph:88",
+          "text": "     pratiche di aggiornamento catasto fabbricati;",
+          "controls": [
+            {
+              "id": "p88.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p88.cb0]]     pratiche di aggiornamento catasto fabbricati;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:82",
+        "paragraph:83",
+        "paragraph:84",
+        "paragraph:85",
+        "paragraph:86",
+        "paragraph:87"
+      ]
+    },
+    {
+      "id": "paragraph:89",
+      "paragraphs": [
+        {
+          "id": "paragraph:89",
+          "text": "     Volturazioni;",
+          "controls": [
+            {
+              "id": "p89.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p89.cb0]]     Volturazioni;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:83",
+        "paragraph:84",
+        "paragraph:85",
+        "paragraph:86",
+        "paragraph:87",
+        "paragraph:88"
+      ]
+    },
+    {
+      "id": "paragraph:90",
+      "paragraphs": [
+        {
+          "id": "paragraph:90",
+          "text": "     Indagini e pratiche ipotecarie;",
+          "controls": [
+            {
+              "id": "p90.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p90.cb0]]     Indagini e pratiche ipotecarie;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:84",
+        "paragraph:85",
+        "paragraph:86",
+        "paragraph:87",
+        "paragraph:88",
+        "paragraph:89"
+      ]
+    },
+    {
+      "id": "paragraph:91",
+      "paragraphs": [
+        {
+          "id": "paragraph:91",
+          "text": " Verifiche di Validazione di progetti: ",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p91.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p91.cb0]] Verifiche di Validazione di progetti: "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:85",
+        "paragraph:86",
+        "paragraph:87",
+        "paragraph:88",
+        "paragraph:89",
+        "paragraph:90"
+      ]
+    },
+    {
+      "id": "paragraph:92",
+      "paragraphs": [
+        {
+          "id": "paragraph:92",
+          "text": "     Opere architettoniche;",
+          "controls": [
+            {
+              "id": "p92.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p92.cb0]]     Opere architettoniche;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:86",
+        "paragraph:87",
+        "paragraph:88",
+        "paragraph:89",
+        "paragraph:90",
+        "paragraph:91"
+      ]
+    },
+    {
+      "id": "paragraph:93",
+      "paragraphs": [
+        {
+          "id": "paragraph:93",
+          "text": "     Opere strutturali;",
+          "controls": [
+            {
+              "id": "p93.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p93.cb0]]     Opere strutturali;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:87",
+        "paragraph:88",
+        "paragraph:89",
+        "paragraph:90",
+        "paragraph:91",
+        "paragraph:92"
+      ]
+    },
+    {
+      "id": "paragraph:94",
+      "paragraphs": [
+        {
+          "id": "paragraph:94",
+          "text": "     Impianti elettrici;",
+          "controls": [
+            {
+              "id": "p94.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p94.cb0]]     Impianti elettrici;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:88",
+        "paragraph:89",
+        "paragraph:90",
+        "paragraph:91",
+        "paragraph:92",
+        "paragraph:93"
+      ]
+    },
+    {
+      "id": "paragraph:95",
+      "paragraphs": [
+        {
+          "id": "paragraph:95",
+          "text": "     Impianti meccanici;",
+          "controls": [
+            {
+              "id": "p95.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p95.cb0]]     Impianti meccanici;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:89",
+        "paragraph:90",
+        "paragraph:91",
+        "paragraph:92",
+        "paragraph:93",
+        "paragraph:94"
+      ]
+    },
+    {
+      "id": "paragraph:96",
+      "paragraphs": [
+        {
+          "id": "paragraph:96",
+          "text": "     Verde e arredo urbano;",
+          "controls": [
+            {
+              "id": "p96.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p96.cb0]]     Verde e arredo urbano;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:90",
+        "paragraph:91",
+        "paragraph:92",
+        "paragraph:93",
+        "paragraph:94",
+        "paragraph:95"
+      ]
+    },
+    {
+      "id": "paragraph:97",
+      "paragraphs": [
+        {
+          "id": "paragraph:97",
+          "text": "     Infrastrutture varie, strade;",
+          "controls": [
+            {
+              "id": "p97.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p97.cb0]]     Infrastrutture varie, strade;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:91",
+        "paragraph:92",
+        "paragraph:93",
+        "paragraph:94",
+        "paragraph:95",
+        "paragraph:96"
+      ]
+    },
+    {
+      "id": "paragraph:98",
+      "paragraphs": [
+        {
+          "id": "paragraph:98",
+          "text": "     Immobili vincolati;",
+          "controls": [
+            {
+              "id": "p98.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p98.cb0]]     Immobili vincolati;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:92",
+        "paragraph:93",
+        "paragraph:94",
+        "paragraph:95",
+        "paragraph:96",
+        "paragraph:97"
+      ]
+    },
+    {
+      "id": "paragraph:99",
+      "paragraphs": [
+        {
+          "id": "paragraph:99",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:100",
+      "paragraphs": [
+        {
+          "id": "paragraph:100",
+          "text": " certificazione energetica degli edifici; ",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p100.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p100.cb0]] certificazione energetica degli edifici; "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:93",
+        "paragraph:94",
+        "paragraph:95",
+        "paragraph:96",
+        "paragraph:97",
+        "paragraph:98"
+      ]
+    },
+    {
+      "id": "paragraph:101",
+      "paragraphs": [
+        {
+          "id": "paragraph:101",
+          "text": " Perizie giurate;",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p101.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p101.cb0]] Perizie giurate;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:94",
+        "paragraph:95",
+        "paragraph:96",
+        "paragraph:97",
+        "paragraph:98",
+        "paragraph:100"
+      ]
+    },
+    {
+      "id": "paragraph:102",
+      "paragraphs": [
+        {
+          "id": "paragraph:102",
+          "text": " Pratiche antincendio;",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p102.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p102.cb0]] Pratiche antincendio;"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:95",
+        "paragraph:96",
+        "paragraph:97",
+        "paragraph:98",
+        "paragraph:100",
+        "paragraph:101"
+      ]
+    },
+    {
+      "id": "paragraph:103",
+      "paragraphs": [
+        {
+          "id": "paragraph:103",
+          "text": " Studi Viabilistici; ",
+          "all_text_direct_bold": true,
+          "controls": [
+            {
+              "id": "p103.cb0",
+              "offset": 0
+            }
+          ],
+          "text_with_choices": "[[p103.cb0]] Studi Viabilistici; "
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:96",
+        "paragraph:97",
+        "paragraph:98",
+        "paragraph:100",
+        "paragraph:101",
+        "paragraph:102"
+      ]
+    },
+    {
+      "id": "paragraph:104",
+      "paragraphs": [
+        {
+          "id": "paragraph:104",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "id": "paragraph:105",
+      "paragraphs": [
+        {
+          "id": "paragraph:105",
+          "text": "data      ",
+          "text_with_fields": "data [[p105.ft0]]"
+        }
+      ],
+      "preceding_body_paragraph_ids": [
+        "paragraph:97",
+        "paragraph:98",
+        "paragraph:100",
+        "paragraph:101",
+        "paragraph:102",
+        "paragraph:103"
+      ]
+    },
+    {
+      "id": "paragraph:106",
+      "paragraphs": [
+        {
+          "id": "paragraph:106",
+          "text": "Documento firmato digitalmente "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:107",
+      "paragraphs": [
+        {
+          "id": "paragraph:107",
+          "text": "La presente istanza e il curriculum devono essere firmati digitalmente: ",
+          "all_text_direct_bold": true
+        }
+      ]
+    },
+    {
+      "id": "paragraph:108",
+      "paragraphs": [
+        {
+          "id": "paragraph:108",
+          "text": "In caso di professionista singolo, dal professionista medesimo;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:109",
+      "paragraphs": [
+        {
+          "id": "paragraph:109",
+          "text": "In caso di studio professionale associato, da tutti i professionisti associati;"
+        }
+      ]
+    },
+    {
+      "id": "paragraph:110",
+      "paragraphs": [
+        {
+          "id": "paragraph:110",
+          "text": "In caso di società o raggruppamenti temporanei, dal legale rappresentante o dal capogruppo; "
+        }
+      ]
+    },
+    {
+      "id": "paragraph:111",
+      "paragraphs": [
+        {
+          "id": "paragraph:111",
+          "text": ""
+        }
+      ]
+    }
+  ],
+  "candidates": {
+    "p105.ft0": {
+      "type": "text",
+      "context_id": "paragraph:105",
+      "section_ids": [],
+      "range": [
+        5,
+        10
+      ],
+      "slot_context": {
+        "before": "data ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:105"
+      }
+    },
+    "p12.ft0": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        16,
+        21
+      ],
+      "slot_context": {
+        "before": "Il sottoscritto ",
+        "after": " Nato a "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft1": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        29,
+        34
+      ],
+      "slot_context": {
+        "before": " Nato a ",
+        "after": " il "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft10": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        214,
+        219
+      ],
+      "slot_context": {
+        "before": " Indirizzo mail ",
+        "after": " Pec "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft11": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        224,
+        229
+      ],
+      "value_type": "email",
+      "slot_context": {
+        "before": " Pec ",
+        "after": " numero di telefono "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft12": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        249,
+        254
+      ],
+      "slot_context": {
+        "before": " numero di telefono ",
+        "after": " iscritto all’ordine professionale "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft13": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        289,
+        294
+      ],
+      "slot_context": {
+        "before": " iscritto all’ordine professionale ",
+        "after": " al n. "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft14": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        301,
+        306
+      ],
+      "slot_context": {
+        "before": " al n. ",
+        "after": " "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft2": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        38,
+        43
+      ],
+      "slot_context": {
+        "before": " il ",
+        "after": " con studio in "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft3": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        58,
+        63
+      ],
+      "slot_context": {
+        "before": " con studio in ",
+        "after": " via "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft4": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        68,
+        73
+      ],
+      "slot_context": {
+        "before": " via ",
+        "after": " numero  "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft5": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        82,
+        87
+      ],
+      "slot_context": {
+        "before": " numero  ",
+        "after": "  Partita IVA "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft6": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        101,
+        106
+      ],
+      "slot_context": {
+        "before": "  Partita IVA ",
+        "after": " Numero posizione INAIL "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft7": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        130,
+        135
+      ],
+      "slot_context": {
+        "before": " Numero posizione INAIL ",
+        "after": "  Numero matricola INPS  "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft8": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        160,
+        165
+      ],
+      "slot_context": {
+        "before": "  Numero matricola INPS  ",
+        "after": " Numero Posizione INARCASSA "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p12.ft9": {
+      "type": "text",
+      "context_id": "paragraph:12",
+      "section_ids": [],
+      "range": [
+        193,
+        198
+      ],
+      "slot_context": {
+        "before": " Numero Posizione INARCASSA ",
+        "after": " Indirizzo mail "
+      },
+      "location": {
+        "block_id": "paragraph:12"
+      }
+    },
+    "p18.ft0": {
+      "type": "text",
+      "context_id": "paragraph:18",
+      "section_ids": [],
+      "range": [
+        30,
+        35
+      ],
+      "slot_context": {
+        "before": "  Associazione Temporanea (2) ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:18"
+      }
+    },
+    "p19.ft0": {
+      "type": "text",
+      "context_id": "paragraph:19",
+      "section_ids": [],
+      "range": [
+        34,
+        39
+      ],
+      "slot_context": {
+        "before": "  Della Società di Ingegneria (3) ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:19"
+      }
+    },
+    "p20.ft0": {
+      "type": "text",
+      "context_id": "paragraph:20",
+      "section_ids": [],
+      "range": [
+        35,
+        40
+      ],
+      "slot_context": {
+        "before": "  Della Società professionale (3)  ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:20"
+      }
+    },
+    "p21.ft0": {
+      "type": "text",
+      "context_id": "paragraph:21",
+      "section_ids": [],
+      "range": [
+        12,
+        17
+      ],
+      "slot_context": {
+        "before": "  Altro (4) ",
+        "after": ""
+      },
+      "location": {
+        "block_id": "paragraph:21"
+      }
+    },
+    "p16.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:16",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:16"
+      }
+    },
+    "p17.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:17",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:17"
+      }
+    },
+    "p18.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:18",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:18"
+      }
+    },
+    "p19.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:19",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:19"
+      }
+    },
+    "p20.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:20",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:20"
+      }
+    },
+    "p21.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:21",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:21"
+      }
+    },
+    "p35.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:35",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:35"
+      }
+    },
+    "p36.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:36",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:36"
+      }
+    },
+    "p37.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:37",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:37"
+      }
+    },
+    "p38.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:38",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:38"
+      }
+    },
+    "p39.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:39",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:39"
+      }
+    },
+    "p40.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:40",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:40"
+      }
+    },
+    "p41.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:41",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:41"
+      }
+    },
+    "p42.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:42",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:42"
+      }
+    },
+    "p43.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:43",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:43"
+      }
+    },
+    "p44.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:44",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:44"
+      }
+    },
+    "p45.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:45",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:45"
+      }
+    },
+    "p46.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:46",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:46"
+      }
+    },
+    "p47.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:47",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:47"
+      }
+    },
+    "p48.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:48",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:48"
+      }
+    },
+    "p49.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:49",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:49"
+      }
+    },
+    "p50.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:50",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:50"
+      }
+    },
+    "p52.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:52",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:52"
+      }
+    },
+    "p54.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:54",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:54"
+      }
+    },
+    "p55.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:55",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:55"
+      }
+    },
+    "p56.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:56",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:56"
+      }
+    },
+    "p57.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:57",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:57"
+      }
+    },
+    "p58.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:58",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:58"
+      }
+    },
+    "p59.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:59",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:59"
+      }
+    },
+    "p60.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:60",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:60"
+      }
+    },
+    "p62.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:62",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:62"
+      }
+    },
+    "p64.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:64",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:64"
+      }
+    },
+    "p65.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:65",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:65"
+      }
+    },
+    "p66.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:66",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:66"
+      }
+    },
+    "p67.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:67",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:67"
+      }
+    },
+    "p68.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:68",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:68"
+      }
+    },
+    "p69.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:69",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:69"
+      }
+    },
+    "p70.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:70",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:70"
+      }
+    },
+    "p72.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:72",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:72"
+      }
+    },
+    "p73.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:73",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:73"
+      }
+    },
+    "p74.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:74",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:74"
+      }
+    },
+    "p75.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:75",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:75"
+      }
+    },
+    "p76.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:76",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:76"
+      }
+    },
+    "p78.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:78",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:78"
+      }
+    },
+    "p79.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:79",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:79"
+      }
+    },
+    "p80.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:80",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:80"
+      }
+    },
+    "p81.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:81",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:81"
+      }
+    },
+    "p82.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:82",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:82"
+      }
+    },
+    "p83.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:83",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:83"
+      }
+    },
+    "p84.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:84",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:84"
+      }
+    },
+    "p85.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:85",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:85"
+      }
+    },
+    "p86.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:86",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:86"
+      }
+    },
+    "p87.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:87",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:87"
+      }
+    },
+    "p88.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:88",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:88"
+      }
+    },
+    "p89.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:89",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:89"
+      }
+    },
+    "p90.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:90",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:90"
+      }
+    },
+    "p91.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:91",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:91"
+      }
+    },
+    "p92.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:92",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:92"
+      }
+    },
+    "p93.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:93",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:93"
+      }
+    },
+    "p94.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:94",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:94"
+      }
+    },
+    "p95.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:95",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:95"
+      }
+    },
+    "p96.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:96",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:96"
+      }
+    },
+    "p97.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:97",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:97"
+      }
+    },
+    "p98.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:98",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:98"
+      }
+    },
+    "p100.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:100",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:100"
+      }
+    },
+    "p101.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:101",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:101"
+      }
+    },
+    "p102.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:102",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:102"
+      }
+    },
+    "p103.cb0": {
+      "type": "checkbox",
+      "context_id": "paragraph:103",
+      "section_ids": [],
+      "control_type": "legacy",
+      "initial_checked": false,
+      "location": {
+        "block_id": "paragraph:103"
+      }
+    }
+  },
+  "read_only_parts": [
+    {
+      "part": "word/footer1.xml",
+      "read_only_checkbox_count": 0,
+      "paragraphs": [
+        "4"
+      ]
+    }
+  ]
+}

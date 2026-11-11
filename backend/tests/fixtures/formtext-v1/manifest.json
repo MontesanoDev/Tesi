@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "purpose": "Structural regression, not factual GOLD or LLM quality score",
+  "origin": "Frozen official and exploratory benchmark artifacts, plus FORMTEXT parser follow-up",
+  "known_preserved_errors": [
+    "Trapani PEC without procedural consent",
+    "CRAA two CCIAA values invisible in LibreOffice PDF"
+  ],
+  "cases": {
+    "minervino": {
+      "original_sha256": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c",
+      "previous_export_sha256": "c2d03fb53ae7baf30b876b3b7a2e34a4beccbd9aac0c12e6319198b15564a6ac",
+      "candidates": 267,
+      "text_values": 54,
+      "positive_boxes": 1,
+      "files": {
+        "catalog.json": "66edebf8e85b6fddaf73d27594535bf583c5b64df79f42947dd55a196889ca5a",
+        "writes.json": "e664d070d2ee27e3adad5ebdd2d5ca49e6868015564d104f7c2261b4a7e2141d",
+        "previous-export.docx": "c2d03fb53ae7baf30b876b3b7a2e34a4beccbd9aac0c12e6319198b15564a6ac",
+        "original.docx": "25ab2b0655b696fb8ccb4218ae10f5b5450da38279675b136e323ed7c282344c"
+      }
+    },
+    "trapani": {
+      "original_sha256": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701",
+      "previous_export_sha256": "2cb8c448475714f234fafcccd535f2b3e9e6d3fade23b2908aa2689e2652fbbb",
+      "candidates": 115,
+      "text_values": 10,
+      "positive_boxes": 0,
+      "files": {
+        "catalog.json": "c4200f2045edfcfc6f250ccdc991f370d87facb2adbcfc0c5fcaf20a95a1f6cd",
+        "writes.json": "dd3dc27370efda68344759e553b7f4464cb4c713122da46adbe75948689be77e",
+        "previous-export.docx": "2cb8c448475714f234fafcccd535f2b3e9e6d3fade23b2908aa2689e2652fbbb",
+        "original.docx": "d125c7bf1e2c2b2d3d80639a38967b80fb9c7a09decf27d1098157ce0e602701"
+      }
+    },
+    "catanzaro": {
+      "original_sha256": "5b3ad083522b9261c3c45584ac5ce08d73996269eaf0c6c07b7b8c3df3974563",
+      "previous_export_sha256": "aa940efde8dcc76796b07e247f59baceaaa8ab2af0e092681c58aba60ac9a7b0",
+      "candidates": 307,
+      "text_values": 13,
+      "positive_boxes": 0,
+      "files": {
+        "catalog.json": "99506750317bc0f6dd58e301dbf948b8eabbca5c835cce303c6d3e72e4ce158f",
+        "writes.json": "0031c18f950a5d6368d3530689b02ae30b778dc5c2ef01c392e7996a8089defe",
+        "previous-export.docx": "aa940efde8dcc76796b07e247f59baceaaa8ab2af0e092681c58aba60ac9a7b0",
+        "original.docx": "5b3ad083522b9261c3c45584ac5ce08d73996269eaf0c6c07b7b8c3df3974563"
+      }
+    },
+    "bella": {
+      "original_sha256": "4d894b3faee91909275589ac5ed8e1dd2eddc09890f95ac0456780bbb6828ae0",
+      "previous_export_sha256": "781f7db27db8d3fda3c04f4da056552213659811347eb9788a0867d899183b14",
+      "candidates": 67,
+      "text_values": 4,
+      "positive_boxes": 0,
+      "files": {
+        "catalog.json": "f29ea71ff457a92a82635586ef6877ad58c60d151fa563932390bebec00e6d00",
+        "writes.json": "b46a02e2847e915b49b620a5f17cb83c025103d5867cea8e0a4aab1ffdf30201",
+        "previous-export.docx": "781f7db27db8d3fda3c04f4da056552213659811347eb9788a0867d899183b14",
+        "original.docx": "4d894b3faee91909275589ac5ed8e1dd2eddc09890f95ac0456780bbb6828ae0"
+      }
+    },
+    "craa": {
+      "original_sha256": "4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab",
+      "previous_export_sha256": "006f576fc9f3c0e1534a1253f008e8a1d0022ed1e6f8fe80f74e60a8b2d30159",
+      "candidates": 51,
+      "text_values": 9,
+      "positive_boxes": 0,
+      "files": {
+        "catalog.json": "2974b4136369394b7442c21fa2fd5120331169e6d165700dc8812c9edb17d7ee",
+        "writes.json": "95ec93e0e9d8f5f0651e63fb3800a17ffa296a5a7bb30bcf2657257620b04453",
+        "previous-export.docx": "006f576fc9f3c0e1534a1253f008e8a1d0022ed1e6f8fe80f74e60a8b2d30159",
+        "original.docx": "4ce8fbc2730a21e86d9b68cf5e9d6d7a530da82272554d6b9baa315c2bcef3ab"
+      }
+    },
+    "cesano": {
+      "original_sha256": "9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795",
+      "previous_export_sha256": "409170f436884a9cf5a7c5a4631a2c9505321b4142b61b56fa637c4c11b10a34",
+      "candidates": 88,
+      "text_values": 0,
+      "positive_boxes": 0,
+      "files": {
+        "catalog.json": "48b0a2a202786af51090f0b13f85035b01075d005a654815a90586dbf9ad78a4",
+        "writes.json": "460f035cb2855f219e5daea96496d42a0cbbc6b8753b8c6f0ae6bcc9d8681d1a",
+        "previous-export.docx": "409170f436884a9cf5a7c5a4631a2c9505321b4142b61b56fa637c4c11b10a34",
+        "original.docx": "9386c79ef24b99c9e6b70eca9e1dbee5de187febc241f1d87b5ce3787016e795"
+      }
+    }
+  }
+}

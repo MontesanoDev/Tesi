@@ -72,7 +72,7 @@ def real_settings(project):
         raise ValueError("Il progetto deve selezionare il profilo reale deepseek-flash")
     return AISettings(api_key=ai_profiles._decrypt(row["encrypted_api_key"]),
                       model=row["model"], provider=row["provider"], base_url=row["base_url"],
-                      context_window=row["context_window"], thinking=False)
+                      context_window=row["context_window"])
 
 
 def seed_checkpoint(project, form, context, case_id, original_path):

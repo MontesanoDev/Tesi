@@ -89,7 +89,7 @@ export function CandidatureDemoPage() {
   return (
     <AppShell active="documents" contentClassName="candidature-demo">
       <header className="demo-heading">
-        <div><p className="demo-eyebrow">Mapi RAG / proposta di workflow</p><h1>Preparazione candidatura</h1></div>
+        <div><p className="demo-eyebrow">Proposta di workflow</p><h1>Preparazione candidatura</h1></div>
         <button className="icon-button" title="Ricomincia demo" aria-label="Ricomincia demo" onClick={reset}><RotateCcw size={19} /></button>
       </header>
       <p className="demo-disclosure"><strong>Demo concettuale</strong> Dati fittizi. Nessuna elaborazione dei file, chiamata al modello o modifica ai progetti.</p>
@@ -191,7 +191,7 @@ export function CandidatureDemoPage() {
                 <dd>{fieldIsValid(field.key, values[field.key]) ? displayValue(field.key, values[field.key]) : generated ? 'Da completare' : '[ Campo da compilare ]'}</dd>
               </div>
             ))}</dl>
-            <footer>Simulazione del flusso di Mapi RAG.<br />Documento dimostrativo, non utilizzabile per invii ufficiali.</footer>
+            <footer>Simulazione del flusso di compilazione.<br />Documento dimostrativo, non utilizzabile per invii ufficiali.</footer>
           </article>
         </section>
       </div>

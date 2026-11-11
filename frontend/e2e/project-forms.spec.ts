@@ -87,7 +87,7 @@ test('multiple originals persist separately from sources, with partial upload an
   await page.reload()
   await expect(panel.locator('.project-forms-list > li')).toHaveCount(1)
   await expect(panel.getByText('1 modulo', { exact: true })).toBeVisible()
-  await expect(page.getByLabel('Messaggio per Mapi RAG')).toBeVisible()
+  await expect(page.getByLabel('Messaggio per l’assistente')).toBeVisible()
   expect(unexpected).toEqual([])
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true)
   await page.screenshot({ path: `artifacts/${testInfo.project.name}-project-forms.png`, fullPage: true })

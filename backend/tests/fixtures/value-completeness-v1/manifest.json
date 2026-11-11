@@ -1,0 +1,11 @@
+{
+  "original_fixture": "../form-applicability-v1/original.docx",
+  "input_fixture": "../form-applicability-v1/input.json",
+  "files": {
+    "state.json": "5f960fb3a8eac95b7f37529a38cafaaa83f4b643c142e6eb3426e66ce0c0e54e",
+    "response.txt": "709809a011aee03441a81bea632891fce5d965a09fcc6a258d7f8685c861d7d5"
+  },
+  "origin": "benchmark ufficiale/table-form-links-20261020-01/e2e/catanzaro",
+  "original_partial_destination": "t25.r3.c1",
+  "original_UI_value": "01234560981"
+}

@@ -122,7 +122,10 @@ async def test_follow_up_has_only_latest_receipt_and_keeps_source_proofs(
     assert [r["action"] for r in context["latest_turn"]["accepted"]] == ["CONDITION_TRUE", "SKIP"]
     assert context["latest_turn"]["unaccepted"] == []
     assert "t0.r" not in json.dumps(context["latest_turn"])
-    assert len(context["document_values"]) == 2
+    # Unchanged SOURCE proposals were already reviewed in the first narrative;
+    # continuation retains their receipts/proofs without sending them again.
+    assert context["document_values"] == []
+    assert len(s["global_compilation"]["dialogue"]["reviewed_candidate_ids"]) == 2
     turn(s, "updated", "Ho registrato le indicazioni univoche.")
 
     async def summarize(*args, **kwargs):
@@ -135,8 +138,8 @@ async def test_follow_up_has_only_latest_receipt_and_keeps_source_proofs(
     s = await resolve(api, s)
     saved = get_conversation("alpha", s["conversation_id"])["turns"][-1]["answer"]
     assert saved == s["global_compilation"]["dialogue"]["message"]
-    assert saved.startswith("Ho registrato le tue conferme.") and "Ho trovato" not in saved
-    assert "Lascio in bianco" in saved
+    assert saved.startswith("Confermato:") and "Ho trovato" not in saved
+    assert "Rinviato, lascio vuoto" in saved
     assert dialogue.question_pool(stored_data(s)) == []
     assert dialogue.export_selection(s)[0] == ["t0.r0.c1", "t0.r1.c1"]
     assert all(a["source_evidence"] == b["source_evidence"]
@@ -166,7 +169,8 @@ async def test_partial_updates_continue_and_report_only_unaccepted_parts(
 
 def test_continuation_schema_has_no_inventory_message_or_new_values():
     schema = dialogue.ContinuationPlan.model_json_schema()
-    assert set(schema["properties"]) == {"questions", "held_proposal_slots"}
+    assert set(schema["properties"]) == {"questions", "held_proposal_slots", "hold_reviews"}
+    assert "hold_reviews" in dialogue.narration_schema(dialogue.ContinuationPlan, [])["required"]
     with pytest.raises(ValueError):
         dialogue.ContinuationPlan.model_validate({"message": "Ecco tutti i dati..."})
 
@@ -181,17 +185,20 @@ def test_narration_schema_and_validator_bind_closed_questions_to_boolean_slots()
     assert branches[1]["required"] == ["slot", "question"]
     plan = dialogue.DialoguePlan(message="Conservo la tua indicazione.", questions=[
         {"slot": 1, "question": "Con quale qualità partecipi?"}])
-    with pytest.raises(ValueError, match="proposizione chiusa"):
-        dialogue.render_dialogue(plan, items, require_confirmation=True)
+    # An open question on a boolean slot is replaced by the backend's closed confirmation
+    # (E2E Minervino, 30 Oct); without a safe text it is still rejected
+    # (test_open_question_on_condition_slot.py).
+    [slot] = dialogue.render_dialogue(plan, items, require_confirmation=True)["question"]["slots"]
+    assert slot["question"].startswith("Confermi che si applica al vostro caso")
     assert dialogue.narration_schema(dialogue.ContinuationPlan, [])["properties"][
         "questions"]["maxItems"] == 0
 
 
 @pytest.mark.parametrize("actions,expected", [
-    (["VALUE"], "Ho aggiornato i dati che hai fornito."),
-    (["CONDITION_FALSE"], "Ho registrato le tue conferme."),
-    (["UNKNOWN"], "Lascio in bianco i punti che hai rinviato."),
-    (["SKIP", "CONDITION_TRUE"], "Ho registrato le tue conferme. Lascio in bianco"),
+    (["VALUE"], "Ho registrato:"),
+    (["CONDITION_FALSE"], "Escluso:"),
+    (["UNKNOWN"], "Rinviato, lascio vuoto:"),
+    (["SKIP", "CONDITION_TRUE"], "Confermato:"),
     ([], "Riprendiamo dal punto rimasto aperto."),
 ])
 def test_receipt_uses_only_recorded_actions_without_source_inventory(actions, expected):
@@ -199,7 +206,8 @@ def test_receipt_uses_only_recorded_actions_without_source_inventory(actions, ex
         "value": "Valore da non ripetere"} for a in actions], "unaccepted": []}}
     receipt = dialogue.continuation_receipt(saved)
     assert receipt.startswith(expected)
-    assert "Valore da non ripetere" not in receipt and "Motivo tecnico" not in receipt
+    assert "Valore da non ripetere" not in receipt
+    assert ("Motivo tecnico lungo" in receipt) is bool(actions)
 
 
 @pytest.mark.anyio

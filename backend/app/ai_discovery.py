@@ -1,6 +1,7 @@
 """Read provider model inventories; never generate text during connection checks."""
 
 import re
+from typing import Literal
 
 import httpx
 
@@ -8,7 +9,9 @@ from app.ai_providers import provider_headers
 from app.config import AISettings
 
 
-async def discover_models(settings: AISettings) -> list[str]:
+async def discover_models(
+    settings: AISettings, *, ollama_capability: Literal["completion", "embedding"] = "completion",
+) -> list[str]:
     headers = provider_headers(settings.provider, settings.api_key)
     url = (
         f"{settings.base_url.removesuffix('/v1')}/api/tags"
@@ -61,8 +64,30 @@ async def discover_models(settings: AISettings) -> list[str]:
             continue
         if settings.provider == "ollama":
             capabilities = item.get("capabilities")
-            if not isinstance(capabilities, list) or "completion" not in capabilities:
+            if not isinstance(capabilities, list) or ollama_capability not in capabilities:
                 continue
+        if ollama_capability == "embedding":
+            if settings.provider == "openai" and not model.startswith("text-embedding-"):
+                continue
+            if settings.provider in {"mistral", "compatible"}:
+                capabilities = item.get("capabilities")
+                # Mistral's model cards may omit an embeddings capability.
+                # Recognize only its documented embedding IDs present in the
+                # returned catalog; an explicit negative still takes priority.
+                documented_mistral = (
+                    settings.provider == "mistral"
+                    and re.fullmatch(r"(?:mistral|codestral)-embed(?:-\d{4})?", model)
+                    and not (isinstance(capabilities, dict)
+                             and capabilities.get("embeddings") is False)
+                )
+                if not (
+                    isinstance(capabilities, dict) and capabilities.get("embeddings") is True
+                    or isinstance(capabilities, list) and "embedding" in capabilities
+                    or documented_mistral
+                ):
+                    continue
+            models.add(model)
+            continue
         if settings.provider == "openai" and re.search(
             r"embedding|whisper|tts|audio|realtime|dall-e|image|moderation|transcri|sora|babbage|davinci",
             model,

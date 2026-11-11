@@ -14,6 +14,7 @@ from app.docx_templates import (
     is_email_label,
     is_signature_target,
     normalized,
+    text_of,
 )
 from app.generation import GenerationError
 
@@ -149,6 +150,50 @@ def _complete_email_evidence(value: str, quote: str, source: str) -> bool:
     )
 
 
+def _incompatible_locality_value(layout: DocxLayout, target_id: str, value: str) -> bool:
+    """Use physical labels/components, never the model label or a city extraction."""
+    slot = layout.slots.get(target_id)
+    before, following, adjacent_province = "", "", False
+    if slot:
+        entry = next(p for p in layout.paragraph_catalog if p["paragraph"] == slot.paragraph_index)
+        left, following = entry["text_with_fields"].split(f"[[{target_id}]]", 1)
+        before = re.split(r"\[\[[^]]+\]\]", left)[-1]
+        if not before.strip() and re.match(r"\s*\(\s*\[\[[^]]+\]\]\s*\)", following):
+            adjacent = slot.paragraph.getprevious()
+            previous = next((p for p in layout.paragraph_catalog
+                             if p["paragraph"] == slot.paragraph_index - 1), None)
+            if adjacent is not None and adjacent.tag == slot.paragraph.tag and previous:
+                tail = re.split(r"\[\[[^]]+\]\]", previous["text_with_fields"])[-1]
+                adjacent_province = bool(re.fullmatch(r"\s+con sede(?: legale)? in\s*",
+                                                     tail, re.IGNORECASE))
+        if not following.strip():
+            adjacent = slot.paragraph.getnext()
+            if adjacent is not None and adjacent.tag == slot.paragraph.tag:
+                next_entry = next((p for p in layout.paragraph_catalog
+                                   if p["paragraph"] == slot.paragraph_index + 1), None)
+                if next_entry and re.match(r"\s*prov(?:incia)?\.?\s*\[\[",
+                                           next_entry["text_with_fields"], re.IGNORECASE):
+                    following = next_entry["text_with_fields"]
+    elif target_id in layout.cells:
+        cell = layout.cells[target_id]
+        before = next((text_of(c) for c in reversed(list(cell.getparent())[:
+                       cell.getparent().index(cell)]) if text_of(c).strip()), "")
+    label = normalized(before)
+    explicit = bool(re.search(r"\b(?:comune|citta|municipio)\b", label)
+                    and not re.search(r"\b(?:indirizzo|via|viale|piazza)\b", label))
+    split_location = bool(
+        re.search(r"\b(?:sede(?: legale| operativa)?|residenza)\s+(?:in|a)\s*:?\s*$", label)
+        and re.match(r"\s*(?:prov(?:incia)?\.?|via\b|indirizzo\b)", following, re.IGNORECASE)
+        and re.search(r"\b(?:via(?:/piazza)?|indirizzo)\s*\[\[", following, re.IGNORECASE))
+    if not (explicit or split_location or adjacent_province):
+        return False
+    # A road plus a civic/postal number is incompatible with a locality-only
+    # destination. 'Viareggio' and 'Piazza Armerina' do not match this pattern.
+    road = re.search(r"\b(?:via|viale|piazza|piazzale|corso|largo|vicolo|strada|contrada)\b\s+.+",
+                     normalized(value))
+    return bool(road and re.search(r"\d|\bs\.?\s*n\.?\s*c\.?\b", road.group()))
+
+
 def validate_proposals(
     content: str,
     layout: DocxLayout,
@@ -263,6 +308,10 @@ def validate_proposals(
                 ):
                     codes.append("partial_email_evidence")
                     checks.append("Il recapito e solo una parte dell'indirizzo nella fonte citata")
+            if _incompatible_locality_value(layout, item.cell_id, item.value):
+                codes.append("incompatible_locality_value")
+                checks.append("Il FORM richiede un Comune/località: l'indirizzo completo "
+                              "non è compatibile con questo campo")
         written = item.value if item.status == "proposed" and not checks else None
         fields.append(
             {

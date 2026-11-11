@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { api } from '../api'
 import { AppShell } from '../components/AppShell'
 import { ErrorState, LoadingState } from '../components/LoadingState'
-import { StatusPill } from '../components/StatusPill'
 import type { ProjectSummary } from '../types'
 
 export function ProjectsPage() {
@@ -96,11 +95,11 @@ export function ProjectsPage() {
                   <strong>{project.title}</strong>
                   <p>{project.description}</p>
                   <div className="project-card-footer">
-                    <span>
-                      {project.source_count} fonti
-                      <small>{project.updated_label}</small>
-                    </span>
-                    <StatusPill tone={project.status_tone}>{project.status}</StatusPill>
+                    <span>{project.source_count} {project.source_count === 1 ? 'fonte' : 'fonti'}</span>
+                    {project.updated_label && <>
+                      <span aria-hidden="true">·</span>
+                      <span>{project.updated_label}</span>
+                    </>}
                   </div>
                 </button>
               ))}

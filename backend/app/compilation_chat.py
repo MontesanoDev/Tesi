@@ -12,6 +12,7 @@ from pydantic import Field, model_validator
 from app.compilation_applicability import explicit_condition_reply, known_applicability
 from app.compilation_session_models import UserFieldInput
 from app.document_compilation import StrictModel
+from app.schemas import MAX_QUESTION_LENGTH
 
 MAX_AUTO_STEPS = 36
 MAX_AUTO_SECONDS = 600
@@ -28,7 +29,7 @@ class ChatFieldReply(StrictModel):
 class ChatControl(StrictModel):
     kind: str = Field(pattern="^(unknown|skip|refuse|pause|resume|finish)$")
     field_id: str | None = Field(default=None, max_length=80)
-    user_quote: str = Field(min_length=1, max_length=2000)
+    user_quote: str = Field(min_length=1, max_length=MAX_QUESTION_LENGTH)
 
 
 class ActiveFieldDecision(StrictModel):
@@ -36,7 +37,7 @@ class ActiveFieldDecision(StrictModel):
 
     action: Literal[
         "VALUE", "CONDITION_TRUE", "CONDITION_FALSE", "UNKNOWN", "SKIP",
-        "REFUSE", "PAUSE", "FINISH", "CLARIFY",
+        "REFUSE", "PAUSE", "FINISH", "CLARIFY", "REOPEN",
     ]
     value: str | None = Field(default=None, min_length=1, max_length=1500)
     normalized_value: str | None = Field(default=None, min_length=1, max_length=1500)
@@ -54,7 +55,7 @@ class ActiveFieldDecision(StrictModel):
 
 class ClarificationReply(ActiveFieldDecision):
     slot: int = Field(ge=1, le=4)
-    user_quote: str = Field(min_length=1, max_length=2000)
+    user_quote: str = Field(min_length=1, max_length=MAX_QUESTION_LENGTH)
     selected_options: list[int] | None = Field(default=None, max_length=32)
 
     @model_validator(mode="after")
@@ -71,11 +72,25 @@ class ClarificationDecision(StrictModel):
     replies: list[ClarificationReply] = Field(default_factory=list, max_length=4)
     # Internal receipt of discarded proposals; never returned by the LLM.
     unaccepted_slots: list[int] = Field(default_factory=list, max_length=4)
+    scope_verifications: dict[int, str] = Field(default_factory=dict)
+    unaccepted_reasons: dict[int, str] = Field(default_factory=dict)  # Guard codes per slot.
+    # Internal: the same message also asked for the draft (global engine only).
+    then_finish: bool = False
+    # Private backend extraction/check results, absent from the router's TurnPlan schema.
+    value_extractions: list[dict] = Field(default_factory=list, max_length=4)
+    addressed_keys: list[str] = Field(default_factory=list, max_length=4)
+    addressed_from: int = 1  # First slot of the direct instructions after the active questions.
+    # Parts of the message the router bound to no destination: said in the receipt, never lost.
+    ignored_quotes: list[str] = Field(default_factory=list, max_length=4)
+    routed_quotes: list[str] = Field(default_factory=list, max_length=8)  # Accepted or refused.
+    earlier_turn: dict | None = None  # Second routing pass of one message.
 
     @model_validator(mode="after")
     def distinct_slots(self):
         if len({r.slot for r in self.replies}) != len(self.replies):
             raise ValueError("Slot duplicato")
+        if self.then_finish and (self.action != "ANSWER" or not self.replies):
+            raise ValueError("La bozza dopo le risposte richiede almeno una risposta")
         if self.action in {"PAUSE", "FINISH"} and self.replies:
             raise ValueError("PAUSE/FINISH non aggiorna campi")
         if any(r.action in {"PAUSE", "FINISH"} for r in self.replies):
@@ -92,8 +107,12 @@ async def handle_group_decision(project_id, conversation_id, decision, session, 
 
         after, errors = await run_in_threadpool(apply_replies, project_id, session["id"],
             expected_version or session["version"], decision.replies, message,
-            decision.unaccepted_slots)
-        return ("Ho registrato le indicazioni univoche. Continuo con i punti rimasti aperti."
+            decision.unaccepted_slots, decision.scope_verifications,
+            decision.unaccepted_reasons, decision.value_extractions, decision.addressed_keys,
+            decision.addressed_from, decision.ignored_quotes, decision.earlier_turn)
+        from app.compilation_global_dialogue import continuation_receipt
+
+        return (continuation_receipt(after["global_compilation"]["dialogue"])
                 if after["chat"]["auto_continue"] else
                 after["global_compilation"]["dialogue"]["message"]), {
                     "session_id": session["id"], "action": "updated"
@@ -356,7 +375,24 @@ def planner_context(session):
     view = chat_view(session)
     question = view["question"]
     asked = set(question["field_ids"]) if question else set()
+    from app.compilation_scope_review import context as scope_context
+    from app.compilation_scope_review import session_data
+
+    data = session_data(session)
+    slots = (question or {}).get("slots", [])
+    scope = scope_context(data, slots)
+    from app.compilation_conversation import enabled, public_targets, targets
+    from app.compilation_user_extraction import frames
+
+    # No audit when the analysis failed (real run: DeepSeek 402): nothing to address, and the
+    # next message gets the provider's refusal instead of a 500.
+    addressable = enabled(data) and bool(data.get("audit"))
+    addressed = targets(data) if addressable else []
     return {
+        **({"conversation_data": data, "addressable_targets": public_targets(data, addressed)}
+           if addressable else {}),
+        **({"form_scope": scope} if scope else {}),
+        **({"user_value_frames": frames(data, slots)} if scope else {}),
         "session_id": session["id"],
         "engine": session.get("engine", "legacy"),
         "enabled": view["enabled"],
@@ -399,6 +435,10 @@ def retain_compilation_question(db, row, state):
     if not isinstance(command, dict) or command.get("session_id") != row["id"]:
         return  # A later conversational answer or another module owns this turn.
     if state.get("engine") == "global":
+        # Real session: each answer was overwritten with the text of the following one.
+        complete = state.get("global_compilation", {}).get("answered_after_turn")
+        if complete is not None and turn["id"] <= complete:
+            return
         if global_message and command.get("action") in {"start", "updated", "resumed"}:
             db.execute("UPDATE conversation_turns SET answer=? WHERE id=?",
                        (global_message, turn["id"]))
@@ -465,6 +505,25 @@ def normalize_date(text):
 
 def has_user_alternatives(message):
     return bool(re.search(r"\b(?:oppure|forse)\b|\s+o\s+", normalized(message)))
+
+
+def hedged(text):
+    """Explicit doubt, independent of conjunctions such as «senza X o Y»."""
+    return bool(re.search(r"\bforse\b|\bnon\s+(?:lo\s+)?so\b", normalized(text)))
+
+
+def value_alternatives(quote, value):
+    """A disjunction or doubt on the value itself; «senza X o Y» elsewhere is not a choice.
+
+    Used only after the semantic reply guard (dialogue_revision 1), which judges
+    alternatives and uncertainty in the whole message.
+    """
+    text, literal = normalized(quote), normalized(value or "")
+    if not literal:
+        return False
+    item = re.escape(literal)
+    return bool(re.search(r"\b(?:o|oppure|forse)\s+" + item + r"(?!\w)|(?<!\w)" + item
+                          + r"\s+(?:o|oppure)\b", text))
 
 
 def user_updates(session, replies, message, *, question=None):

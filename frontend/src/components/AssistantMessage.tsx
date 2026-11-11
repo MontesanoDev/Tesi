@@ -12,11 +12,11 @@ export function AssistantMessage({ id, model, busy = false, error, children,
 }) {
   return <section className="grounded-answer" aria-labelledby={`${id}-title`} aria-busy={busy}>
     <div className="grounded-answer-heading">
-      <h2 id={`${id}-title`}>Risposta Mapi</h2>
+      <h2 id={`${id}-title`}>Risposta</h2>
       {model && <span>{model}</span>}
     </div>
     {children}
-    {busy && <p className="assistant-activity" role="status" aria-label="Mapi sta elaborando">
+    {busy && <p className="assistant-activity" role="status" aria-label="Elaborazione in corso">
       <LoaderCircle size={16} aria-hidden="true" />
       <span>{activity}</span>
     </p>}

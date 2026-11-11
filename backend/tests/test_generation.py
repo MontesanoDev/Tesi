@@ -15,13 +15,12 @@ def anyio_backend():
     return "asyncio"
 
 
-def _settings(provider, thinking=False):
+def _settings(provider):
     return AISettings(
         api_key=None if provider == "ollama" else "test-key",
         model="test-model",
         base_url="http://provider.test",
         provider=provider,
-        thinking=thinking,
     )
 
 
@@ -40,12 +39,11 @@ def mock_transport(monkeypatch):
 
 
 @pytest.mark.anyio
-@pytest.mark.parametrize("provider,thinking,read_timeout", [
-    ("ollama", False, 180), ("ollama", True, 180),
-    ("deepseek", False, 30), ("deepseek", True, 300), ("google", True, 30),
+@pytest.mark.parametrize("provider,read_timeout", [
+    ("ollama", 180), ("deepseek", 30), ("google", 30),
 ])
-async def test_chat_provider_thinking_and_timeouts(
-    mock_transport, provider, thinking, read_timeout,
+async def test_chat_answer_never_reasons_and_keeps_provider_timeouts(
+    mock_transport, provider, read_timeout,
 ):
     requests = []
     content = json.dumps({"answer": "La scadenza e il 15 settembre [1].", "citation_ids": [1]})
@@ -74,16 +72,12 @@ async def test_chat_provider_thinking_and_timeouts(
                     "eval_count": 20,
                 },
             )
-        enabled = provider == "deepseek" and thinking
-        assert body["max_tokens"] == (8192 if enabled else 2048)
+        assert body["max_tokens"] == 2048
         if provider == "deepseek":
-            assert body["thinking"] == {"type": "enabled" if enabled else "disabled"}
+            assert body["thinking"] == {"type": "disabled"}
         else:
             assert "thinking" not in body
-        if enabled:
-            assert body["reasoning_effort"] == "low"
-        else:
-            assert "reasoning_effort" not in body
+        assert "reasoning_effort" not in body
         return httpx.Response(
             200,
             json={
@@ -93,7 +87,7 @@ async def test_chat_provider_thinking_and_timeouts(
         )
 
     mock_transport(handler)
-    with use_ai_settings(_settings(provider, thinking)):
+    with use_ai_settings(_settings(provider)):
         answer = await generation.generate_grounded_answer(
             "Qual e la scadenza?",
             [{"source_name": "bando.pdf", "chunk_index": 0, "content": "Scadenza: 15 settembre"}],
@@ -356,12 +350,10 @@ _VALID_ANSWER = '{"answer":"La scadenza e il 15 settembre [1].","citation_ids":[
 
 
 @pytest.mark.anyio
-@pytest.mark.parametrize("provider,thinking", [
-    ("ollama", False), ("deepseek", False), ("deepseek", True),
-])
+@pytest.mark.parametrize("provider", ["ollama", "deepseek"])
 @pytest.mark.parametrize("during_repair", [False, True])
 async def test_length_retry_preserves_context_and_counts_every_call(
-    mock_transport, provider, thinking, during_repair,
+    mock_transport, provider, during_repair,
 ):
     requests = []
 
@@ -374,7 +366,7 @@ async def test_length_retry_preserves_context_and_counts_every_call(
         return _provider_response(provider, _VALID_ANSWER)
 
     mock_transport(handler)
-    with use_ai_settings(_settings(provider, thinking)):
+    with use_ai_settings(_settings(provider)):
         answer = await generation.generate_grounded_answer("Scadenza?", _EVIDENCE)
     assert len(requests) == (3 if during_repair else 2)
     assert answer.total_tokens == 120 * len(requests)
@@ -384,7 +376,7 @@ async def test_length_retry_preserves_context_and_counts_every_call(
         r["options"]["num_predict"] if provider == "ollama" else r["max_tokens"]
         for r in requests
     ]
-    initial, retry = (8192, 16384) if thinking else (2048, 4096)
+    initial, retry = 2048, 4096
     assert budgets == ([initial, initial, retry] if during_repair else [initial, retry])
 
 

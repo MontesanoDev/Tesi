@@ -1,0 +1,261 @@
+{
+  "writable_ids": [
+    "p100.cb0",
+    "p101.cb0",
+    "p102.cb0",
+    "p103.cb0",
+    "p105.ft0",
+    "p12.ft0",
+    "p12.ft1",
+    "p12.ft10",
+    "p12.ft11",
+    "p12.ft12",
+    "p12.ft13",
+    "p12.ft14",
+    "p12.ft2",
+    "p12.ft3",
+    "p12.ft4",
+    "p12.ft5",
+    "p12.ft6",
+    "p12.ft7",
+    "p12.ft8",
+    "p12.ft9",
+    "p16.cb0",
+    "p17.cb0",
+    "p18.cb0",
+    "p18.ft0",
+    "p19.cb0",
+    "p19.ft0",
+    "p20.cb0",
+    "p20.ft0",
+    "p21.cb0",
+    "p21.ft0",
+    "p35.cb0",
+    "p36.cb0",
+    "p37.cb0",
+    "p38.cb0",
+    "p39.cb0",
+    "p40.cb0",
+    "p41.cb0",
+    "p42.cb0",
+    "p43.cb0",
+    "p44.cb0",
+    "p45.cb0",
+    "p46.cb0",
+    "p47.cb0",
+    "p48.cb0",
+    "p49.cb0",
+    "p50.cb0",
+    "p52.cb0",
+    "p54.cb0",
+    "p55.cb0",
+    "p56.cb0",
+    "p57.cb0",
+    "p58.cb0",
+    "p59.cb0",
+    "p60.cb0",
+    "p62.cb0",
+    "p64.cb0",
+    "p65.cb0",
+    "p66.cb0",
+    "p67.cb0",
+    "p68.cb0",
+    "p69.cb0",
+    "p70.cb0",
+    "p72.cb0",
+    "p73.cb0",
+    "p74.cb0",
+    "p75.cb0",
+    "p76.cb0",
+    "p78.cb0",
+    "p79.cb0",
+    "p80.cb0",
+    "p81.cb0",
+    "p82.cb0",
+    "p83.cb0",
+    "p84.cb0",
+    "p85.cb0",
+    "p86.cb0",
+    "p87.cb0",
+    "p88.cb0",
+    "p89.cb0",
+    "p90.cb0",
+    "p91.cb0",
+    "p92.cb0",
+    "p93.cb0",
+    "p94.cb0",
+    "p95.cb0",
+    "p96.cb0",
+    "p97.cb0",
+    "p98.cb0"
+  ],
+  "dialogue": {
+    "message": "Ho preparato una bozza parziale con i dati disponibili. Le informazioni non verificate restano vuote. Puoi scaricarla e controllarla.",
+    "phase": "READY",
+    "empty_export_offered": false,
+    "question": null,
+    "reviewed_candidate_ids": [
+      "p12.ft1",
+      "p12.ft2",
+      "p19.ft0"
+    ],
+    "held_candidate_ids": [],
+    "hold_records": {},
+    "hold_transition": {
+      "review_id": "2f0130457dae4082af9cfe06870036e1",
+      "new": [],
+      "confirmed": [],
+      "inherited": [],
+      "released": [],
+      "suppressed_new": [],
+      "rejected_redundant": [],
+      "model_new": [],
+      "model_confirmed": [],
+      "model_decisions": {}
+    },
+    "reviewed_candidate_fingerprints": {
+      "p12.ft1": "a2e892c4cd49cca6a7fadb06aab61f578bbd437bf591ed3b2f6c13af1cad7798",
+      "p12.ft2": "009d359cbaefd9bd6586f22302ad2de912f2d7291d78c25e98d194012cdefa07",
+      "p19.ft0": "3fcda50614c25ebcfc001aafe46dd0d00a17b56e2574b3b89338c3414f5cd705"
+    },
+    "review_pending": false,
+    "review_overview": null,
+    "model": "deepseek-flash",
+    "usage": {
+      "prompt_tokens": 8358,
+      "completion_tokens": 19,
+      "total_tokens": 8377,
+      "prompt_tokens_details": {
+        "cached_tokens": 2816
+      },
+      "prompt_cache_hit_tokens": 2816,
+      "prompt_cache_miss_tokens": 5542
+    },
+    "ai_seconds": 1.4361410569999862,
+    "http_calls": 1,
+    "presentation_version": 4,
+    "resuming": false,
+    "answers": {
+      "condition:c_forma_societa": {
+        "action": "CONDITION_TRUE",
+        "user_quote": "Sì, per questa domanda Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria in forma singola.",
+        "provenance": "USER",
+        "label": "La compilazione dei dati aziendali dipende dalla forma di partecipazione 'Della Società di Ingegneria', non verificabile dalle SOURCE.",
+        "question": "Confermi che la domanda riguarda la forma di partecipazione «Della Società di Ingegneria»?",
+        "applies": true
+      },
+      "field:p105.ft0": {
+        "action": "SKIP",
+        "user_quote": "Rinvio la data della domanda: non è ancora decisa.",
+        "provenance": "USER",
+        "label": "Data della domanda",
+        "question": "Quale data va indicata nella domanda?",
+        "affected_fields": [
+          "p105.ft0"
+        ]
+      },
+      "field:p12.ft0": {
+        "action": "VALUE",
+        "user_quote": "Il firmatario che scelgo per questa domanda è Leonardo Montemurro, rappresentante legale di Mapi Ingegneria S.r.l.",
+        "provenance": "USER",
+        "label": "Nome del firmatario della domanda",
+        "question": "Chi è il firmatario della domanda e quali sono i suoi dati anagrafici e professionali?",
+        "value": "Leonardo Montemurro"
+      },
+      "choice:cg_forma_partecipazione": {
+        "action": "VALUE",
+        "user_quote": "Per questa domanda scelgo la voce «Della Società di Ingegneria»: agisco per conto di Mapi Ingegneria S.r.l., che partecipa in forma singola. Non scelgo le altre forme di partecipazione.",
+        "provenance": "USER",
+        "label": "Forma di partecipazione",
+        "question": "Per la voce «In nome e per conto:» quale forma di partecipazione va indicata nella domanda?",
+        "selected_options": [
+          4
+        ],
+        "value": "Della Società di Ingegneria"
+      }
+    },
+    "user_values": {
+      "p12.ft0": {
+        "value": "Leonardo Montemurro",
+        "user_quote": "Il firmatario che scelgo per questa domanda è Leonardo Montemurro, rappresentante legale di Mapi Ingegneria S.r.l.",
+        "provenance": "USER",
+        "label": "Nome del firmatario della domanda",
+        "previous": null
+      },
+      "p16.cb0": {
+        "value": false,
+        "provenance": "USER",
+        "label": "Proprio",
+        "user_quote": "Per questa domanda scelgo la voce «Della Società di Ingegneria»: agisco per conto di Mapi Ingegneria S.r.l., che partecipa in forma singola. Non scelgo le altre forme di partecipazione.",
+        "choice_group_id": "cg_forma_partecipazione",
+        "previous": null
+      },
+      "p17.cb0": {
+        "value": false,
+        "provenance": "USER",
+        "label": "Della Associazione di professionisti (1)",
+        "user_quote": "Per questa domanda scelgo la voce «Della Società di Ingegneria»: agisco per conto di Mapi Ingegneria S.r.l., che partecipa in forma singola. Non scelgo le altre forme di partecipazione.",
+        "choice_group_id": "cg_forma_partecipazione",
+        "previous": null
+      },
+      "p18.cb0": {
+        "value": false,
+        "provenance": "USER",
+        "label": "Associazione Temporanea (2)",
+        "user_quote": "Per questa domanda scelgo la voce «Della Società di Ingegneria»: agisco per conto di Mapi Ingegneria S.r.l., che partecipa in forma singola. Non scelgo le altre forme di partecipazione.",
+        "choice_group_id": "cg_forma_partecipazione",
+        "previous": null
+      },
+      "p19.cb0": {
+        "value": true,
+        "provenance": "USER",
+        "label": "Della Società di Ingegneria (3)",
+        "user_quote": "Per questa domanda scelgo la voce «Della Società di Ingegneria»: agisco per conto di Mapi Ingegneria S.r.l., che partecipa in forma singola. Non scelgo le altre forme di partecipazione.",
+        "choice_group_id": "cg_forma_partecipazione",
+        "previous": null
+      },
+      "p20.cb0": {
+        "value": false,
+        "provenance": "USER",
+        "label": "Della Società professionale (3)",
+        "user_quote": "Per questa domanda scelgo la voce «Della Società di Ingegneria»: agisco per conto di Mapi Ingegneria S.r.l., che partecipa in forma singola. Non scelgo le altre forme di partecipazione.",
+        "choice_group_id": "cg_forma_partecipazione",
+        "previous": null
+      },
+      "p21.cb0": {
+        "value": false,
+        "provenance": "USER",
+        "label": "Altro (4)",
+        "user_quote": "Per questa domanda scelgo la voce «Della Società di Ingegneria»: agisco per conto di Mapi Ingegneria S.r.l., che partecipa in forma singola. Non scelgo le altre forme di partecipazione.",
+        "choice_group_id": "cg_forma_partecipazione",
+        "previous": null
+      }
+    },
+    "latest_turn": {
+      "accepted": [
+        {
+          "action": "VALUE",
+          "user_quote": "Per questa domanda scelgo la voce «Della Società di Ingegneria»: agisco per conto di Mapi Ingegneria S.r.l., che partecipa in forma singola. Non scelgo le altre forme di partecipazione.",
+          "provenance": "USER",
+          "label": "Forma di partecipazione",
+          "question": "Per la voce «In nome e per conto:» quale forma di partecipazione va indicata nella domanda?",
+          "selected_options": [
+            4
+          ],
+          "value": "Della Società di Ingegneria"
+        }
+      ],
+      "unaccepted": []
+    },
+    "user_turns": 2
+  },
+  "user_context": [
+    {
+      "kind": "recorded_request",
+      "provenance": "USER",
+      "turn_id": 273,
+      "user_quote": "Compila una bozza parziale della domanda Cesano per Mapi Ingegneria S.r.l. Per questa specifica procedura scelgo la partecipazione singola soltanto come società di ingegneria, senza raggruppamenti o consorzi e senza partecipazioni in altre forme. Il firmatario scelto per questa domanda è Leonardo Montemurro, rappresentante legale: dati, ruolo e poteri devono comunque essere verificati nelle SOURCE. Usa i dati aziendali documentati riferiti al 15 ottobre 2026. Preferenze, professionisti esecutori designati, integrazione delle prestazioni, attestazioni, consensi procedurali, allegati, luogo e data restano da decidere. Non compilare firme o dichiarazioni non confermate. Chiedimi le decisioni mancanti; prima dell'export chiedimi conferma della bozza parziale."
+    }
+  ],
+  "project_id": "baseline-v12-cesano"
+}

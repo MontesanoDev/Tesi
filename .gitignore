@@ -30,3 +30,6 @@ frontend/playwright-report/
 .env
 .env.*
 !.env.example
+
+# Local application code map; regenerate with Graphify, never publish audit caches.
+/graphify-out/

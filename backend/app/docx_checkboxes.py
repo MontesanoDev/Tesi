@@ -58,11 +58,35 @@ def _content_control(node, checked):
     return f"{{{W14}}}checked", f"{{{W14}}}val"
 
 
-def write_checkboxes(layout, values):
+def clearable_controls(layout, ids):
+    """Which controls the writer can clear, tried on a fresh copy; a protected one fails there."""
+    from app.docx_templates import inspect_docx
+
+    result = set()
+    for cid in ids:
+        fresh = inspect_docx(layout.original, require_candidates=False)
+        fresh.text_checkbox_revision = layout.text_checkbox_revision
+        try:
+            write_checkboxes(fresh, {cid: False})
+        except DocumentInputError:
+            continue
+        result.add(cid)
+    return result
+
+
+def write_checkboxes(layout, values, *, text_positions=None):
+    from app.docx_text_checkboxes import controls as text_controls
+    from app.docx_text_checkboxes import write as write_text
+
     controls = native_controls(layout)
-    if any(key not in controls or type(value) is not bool for key, value in values.items()):
+    text = text_controls(layout) if text_positions is None else text_positions
+    if any(key not in controls.keys() | text.keys() or type(value) is not bool
+           for key, value in values.items()):
         raise DocumentInputError("Checkbox o valore non autorizzato")
     for key, checked in values.items():
+        if key in text:
+            write_text(text[key], checked)
+            continue
         node = controls[key]
         if node.tag == qn("w:checkBox"):
             begin = next(node.iterancestors(qn("w:fldChar")), None)

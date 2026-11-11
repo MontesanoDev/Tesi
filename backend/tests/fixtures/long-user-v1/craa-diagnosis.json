@@ -1,0 +1,40 @@
+{
+  "clarifications": {
+    "p5.s0": {
+      "validation": "REJECTED",
+      "proposal": {
+        "label": "Il sottoscritto",
+        "form": {
+          "paragraph_id": "paragraph:5",
+          "quote": "Il sottoscritto[[p5.s0]]"
+        },
+        "conditions": [],
+        "reason": "Confermare il nominativo del sottoscritto: la fonte riporta Leonardo Montemurro come amministratore unico e rappresentante legale, mentre il FORM usa 'legale rappresentante'; il ruolo non è identico e la scelta va confermata."
+      },
+      "validation_errors": [
+        "1 validation error for UserFieldRequest\nreason\n  String should have at most 200 characters [type=string_too_long, input_value=\"Confermare il nominativo...a scelta va confermata.\", input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/string_too_long"
+      ]
+    }
+  },
+  "choice_groups": {},
+  "accepted_USER_receipts": {
+    "condition:c_societa": {
+      "action": "CONDITION_TRUE",
+      "user_quote": "Mapi Ingegneria S.r.l. partecipa soltanto come società di ingegneria",
+      "provenance": "USER",
+      "label": "Dati CCIAA applicabili al ramo 'per le società'; conferma del ramo non stabilita",
+      "question": "Confermi che la richiesta di iscrizione riguarda il ramo riservato alle società?",
+      "applies": true
+    }
+  },
+  "initial_USER_context_in_global": [
+    {
+      "kind": "recorded_request",
+      "provenance": "USER",
+      "turn_id": 237,
+      "user_quote": "Compila una bozza parziale della domanda per CRAA – elenco servizi ingegneria e architettura 2025 per Mapi Ingegneria S.r.l. Per questa specifica procedura scelgo la partecipazione singola, soltanto come società di ingegneria, senza raggruppamenti o consorzi e senza partecipazioni in altre forme alla stessa procedura. Per questa domanda il firmatario scelto è Leonardo Montemurro, rappresentante legale. Usa esclusivamente i dati documentati dalle fonti aziendali riferiti al 15 ottobre 2026. Chiedimi le decisioni specifiche mancanti; non dedurre attestazioni o professionisti designati dai ruoli aziendali. Prima di generare il Word chiedimi di confermare l’export."
+    }
+  ],
+  "source_reuse_supported_inline_groups": 0,
+  "hold_final": []
+}

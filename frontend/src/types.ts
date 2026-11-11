@@ -93,6 +93,7 @@ export type CompilationFieldStatus = 'PENDING' | 'RESOLVED' | 'MISSING' | 'AMBIG
 export interface CompilationChatAction {
   session_id: string
   action: 'start' | 'updated' | 'clarify' | 'generated' | 'deferred' | 'paused' | 'resumed'
+  generation_id?: string
 }
 
 export interface CompilationChatState {
@@ -138,7 +139,11 @@ export interface CompilationSessionSummary {
     user_provided: number
   }
   chat?: CompilationChatState
-  last_generation: (DocumentCompilationSummary & { session_version: number }) | null
+  last_generation: (DocumentCompilationSummary & {
+    session_version: number
+    changes_since_export?: boolean
+  }) | null
+  draft_history?: { id: string, created_at: string, session_version: number }[]
 }
 
 export interface CompilationSourceEvidence extends Evidence {
@@ -163,8 +168,15 @@ export interface CompilationSessionField {
 
 export interface CompilationSession extends CompilationSessionSummary {
   global_compilation?: {
-    dialogue?: { phase: 'PENDING' | 'READY'; message?: string; user_turns?: number }
+    dialogue?: {
+      phase: 'PENDING' | 'READY'; message?: string; user_turns?: number
+      // Full FORM text of a question, kept out of the message and shown on request.
+      question?: { slots?: { slot: number; label?: string; details?: string[] }[] } | null
+    }
     phase: 'PENDING' | 'ANALYZING' | 'REVIEW'
+    compilation_profile?: string
+    generation_revision?: number
+    segments?: { index: number; status: string; source?: string; attempts?: number; error?: string | null }[]
     attempts: number
     candidate_count: number
     proposal_count: number
@@ -249,6 +261,8 @@ export type GenerationStatus =
   | 'failed'
 
 export interface GroundedAnswer {
+  request_id?: string | null
+  request_retry_safe?: boolean
   conversation_id: string
   turn_id: number
   question: string
@@ -266,6 +280,8 @@ export interface GroundedAnswer {
 }
 
 export interface ConversationTurnData {
+  request_id?: string | null
+  request_retry_safe?: boolean
   id: number
   question: string
   answer: string | null
@@ -337,7 +353,16 @@ export interface AiSettings {
 export interface ProjectAiSelection {
   profile_id: string | null
   effective_profile: AiProfile | null
-  thinking: boolean
+}
+
+export type EmbeddingProvider = 'ollama' | 'openai' | 'mistral' | 'compatible'
+
+export interface EmbeddingProviderDefinition {
+  id: EmbeddingProvider
+  name: string
+  base_url: string
+  default_model: string
+  requires_key: boolean
 }
 
 export interface RetrievalConfig {
@@ -345,6 +370,7 @@ export interface RetrievalConfig {
   qdrant_mode: 'local' | 'remote'
   qdrant_url: string
   embedding_url: string
+  embedding_provider?: EmbeddingProvider
   embedding_model: string
   query_prefix: string
   document_prefix: string
@@ -359,6 +385,13 @@ export interface RetrievalInput extends RetrievalConfig {
   qdrant_api_key?: string
   embedding_api_key?: string
   clear_qdrant_api_key?: boolean
+  clear_embedding_api_key?: boolean
+}
+
+export interface EmbeddingServiceInput {
+  embedding_provider?: EmbeddingProvider
+  embedding_url: string
+  embedding_api_key?: string
   clear_embedding_api_key?: boolean
 }
 

@@ -47,7 +47,7 @@ def begin_login() -> dict:
             {
                 "code_challenge": challenge,
                 "code_challenge_method": "S256",
-                "key_label": "Mapi RAG",
+                "key_label": "Assistente documentale",
             }
         ),
         "expires_in": FLOW_LIFETIME,
