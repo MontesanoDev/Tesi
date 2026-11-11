@@ -8,7 +8,8 @@ Ogni DOCX prodotto resta una bozza: la revisione umana è obbligatoria.
 
 | | Riferimento Git | Profilo delle nuove sessioni |
 |---|---|---|
-| **Nuovo default R3** | tag `demo-default-r3-20261111` = `6c8e40e` (branch `narratore-chiarezza/2026-10-31`) | `sezioni-2026-11-05` |
+| **Default attuale R3.1** | tag `demo-default-r3-1-20261111` = `599fd35` (branch `narratore-chiarezza/2026-10-31`) | `sezioni-2026-11-05` |
+| R3, prima della pulizia | tag `demo-default-r3-20261111` = `6c8e40e` | `sezioni-2026-11-05` |
 | **Default precedente R2, congelato** | tag `demo-default-r2-20261031` = `3a8de0b` | `sezioni-2026-10-30-r2` |
 | Default ancora precedente | tag `demo-default-pre-r2-20261031` = `618eb36` | `sezioni-2026-10-25` |
 
@@ -16,6 +17,8 @@ Ogni DOCX prodotto resta una bozza: la revisione umana è obbligatoria.
   stabilizzazione, completezza dell'export) e il commit UI `6c8e40e` dell'11 novembre:
   impostazioni di ricerca a salvataggio automatico, icona di copia sui messaggi, recupero dei
   messaggi falliti solo nel composer, rimozione dell'interruttore thinking, ritocchi grafici.
+- **R3.1** = R3 senza gli script di misura del vecchio compilatore e i test che controllavano
+  solo quegli strumenti (pulizia dello stesso giorno, vedi sotto). Nessun cambiamento all'app.
 - Dipendenze invariate: `pyproject.toml`, `uv.lock`, `package.json`, `package-lock.json` e
   `start.sh` sono identici fra R2 e R3.
 
@@ -26,7 +29,10 @@ Stesso metodo del 27 e del 31 ottobre, su `/home/montesano/tesi`:
 - prima della sostituzione, tutti i 399 file runtime erano identici a R2 (confronto per hash);
 - sostituiti solo i file runtime in `backend/app`, `backend/tests`, `frontend/src`,
   `frontend/e2e`: 53 modificati, 24 nuovi, 0 rimossi;
-- **esito:** i 423 file runtime dell'app coincidono con `demo-default-r3-20261111`;
+- **esito:** i 423 file runtime dell'app coincidevano con `demo-default-r3-20261111`;
+- **pulizia successiva (stesso giorno):** tolti 4 script di misura e 4 test collegati, da qui in
+  poi anche `backend/scripts` fa parte dei file runtime confrontati. I 425 file runtime dell'app
+  (script compresi) coincidono con `demo-default-r3-1-20261111`;
 - non toccati: dati, sessioni, SOURCE, audit, benchmark, documenti locali (salvo questa guida,
   la voce in STATUS e il rimando nel README).
 
@@ -59,19 +65,20 @@ graphify update .
 Lo script equivale a:
 
 ```bash
-OLD=demo-default-r2-20261031 NEW=demo-default-r3-20261111
-P="backend/app backend/tests frontend/src frontend/e2e"
+OLD=demo-default-r2-20261031 NEW=demo-default-r3-1-20261111
+P="backend/app backend/tests backend/scripts frontend/src frontend/e2e"
 # Controllo: nessun file promosso è stato modificato dopo la promozione.
 git diff --name-only --diff-filter=AM $OLD $NEW -- $P | while read -r f; do
   [ "$(git hash-object "$f")" = "$(git rev-parse "$NEW:$f")" ] || echo "MODIFICATO: $f"; done
-# Ripristino: 53 file tornano alla versione R2, 24 file nuovi vengono rimossi.
+# Ripristino: 63 file tornano alla versione R2 (55 modificati, 8 tolti con la pulizia),
+# 24 file nuovi vengono rimossi.
 git diff --name-only --diff-filter=MD $OLD $NEW -- $P | while read -r f; do git show "$OLD:$f" > "$f"; done
 git diff --name-only --diff-filter=A $OLD $NEW -- $P | while read -r f; do rm -- "$f"; done
 ```
 
 - Se il controllo segnala file modificati, lo script si ferma senza toccare nulla: decidere caso
   per caso.
-- Per tornare di nuovo alla R3: `/home/montesano/tesi-backups/promozione-r3-20261111/promuovi-r3.sh`
+- Per tornare di nuovo alla R3.1: `/home/montesano/tesi-backups/promozione-r3-20261111/promuovi-r3.sh`
   (stesso controllo preventivo, nella direzione opposta).
 - Il database non va ripristinato per tornare alla R2: il codice R2 legge il database migrato
   dalla R3 (verificato, vedi sotto). Le sessioni di compilazione create con la R3 restano nel
@@ -86,7 +93,9 @@ git diff --name-only --diff-filter=A $OLD $NEW -- $P | while read -r f; do rm --
 ## Verifiche (11 novembre, nessuna chiamata a provider AI)
 
 - Prova completa in un worktree temporaneo partito da R2: promozione, 0 differenze da R3;
-  rollback, 0 differenze da R2. Con un file modificato a mano, promozione e rollback si fermano
+  rollback, 0 differenze da R2. Ripetuta dopo la pulizia verso R3.1 (script compresi): 55
+  modificati, 24 nuovi, 8 rimossi, poi 0 differenze da R2. Il controllo preventivo del rollback
+  nell'app ordinaria passa (0 file bloccanti). Con un file modificato a mano, promozione e rollback si fermano
   senza toccare nulla. Worktree rimosso.
 - Backend R3 avviato su una copia dei dati reali (porta 8001): migrazione riuscita, integrità
   del database ok, API di progetti, impostazioni, modello e conversazioni con HTTP 200, nessun
