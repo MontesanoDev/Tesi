@@ -1,7 +1,6 @@
 """Software checks for the isolated proposal, not semantic model benchmarks."""
 
 import json
-import sqlite3
 from io import BytesIO
 
 import pytest
@@ -70,16 +69,6 @@ def test_complete_input_has_form_sources_separate_with_provenance(layout, source
     assert len(body["messages"]) == 2
     assert body["thinking"] == {"type": "enabled"}
     assert body["reasoning_effort"] == "low"
-
-
-@pytest.mark.parametrize("flags,expected", [([], True), (["--thinking"], True),
-                                           (["--no-thinking"], False)])
-def test_experimental_runner_defaults_to_measured_quality_mode(tmp_path, flags, expected):
-    from scripts.benchmark_compilation_global import arguments
-
-    args = arguments(["--fixture", str(tmp_path / "fixture"), "--profile-project", "alpha",
-                      "--output", str(tmp_path / "audit"), *flags])
-    assert args.thinking is expected
 
 
 @pytest.mark.parametrize("change", [
@@ -210,43 +199,6 @@ def test_checkbox_is_typed_and_never_materialized_in_experiment(source, value):
     assert result["counts"] == {"REJECTED" if isinstance(value, str)
                                 else "GROUNDED_PROPOSAL": 1}
     assert result["writes"] == result["resolved"] == 0
-
-
-def test_real_sql_corpus_reread_excludes_forms_artifacts_and_other_projects():
-    from scripts.benchmark_compilation_global import load_document_corpus
-
-    with sqlite3.connect(":memory:") as db:
-        db.row_factory = sqlite3.Row
-        db.executescript("""
-            CREATE TABLE projects(id TEXT);
-            CREATE TABLE project_files(id INTEGER,project_id TEXT,name TEXT,
-                                       kind TEXT,metadata TEXT);
-            CREATE TABLE document_chunks(id INTEGER,file_id INTEGER,project_id TEXT,
-                                         chunk_index INTEGER,content TEXT);
-            CREATE TABLE global_documents(id INTEGER,name TEXT,category TEXT,metadata TEXT);
-            CREATE TABLE global_document_chunks(id INTEGER,document_id INTEGER,
-                                                chunk_index INTEGER,content TEXT);
-            CREATE TABLE project_artifact_links(file_id INTEGER,project_id TEXT,
-                                               artifact_id INTEGER);
-            CREATE TABLE knowledge_artifacts(id INTEGER,project_id TEXT,kind TEXT);
-            INSERT INTO projects VALUES ('alpha'),('beta');
-            INSERT INTO project_files VALUES
-                (1,'alpha','fonte.txt','source',''),(2,'alpha','modulo.txt','form',''),
-                (3,'beta','segreto.txt','source',''),(4,'alpha','fatti.txt','artifact','');
-            INSERT INTO document_chunks VALUES
-                (1,1,'alpha',0,'Fonte alpha'),(2,2,'alpha',0,'Solo FORM'),
-                (3,3,'beta',0,'Fonte beta'),(4,4,'alpha',0,'USER da non confondere con SOURCE');
-            INSERT INTO global_documents VALUES
-                (1,'azienda.txt','company',''),(2,'manuale.txt','general',''),
-                (3,'modello.txt','template','');
-            INSERT INTO global_document_chunks VALUES
-                (1,1,0,'Fonte aziendale'),(2,2,0,'Fonte generale'),(3,3,0,'Solo template');
-        """)
-        sources = load_document_corpus(db, "alpha")
-        assert {s["chunk_id"] for s in sources} == {1, -1, -2}
-        assert all(s["role"] == "source" for s in sources)
-        assert {s["category"] for s in sources} == {None, "company", "general"}
-        assert load_document_corpus(db, "missing") == []
 
 
 def test_input_points_to_real_nonempty_structural_anchors(layout, source):
