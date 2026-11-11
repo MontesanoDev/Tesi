@@ -1,0 +1,87 @@
+{
+  "_guida": {
+    "titolo": "Export DOCX: nessuna chiamata LLM",
+    "tipo": "proiezione di richiesta e report backend reali",
+    "nota": "Questo caso reale ha sette scritture. CF e carica non hanno completato la revisione SOURCE per errore HTTP 402; l’esempio non rappresenta un successo su nove campi."
+  },
+  "richiesta_backend": {
+    "version": 21,
+    "candidate_ids": [],
+    "confirmed_condition_ids": [
+      "s2_c_soc",
+      "s1_c_partecipante",
+      "s2_c_part",
+      "s1_c_firmatario"
+    ],
+    "user_candidate_ids": [
+      "p12.s0",
+      "p12.s1",
+      "p12.s2",
+      "p12.s3",
+      "p13.s0",
+      "p13.s1",
+      "p13.s2"
+    ],
+    "allow_unresolved": true,
+    "allow_empty": true,
+    "user_quote": "Genera una bozza limitata ai dati confermati del sottoscrittore; lascia vuoto il resto."
+  },
+  "http_status": 200,
+  "report_estratto": {
+    "status": "needs_review",
+    "ready_for_submission": false,
+    "written_field_count": 7,
+    "fields": [
+      {
+        "cell_id": "p12.s0",
+        "label": "Il sottoscritto",
+        "written_value": "Leonardo Montemurro",
+        "provenance": "USER",
+        "user_quote": "Il sottoscrittore è Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24."
+      },
+      {
+        "cell_id": "p12.s1",
+        "label": "Comune di nascita",
+        "written_value": "Lecce",
+        "provenance": "USER",
+        "user_quote": "Il sottoscrittore è Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24."
+      },
+      {
+        "cell_id": "p12.s2",
+        "label": "Provincia di nascita",
+        "written_value": "LE",
+        "provenance": "USER",
+        "user_quote": "Il sottoscrittore è Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24."
+      },
+      {
+        "cell_id": "p12.s3",
+        "label": "Data di nascita",
+        "written_value": "14/11/1982",
+        "provenance": "USER",
+        "user_quote": "Il sottoscrittore è Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24."
+      },
+      {
+        "cell_id": "p13.s0",
+        "label": "Comune di residenza",
+        "written_value": "Bari",
+        "provenance": "USER",
+        "user_quote": "Il sottoscrittore è Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24."
+      },
+      {
+        "cell_id": "p13.s1",
+        "label": "Provincia di residenza",
+        "written_value": "BA",
+        "provenance": "USER",
+        "user_quote": "Il sottoscrittore è Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24."
+      },
+      {
+        "cell_id": "p13.s2",
+        "label": "Indirizzo di residenza",
+        "written_value": "Amedeo 24",
+        "provenance": "USER",
+        "user_quote": "Il sottoscrittore è Leonardo Montemurro, nato a Lecce (LE) il 14/11/1982, residente a Bari (BA), via Amedeo 24."
+      }
+    ],
+    "checkbox_values": {}
+  }
+}

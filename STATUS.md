@@ -39,6 +39,201 @@ Solo worktree sperimentale, base `62f6152`.
   Commit isolato, modifiche pregresse preservate. Nessun push/merge/promozione.
   Fermato al rapporto; seguito soltanto su nuova richiesta.
 
+## Correzione firmatario e seconda bozza — 4 novembre 2026
+
+Fix mirato concluso nel solo worktree sperimentale, base `7e7383d`.
+[Rapporto](docs/firmatario-seconda-bozza-2026-11-03.md). Commit `62f6152729c4fac49152c33488bfc63a7c264a3c`; dettagli nel record
+`backend/data/compilation-audit/firmatario-seconda-bozza-20261103/commit.json`.
+
+- Conferme societarie indipendenti conservate; identità/rappresentanza obsolete
+  ritirate. Metadati FORM preservati, nuova conferma distinta dal nome, nome USER
+  completo verificato sulla propria citazione. Nessun allentamento della guardia.
+- Suite finale: **4.369 PASS, 8 SKIP**; regressioni mirate 40 PASS; frontend
+  188 PASS, quattro E2E desktop simulati PASS. Ruff/build PASS; lint con due avvisi
+  preesistenti. Rollback in copia: 14 FAIL / 8 PASS prima, 22 PASS dopo; hash verificati.
+- DeepSeek reale: **28 chiamate, 379.829 token**, inclusi 11 tentativi intermedi.
+  Minervino A: 37 scritture; Mario: 10 (nome + 9 societari), otto dati personali
+  precedenti ritirati; ritorno a Leonardo: 18, con CF/carica e altri sei dati SOURCE.
+  Labirinto: 11 → 12, Paolo Conti nel DOCX. Negativo ambiguo senza modifiche.
+- Undici DOCX verificati nelle destinazioni effettive, nessuna checkbox selezionata,
+  BOZZA presente, prime bozze immutate. Pausa/ripresa e messaggi originali preservati.
+- **Non ancora raccomandata la promozione della demo**: Labirinto conserva un
+  messaggio contraddittorio su un secondo ramo respinto; riuso di anagrafiche SOURCE
+  distribuite ancora limitato. Nessun altro fix o campagna avviato.
+- DB sperimentale originale, Git ordinario e tag demo invariati. Il DB ordinario
+  live è variato tra acquisizione e ripresa: confronto salvato, nessuna pretesa di
+  identità totale. Test soltanto su copie isolate, nessuna scrittura sull'ordinario.
+- Audit locale e backup `/home/montesano/tesi-backups/firmatario-seconda-bozza-20261103/`.
+  Vite temporaneo 5174 fermato, backend 8001 non avviato. Nessun merge/push/promozione.
+  Lavoro fermato al rapporto; eventuale seguito richiede una nuova richiesta.
+
+## Narratore fluido — verifica conclusa il 3 novembre 2026
+
+**NON promuovere.** Primo flusso incrementale implementato nel solo worktree
+sperimentale, base `930aeef`; [rapporto](docs/narratore-fluido-2026-11-02.md).
+Commit dedicato `7e7383d12e567ba162716ef6715ad986c4326b29`; metadati in `commit.json` nell'audit locale.
+
+- Nuove sessioni: `conversation_revision=1`, profilo sempre `sezioni-2026-10-30-r2`.
+  Una domanda prioritaria, istruzioni libere su destinazioni FORM note, estrazione
+  multivalore e guardia indipendente, ritiro dei dati quando cambia la persona,
+  pausa/ripresa e bozze successive. Sessioni storiche non migrate.
+- Suite finale: **4.347 PASS, 8 SKIP**; frontend **188 PASS**; quattro E2E desktop
+  con API simulate PASS. Ruff/diff PASS; Graphify AST aggiornato. Rollback in copia:
+  18 nuovi test FAIL senza intervento, 18 PASS dopo riapplicazione; hash verificati.
+- DeepSeek reale: 53 chiamate / 813.207 token complessivi, inclusi tentativi falliti.
+  Minervino usa l'analisi registrata: sette dati USER più CF/carica SOURCE nel DOCX,
+  37 scritture; negativo ambiguo senza modifiche. Restano 22 campi soci sospesi,
+  con decisioni USER diverse dalla demo R2 (checkbox 4 non scelta, albo confermato).
+- Cambio Leonardo → Mario: ritira correttamente i dati precedenti, ma il router
+  registra ancora VALUE e non chiude la condizione d'identità; seconda bozza vuota.
+  Labirinto V1: nuova analisi, 11 scritture; PEC corretta nella seconda bozza,
+  prima immutata. Il nome Paolo Conti è respinto dal validatore di completezza.
+  Questi limiti impediscono di dichiarare completata la verifica del flusso reale.
+- Dodici DOCX controllati: zero checkbox selezionate, dicitura BOZZA presente,
+  originali/bozze precedenti preservati. Database originali, stato Git ordinario
+  e tag demo invariati. Nessun push/merge/promozione; nessun allentamento guardia.
+- Audit: `backend/data/compilation-audit/narratore-fluido-20261102/`; backup separato
+  `/home/montesano/tesi-backups/narratore-fluido-20261102/`. Prompt/output/stati e
+  fallimenti conservati, credenziali escluse. Servizio Vite di test 5174 fermato;
+  backend 8001 non avviato. L'istanza manuale non viene dichiarata pronta.
+- Prossimo punto, soltanto su richiesta: verificare conferma del nuovo firmatario
+  fino all'export e compatibilità del nome sul secondo FORM. Nessun'altra campagna
+  o patch avviata; lavoro fermato al rapporto richiesto.
+
+## Esempi del contesto LLM — 2 novembre 2026
+
+Creata la cartella [esempi-contesto-llm-2026-11-02](docs/esempi-contesto-llm-2026-11-02/README.md),
+con 15 JSON e guida. Iniziare da `00_PRESENTAZIONE.json`; approfondimenti su analisi
+per segmenti, recupero, decisioni iniziali, narratore, router, guardia e export.
+Le viste sono abbreviate e dichiarate redazionali; il router di avvio è illustrativo.
+Richieste/output reali distinguono le acquisizioni `a0cc223` e `930aeef` e conservano
+i limiti dell'esito registrato (sette scritture, successiva sintesi respinta con 402).
+
+- JSON validi, citazioni e riferimenti mostrati verificati; SHA di 27 originali controllati.
+- Nessuna modifica applicativa, a demo, SOURCE o sessioni; zero nuove chiamate LLM.
+  La verifica DeepSeek precedente non è stata ripresa durante questa preparazione.
+- ZIP della cartella a fianco; backup separato di esempi/originali/generatore in
+  `/home/montesano/tesi-backups/esempi-contesto-llm-20261102/`. Nessun commit o push.
+
+## Verifica reale del fix multivalore — 1 novembre 2026
+
+**Promozione sospesa per verifica incompleta.** Commit isolato del fix
+`930aeef9aa6b354e267c19dcbd5fa3d9c065bdaa`; nessun altro fix, push o merge.
+[Rapporto](docs/user-multivalue-deepseek-2026-11-01.md).
+
+- Suite completa eseguita dopo l'ultima modifica sui nomi: **4.329 PASS, 8 SKIP**;
+  Ruff/diff PASS. Codice poi committato, nessuna modifica applicativa successiva.
+- Replay reale `deepseek-flash` in copie separate: sette valori atomici e sette
+  ricevute valide. Nessun campo personale esportabile prima delle conferme; due
+  risposte di prova esplicite accettate, condizioni d'identità/operatore/carica valide.
+- Export HTTP con rete vietata: sette dati USER presenti realmente nel DOCX,
+  nessuna checkbox. CF/carica ritrovati nelle SOURCE ma non esportati: la revisione
+  del narratore è bloccata da HTTP 402 `Insufficient Balance` in entrambi i tentativi.
+- Otto richieste al modello: sei riuscite, due 402. Caso negativo ambiguo preparato
+  ma **non eseguito con DeepSeek**. Dopo «riprendi», saldo ancora indisponibile;
+  nessun'altra chiamata al modello. I test offline non sostituiscono questa prova.
+- App ordinaria/demo intatte. Sessioni, SOURCE e DOCX storici invariati. Nel DB live
+  candidato sono cambiati soltanto quattro frammenti di artefatti project-facts e
+  indici FTS; non dichiarare identità totale del DB. Dettagli e backup nel rapporto.
+- Ripresa: appena disponibile il credito, completare la sola revisione SOURCE e
+  l'export dei nove campi, poi un negativo reale sul checkpoint pronto. Non ripetere
+  l'analisi iniziale o le conferme riuscite. Nessuna promozione automatica.
+
+## Fix mirato USER multivalore — 1 novembre 2026
+
+**NON promuovere.** Correzione implementata solo nella candidata `a0cc223` con diff
+non committato; nessuna chiamata DeepSeek, campagna o compilazione live. Si conclude
+al [rapporto](docs/user-multivalue-2026-11-01.md), come richiesto dall'utente.
+
+- Estrazione letterale di dati personali dalla risposta alla domanda sul nome, con
+  associazione ai campi della stessa persona nel FORM. La frase anagrafica intera
+  non può essere salvata come nome. Nessuna eccezione per persona o bando.
+- Ogni valore aggiuntivo richiede la guardia ordinaria e una ricevuta indipendente;
+  testo originale conservato, ambiguità/rifiuti richiedono chiarimento. Applicabilità,
+  dichiarazioni e checkbox non sono autorizzate automaticamente.
+- Ricevute e riepilogo d'export distinguono dati utilizzabili e risposte conservate
+  in attesa di conferme. Nel replay reale sette dati USER validi, riuso SOURCE di
+  codice fiscale/carica ripristinato, conferma d'identità ancora necessaria.
+- Profilo sempre `sezioni-2026-10-30-r2`; `user_extraction_revision=1` soltanto nelle
+  nuove sessioni. Sessioni esistenti e profili storici invariati, nessuna migrazione.
+- Verifiche: 34 nuovi test e 132 test mirati PASS; rollback finale provato in copia
+  (2 FAIL/6 PASS senza fix, 8 PASS dopo ripristino). Replay con trasporto guardia
+  simulato, rete/SQLite vietati. Suite generale: 4.327 PASS, 8 SKIP; dopo l’ultimo
+  affinamento sui nomi con apostrofo, rieseguiti tutti i 132 mirati sul codice finale.
+  Ruff e diff PASS, Graphify AST aggiornato. Frontend non modificato.
+- Preservati i due run reali: stati e originali invariati, 112 frammenti SOURCE e
+  114 artefatti invariati. Demo, tag congelati e app ordinaria intatti. Nessun commit,
+  merge, push o promozione. Backup separato indicato nel rapporto.
+- Limiti: estrazione conservativa su FORM riconoscibili; fino a due gruppi aggiuntivi
+  di controlli guardia per risposta composta. Nessuna verifica della guardia reale
+  sui nuovi input. Prossimo passo, solo su richiesta: piccola prova manuale su nuova
+  sessione, con conferme esplicite; non riparare o aggiornare implicitamente la vecchia.
+
+## Diagnosi sottoscrittore vuoto — 31 ottobre 2026
+
+**NON promuovere.** La prova manuale è stata eseguita dall'utente; la conversazione sotto
+indicata non è più vuota. Diagnosi conclusa su `a0cc223`, senza modifiche applicative né
+nuove chiamate DeepSeek. [Rapporto](docs/sottoscrittore-vuoto-2026-10-31.md).
+
+- Sessione candidata `d9be7d34947145f69892bfc0bf535bad`: nove campi del sottoscrittore vuoti.
+  Domanda LLM multivalore su un solo campo nome; router salva l'intera anagrafica in
+  `p12.s0`, guardia accetta, ricevuta valida. Mancano conferma d'identità e riuso SOURCE:
+  il testo composto non corrisponde al nome della persona. Gli altri otto campi non
+  ricevono valori. «Ho registrato» conferma il salvataggio, non l'esportabilità.
+- Rinvio albo indipendente: rimuoverlo dalla copia offline non cambia i nove campi.
+- Confronto con la precedente prova manuale R2 `cd284a4fe7394ba3ad895acc1d0c3e11`:
+  solo nome registrato, otto dati derivati dalle SOURCE, conferme esplicite, nove campi
+  scritti. FORM identico e stessi frammenti della fonte anagrafica.
+- Replay offline con rete/DB vietati su candidata e tag `3a8de0b`: stessi risultati
+  sugli stessi stati; dieci funzioni pertinenti identiche. Limite preesistente attivato
+  da output LLM differenti, non regressione dimostrata di `de2f5de`.
+- Nessuna patch speculativa, commit, merge o push. Sessioni e DOCX preservati; acquisizioni
+  in `backend/data/compilation-audit/sottoscrittore-vuoto-20261031/`, backup separato nel
+  percorso indicato dal rapporto. Nessuna migrazione o reindicizzazione.
+- Il precedente giudizio di promovibilità riguardava il campione allora verificato;
+  questa nuova evidenza richiede una verifica/correzione mirata prima della promozione.
+  Non forzare autorizzazioni e non considerare sufficiente confermare il testo composto.
+
+## Istanza pronta per prova manuale — 31 ottobre 2026
+
+**Richiesta corrente: NON promuovere il narratore nella demo.** Nessuna compilazione o chiamata
+DeepSeek avviata durante questa preparazione; nessuna modifica al codice o alla demo.
+
+- Istanza isolata `a0cc223` su frontend 5174/backend 8001, servizi verificati attivi;
+  narratore `de2f5de`, default `sezioni-2026-10-30-r2`, database/storage nel worktree candidato.
+- Progetto `minervino-prova-manuale-narratore`: FORM `modulo.docx`, avviso di progetto e quattro
+  SOURCE globali della fixture Minervino V1, tutti e sei verificati per hash. Gold, scenario e
+  copione esclusi. Corpus fattuale: esattamente cinque documenti, 56 frammenti; FORM separato.
+- Conversazione vuota `conv-ec792f563010465b`; zero turni e zero sessioni di compilazione.
+  La sessione di compilazione nascerà solo al primo invio dell'utente.
+- Profilo `DeepSeek verifica narratore` configurato e modificabile dalle impostazioni;
+  selezionato per il nuovo progetto. Nessuna verifica del collegamento al provider eseguita.
+- Apertura diretta:
+  `http://localhost:5174/projects/minervino-prova-manuale-narratore/conversations/conv-ec792f563010465b`.
+  Selezionare `@modulo.docx` e inviare «me lo compili?» quando si vuole iniziare.
+- Acquisizioni: `backend/data/compilation-audit/manuale-narratore-20261031/`.
+  Prove browser senza invio; codice applicativo, dati ordinari e run storici invariati.
+
+## Verifica reale del narratore — 31 ottobre 2026
+
+**Conclusa; nessuna promozione eseguita.** Testato HEAD `a0cc223`, fix `de2f5de`, nel worktree
+isolato su 8001/5174, lasciato avviato e configurato con un profilo DeepSeek separato.
+Default R2; app ordinaria e demo intatte. Solo documentazione e acquisizioni di verifica.
+
+- 13 chiamate DeepSeek reali, nessuna nuova analisi: guardia e router su checkpoint registrati.
+- Vecchio/nuovo: conferme accettate, ricevute persistite, DOCX identici byte per byte ai due
+  storici da 59 e 34 scritture. Due designazioni rinviate correttamente; due controlli
+  negativi respinti. 51 test software mirati PASS, separati dalla prova del provider.
+- Il passaggio HTTP con assenso breve a «IN QUALITÀ DI» è rifiutato dalla guardia; il medesimo
+  contesto con testo precedente è rifiutato ugualmente. Nessun export in quel passaggio.
+  Limite preesistente, non una regressione dimostrata dei testi; frequenza non misurata.
+- Promovibile per la demo assistita **nel campione verificato**, conservando questo limite.
+  Nessun fix ai controlli, merge, commit o push. Nessuna migrazione/reindicizzazione.
+- Originali, SOURCE, sessioni e diff Git dell'app ordinaria verificati invariati. Grezzi e
+  backup separato indicati nel [rapporto](docs/narratore-deepseek-2026-10-31.md), inclusi gli
+  errori dello script di verifica e i limiti dell'acquisizione.
+- Prossimo passo solo se richiesto: promozione del fix testuale; nessuna campagna automatica.
+
 ## Chiarezza del narratore — 31 ottobre 2026
 
 Commit `de2f5de` sul branch `narratore-chiarezza/2026-10-31`, dalla demo R2. Non applicato alla

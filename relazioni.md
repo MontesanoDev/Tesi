@@ -1,9 +1,66 @@
 # Relazioni — nuovo motore di compilazione
 
+## 4 novembre 2026 — Firmatario e seconda bozza
+
+Intervento mirato su base `7e7383d`, solo worktree sperimentale.
+Commit `62f6152729c4fac49152c33488bfc63a7c264a3c`.
+[Rapporto completo](docs/firmatario-seconda-bozza-2026-11-03.md).
+Riprodotti ritiro eccessivo delle ricevute societarie, perdita di metadati FORM e
+rifiuto del nome USER completo. Test prima/dopo e rollback in copia verificati;
+backend 4.369 PASS / 8 SKIP, frontend 188 PASS, quattro E2E con API simulate PASS.
+
+DeepSeek: 28 chiamate / 379.829 token, incluse 11 della prima iterazione insufficiente.
+Analisi congelate riutilizzate, nessun gold nei prompt. Minervino 37 → 10 dopo Mario,
+con 9 dati societari preservati; 18 al ritorno documentato a Leonardo, inclusi CF e
+carica. Labirinto 11 → 12 con Paolo Conti. Negativo finale: nessuna modifica.
+Undici DOCX controllati, bozze precedenti immutate, zero checkbox selezionate.
+
+Restano il messaggio Labirinto contraddittorio per un ramo estraneo respinto dalla
+guardia e il limite del riuso SOURCE per profili distribuiti (Elisa non recuperata
+nel tentativo intermedio, non riprovata sul codice finale). Nessuna promozione.
+Audit `backend/data/compilation-audit/firmatario-seconda-bozza-20261103/`, backup
+omonimo in `/home/montesano/tesi-backups/`. DB candidato/Git ordinario/tag invariati;
+DB ordinario live variato nel frattempo, differenze registrate senza riparazioni.
+
 Registro richiesto dall'utente per ogni prova del nuovo motore. Aggiungere
 esperimenti datati senza riscrivere gli esiti precedenti, inclusi i fallimenti.
 Le acquisizioni complete rimangono nei bundle di `docs/benchmarks/`; questo
 file raccoglie scopo, confronto, risultati e decisioni.
+
+## 2–3 novembre 2026 — Narratore fluido, prova sperimentale
+
+Base `930aeef`, commit `7e7383d12e567ba162716ef6715ad986c4326b29`, worktree isolato. [Rapporto completo](docs/narratore-fluido-2026-11-02.md).
+Una domanda prioritaria, istruzioni libere con guardia, correzioni persistenti,
+ritiro delle dipendenze personali e più bozze dallo stesso stato. Nessuna
+migrazione della demo o delle sessioni storiche; nessun push/merge/promozione.
+
+Confronto offline sulla stessa analisi Minervino registrata in `a0cc223`: quattro
+prompt di domanda → uno selezionato, 50 proposte SOURCE iniziali conservate.
+Non misura riduzione dei turni totali né qualità comparata di due generazioni.
+
+Prova reale `deepseek-flash`: 53 chiamate, 786.171 token input e 27.036 output,
+compresi fallimenti e recuperi. Minervino riusa il checkpoint: 37 scritture,
+sette dati USER personali e CF/carica SOURCE presenti, 22 dati soci sospesi e
+uno senza proposta. Rispetto alla vecchia demo, checkbox 4 non scelta e albo
+confermato dal copione: risultati non direttamente confrontabili come regressione.
+Negativo ambiguo senza modifiche. Cambio firmatario ritira i dati di Leonardo,
+ma la conferma viene instradata ancora come VALUE: condizione aperta, seconda
+bozza vuota. Labirinto V1 analizzato ex novo con sette SOURCE e gold escluso:
+11 scritture, nome respinto dal validatore di completezza, correzione libera PEC
+riuscita in una nuova bozza senza alterare la prima. Zero checkbox selezionate
+nei dodici DOCX controllati; BOZZA NON VERIFICATA conservata.
+
+Fallimenti conservati: filtro iniziale troppo precoce del pool (due regressioni
+software poi corrette), scope poco visibile nelle domande, router con citazione
+anagrafica accorciata e risposta schema mista. Nessun indebolimento dei controlli.
+Suite finale 4.347 PASS/8 SKIP; 188 test frontend e quattro E2E simulati PASS;
+Ruff/diff PASS. Rollback in copia: 18 FAIL prima, 18 PASS dopo riapplicazione.
+
+**Esito: NON promovibile**, flusso reale del nuovo firmatario ancora incompleto;
+nessuna percentuale complessiva di accuratezza o risparmio token dichiarata.
+Audit `backend/data/compilation-audit/narratore-fluido-20261102/`, backup separato
+`/home/montesano/tesi-backups/narratore-fluido-20261102/`. Credenziali escluse;
+DB originali, Git ordinario e tag demo invariati. Intervento fermato al rapporto.
 
 ## Protocollo fisso
 
@@ -6010,6 +6067,115 @@ Dettagli e limiti: [rapporto harness](docs/harness-narratore-riparazione-2026-10
   - l'effetto delle nuove formulazioni sul verdetto della guardia reale, non misurabile
     senza DeepSeek.
 - **Rapporto:** `docs/narratore-chiarezza-2026-10-31.md`.
+
+## 31 ottobre 2026 — Guardia DeepSeek sul narratore più chiaro
+
+- **Codice:** candidata `a0cc223`, fix `de2f5de`, senza cambiamenti applicativi successivi.
+  Avvio isolato 8001/5174, profilo R2; nessuna modifica a demo, SOURCE o sessioni originali.
+- **Campione circoscritto:** checkpoint reali Minervino `minervino-v3-finale-1` (R2) e
+  `minervino-v3-strutturale-1` (profilo conservato). Nessuna nuova analisi, modifica del gold,
+  ricerca o ripetizione del benchmark fisso; non è una misura di accuratezza del compilatore.
+- **Provider:** `deepseek-flash`, 13 chiamate reali (10 guardia, 3 router), 350.299 token e
+  31,88 secondi complessivi del provider. Zero chiamate al modello narratore.
+- **Confronti positivi:** vecchie/nuove domande sulla carica e sulla riga da compilare
+  accettate; ricevute USER persistite e quattro DOCX identici byte per byte agli storici da
+  59 e 34 scritture. I due rinvii delle designazioni sono associati correttamente dal router.
+  Due controlli negativi nuovi respinti (`UNRELATED`, `AMBIGUOUS`).
+- **Fallimento reale conservato:** nel passaggio HTTP l'assenso breve a «IN QUALITÀ DI» viene
+  riconosciuto dal router e rifiutato dalla guardia; conferma non salvata, nessun export.
+  Un solo confronto col testo precedente restituisce lo stesso rifiuto. Nessun tentativo
+  successivo sul testo nuovo per ottenere un passaggio; nessun fix alla logica.
+- **Errori del runner:** API 422 per campo `provenance` del report, 409 in entrambi i bracci
+  per estratto USER troppo esteso che invalidava ricevute successive, lettura del report
+  sbagliato e pulizia SQLite. Corretti solo gli strumenti; due chiamate supplementari per
+  ripristinare l'esatto estratto USER, incluse nel totale. Log e prove fallite conservati.
+- **Software:** 51 test mirati PASS con provider simulati; suite intera, browser e replay
+  storico non rieseguiti. Hash dei dati/sessioni ordinari e dei due run originali invariati.
+- **Esito:** nessuna regressione attribuibile ai testi nel campione; promovibile nella demo
+  assistita con il limite preesistente esplicito. Nessuna promozione, commit, merge o push.
+- **Evidenze e backup:** `backend/data/compilation-audit/narratore-deepseek-20261031/` nel
+  worktree candidato; [rapporto completo](docs/narratore-deepseek-2026-10-31.md).
+
+## 31 ottobre 2026 — diagnosi del sottoscrittore vuoto nella prova manuale
+
+- **Perimetro:** acquisizioni reali candidate `a0cc223` e precedente prova manuale R2;
+  profilo `sezioni-2026-10-30-r2`. Nessuna nuova compilazione live o chiamata DeepSeek.
+  Stato, SOURCE e DOCX originali preservati. [Rapporto](docs/sottoscrittore-vuoto-2026-10-31.md).
+- **Esito reale:** candidata 50 scritture, nove campi personali vuoti; precedente manuale
+  R2 59 scritture e tutti e nove presenti. Originale identico; cinque frammenti della
+  fonte anagrafica identici, altri frammenti del corpus differiscono.
+- **Catena dimostrata:** analisi senza chiarificazione sul nome; domanda LLM estesa a
+  nascita/residenza ma destinata al solo `p12.s0`; router registra tutta la frase, guardia
+  la accetta e ricevuta resta valida. Il valore composto non identifica il profilo SOURCE;
+  gli altri otto campi non ricevono proposte. La conferma d'identità resta aperta. Il
+  messaggio «Ho registrato» non controlla l'esportabilità della risposta.
+- **Albo:** nessuna dipendenza dei nove campi da `s1_c_albo`; controfattuale offline senza
+  quella ricevuta di rinvio lascia invariati blocchi ed export del sottoscrittore.
+- **Verifica software:** replay su due acquisizioni con codice candidata e tag R2,
+  rete/SQLite vietati, asserzioni PASS e JSON identici. Dieci funzioni pertinenti identiche
+  anche al padre del fix di chiarezza. Nessuna misura nuova della variabilità del provider.
+- **Decisione:** limite preesistente attivato da output LLM differenti; nessuna regressione
+  deterministica dimostrata di `de2f5de`. Nessuna patch speculativa o modifica delle
+  autorizzazioni; nessun commit/merge/push. Promozione sospesa fino alla verifica/correzione
+  mirata del collegamento fra domanda, campo nome e identificazione della persona.
+- **Grezzi:** `backend/data/compilation-audit/sottoscrittore-vuoto-20261031/`, con script,
+  confronti, prompt/output reali già registrati e hash. Backup separato indicato nel rapporto.
+
+## 1 novembre 2026 — fix mirato delle risposte USER multivalore
+
+- **Perimetro autorizzato:** solo candidata `a0cc223`, nessuna campagna DeepSeek o
+  compilazione live, nessuna modifica a SOURCE/sessioni/DOCX precedenti. Il benchmark
+  congelato non è stato ripetuto né modificato. [Rapporto](docs/user-multivalue-2026-11-01.md).
+- **Causa:** il router associava tutta la frase anagrafica a un campo nome; guardia e
+  validatore l'accettavano, ma il valore non identificava il record SOURCE. La conferma
+  d'identità restava aperta, mentre «Ho registrato» sembrava attestare la compilazione.
+- **Fix:** estrazione letterale limitata ai dati personali riconoscibili e ai rispettivi
+  campi FORM, controlli guardia individuali, ricevute indipendenti e validazione finale.
+  Risposta originale conservata; ambiguità e rifiuti richiedono chiarimenti, anche in
+  presenza di proposte SOURCE. Nessuna deduzione di conferme, cariche o checkbox.
+- **Nuove sessioni:** flag persistito `user_extraction_revision=1` nel profilo R2;
+  nessun aggiornamento delle sessioni salvate o dei profili precedenti.
+- **Replay reale offline:** stessi FORM, SOURCE, domanda e output router acquisiti.
+  Prima un nome composto e nessun riuso, dopo sette valori USER e riuso di CF/carica.
+  La conferma d'identità resta aperta e l'export personale resta correttamente bloccato;
+  messaggio ora esplicito. Guardia simulata, rete e DB vietati: nessuna misura di
+  accuratezza o compatibilità DeepSeek. DOCX con sette scritture verificato separatamente
+  su FORM sintetico senza quelle condizioni aperte.
+- **Test/rollback:** 34 nuovi test PASS, 132 controlli mirati PASS. Senza patch, il
+  difetto riappare in due test, sei nomi semplici restano validi; dopo ripristino
+  otto PASS e identità byte per byte del codice. Prima suite generale: 4.310 PASS,
+  12 FAIL, 8 SKIP; corretta l'incoerenza fra flag nuovo e definizione canonica del
+  profilo, senza alterare i profili storici. Seconda suite generale: 4.327 PASS,
+  8 SKIP in 476,95 secondi; esito conservato in `full-suite-final.txt`.
+  L’ultimo controllo sul nome `O’Connor` riproduceva due rifiuti: corretta la distinzione
+  fra apostrofo e alternativa «o», due PASS dopo e tutti i 132 mirati rieseguiti.
+  Ruff/diff PASS, Graphify aggiornato senza LLM (7 archi sullo stesso nodo segnalati,
+  nessun endpoint mancante); frontend invariato e non ritestato.
+- **Strumenti:** un primo controllo integrità usava erroneamente le sole SOURCE globali
+  collegate al progetto e includeva il FORM. Corretto per verificare gli ID dei 56
+  frammenti effettivamente acquisiti per ciascun run: tutti invariati, come stati,
+  originali e 114 artefatti. Non erano variazioni dei dati, ma una query del runner errata.
+- **Limiti e consegna:** grammatica conservativa, due gruppi di guardia aggiuntivi nel
+  caso reale, compatibilità del provider da verificare. Nessuna promozione, commit,
+  merge o push; nessun fix retroattivo. Grezzi e backup separato indicati nel rapporto.
+
+
+## 2 novembre 2026 — esempi del contesto LLM
+
+- Creata `docs/esempi-contesto-llm-2026-11-02/`: 15 JSON, guida e archivio ZIP.
+  Viste abbreviate di richieste/output acquisiti su `a0cc223` e `930aeef`, con
+  separazione fra istruzioni, FORM, SOURCE, USER, stato e contratto di risposta.
+- Inclusi analisi per segmento, recupero mirato, decisioni iniziali, narratore,
+  router, guardie dei dati multivalore, conferme ed export senza LLM. Il router
+  di avvio è uno schema illustrativo dichiarato, non una trascrizione acquisita.
+- Conservati i limiti degli esempi reali: sette scritture nel DOCX e successiva
+  sintesi senza risposta valida per HTTP 402. Nessun risultato positivo inventato.
+- Verificati parsing di tutti i JSON, riferimenti mostrati, citazioni presenti
+  negli estratti e SHA-256 di 27 originali. Nessuna nuova chiamata AI o misura
+  di qualità; codice, demo, SOURCE e sessioni non modificati.
+- Backup separato di cartella, originali e generatore in
+  `/home/montesano/tesi-backups/esempi-contesto-llm-20261102/`, con manifesto e SHA-256.
+  [Guida di lettura](docs/esempi-contesto-llm-2026-11-02/README.md).
 
 
 ## 4 novembre 2026 — stabilizzazione finale del narratore
