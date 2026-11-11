@@ -183,8 +183,7 @@ def test_text_checkboxes_do_not_change_the_prompt(monkeypatch):
     from app.compilation_global import TASK, build_global_input, global_request
     from app.config import AISettings
 
-    settings = AISettings(api_key='fake', model='fake', base_url='https://example.test',
-                          thinking=False)
+    settings = AISettings(api_key='fake', model='fake', base_url='https://example.test')
     original = form_bytes()
     normal = build_global_input(inspect_docx(original), 'alpha', [])
     assert global_request(settings, normal)['messages'][0]['content'] == TASK

@@ -213,6 +213,29 @@ describe('Conservazione e recupero dei messaggi USER', () => {
     expect(api.projectAnswer).not.toHaveBeenCalled()
   })
 
+  it('offre il recupero del turno fallito nel composer, non dentro il messaggio', async () => {
+    history(['ciao', 'not_configured'])
+    await setup()
+    await screen.findByText('Risposta 1')
+    expect(recoveries()).toHaveLength(1)
+    expect(recoveries()[0].closest('.composer')).not.toBeNull()
+    expect(document.querySelector('.user-message button')).toBeNull()
+  })
+
+  it('copia negli appunti il testo di un messaggio inviato, senza riportarlo nel composer', async () => {
+    const writeText = vi.fn().mockResolvedValue(undefined)
+    vi.stubGlobal('navigator', { ...navigator, clipboard: { writeText } })
+    vi.stubGlobal('isSecureContext', true)
+    history([long, 'direct'])
+    await setup()
+    await screen.findByText('Risposta 1')
+    fireEvent.click(screen.getByRole('button', { name: 'Copia messaggio' }))
+    expect(await screen.findByRole('button', { name: 'Messaggio copiato' })).toBeInTheDocument()
+    expect(writeText).toHaveBeenCalledWith(long)
+    expect(input()).toHaveValue('')
+    expect(api.projectAnswer).not.toHaveBeenCalled()
+  })
+
   it('rimuove la copia di un invio che il server ha già registrato con risposta', async () => {
     vi.mocked(api.projectAnswer).mockReturnValue(new Promise(() => {}))
     await setup(); type(long); send()

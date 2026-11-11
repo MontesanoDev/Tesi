@@ -11,3 +11,16 @@
 .composer-mention-trigger:hover, .composer-mention-trigger.is-active { color: var(--text); background: var(--control-hover); }
 .composer-mention-trigger:disabled { opacity: .45; cursor: default; }
 .chat-form-reference { display: inline-block; font-size: 12px; color: var(--text-muted); }
+.composer-recovery { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 16px 2px; padding: 8px 8px 8px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--control); }
+.composer-recovery p { flex: 1 1 260px; min-width: 0; color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+.composer-recovery .button { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; margin-left: auto; font-size: 12px; }
+/* Message actions sit under the bubble, right-aligned, as in common chat interfaces. */
+.user-message-actions { display: flex; justify-content: flex-end; margin-top: 4px; }
+.chat-turn .user-turn + .grounded-answer { margin-top: 8px; }
+.message-action { display: grid; place-items: center; width: 26px; height: 26px; padding: 0; border: 0; border-radius: 6px; background: transparent; color: var(--text-muted); cursor: pointer; }
+.message-action:hover, .message-action:focus-visible { color: var(--text); background: var(--control-hover); outline: none; }
+/* With a mouse the icon appears on hover or keyboard focus; touch screens always show it. */
+@media (hover: hover) {
+  .message-action { opacity: 0; transition: opacity .15s; }
+  .user-turn:hover .message-action, .message-action:focus-visible, .message-action.is-active { opacity: 1; }
+}

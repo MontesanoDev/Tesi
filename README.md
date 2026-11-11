@@ -85,10 +85,9 @@ dell'utente: `systemctl --user status ollama` ne verifica lo stato e
 1. In **Impostazioni generali → Modelli AI**, aggiungere un provider o un
    endpoint Ollama e scegliere un modello. Le chiavi si inseriscono nella UI;
    il file `.env` non è necessario. L'ingranaggio nella chat cambia il modello
-   del progetto. Con DeepSeek, lo switch **thinking** funziona anche con
-   **Usa predefinito**: la preferenza resta salvata per progetto quando si cambia
-   modello. Il progetto continua a seguire il predefinito generale. Le vecchie
-   impostazioni si aggiornano automaticamente all'avvio del backend.
+   del progetto, che altrimenti segue il predefinito generale. Le risposte della
+   chat non usano il ragionamento esteso del modello. Le vecchie impostazioni si
+   aggiornano automaticamente all'avvio del backend.
 2. I riquadri sono ordinati in **Modelli AI**, **Modelli di embedding** e
    **Ricerca nelle fonti**. Per gli embedding si può scegliere Ollama (predefinito
    **bge-m3**), OpenAI, Mistral o un servizio compatibile con le API embedding
@@ -100,10 +99,11 @@ dell'utente: `systemctl --user status ollama` ne verifica lo stato e
    sul servizio; per un endpoint compatibile si può anche inserire il nome
    manualmente. Indirizzo e chiave del provider sono nelle sue
    **Impostazioni avanzate**. **Ricarica modelli** legge l'elenco senza scaricare
-   o indicizzare nulla. **Salva impostazioni** applica entrambi i riquadri a
-   tutti i progetti. **Verifica collegamento** prova i dati inseriti senza
-   salvarli; **Aggiorna indice** usa le impostazioni già salvate.
-   Salvare non avvia l'indicizzazione:
+   o indicizzare nulla. Entrambi i riquadri si salvano da soli per tutti i
+   progetti: menu e caselle subito, i campi di testo quando si esce dal campo o
+   si preme Invio; i campi incompleti non vengono salvati. **Verifica
+   collegamento** prova il servizio senza generare embedding; **Aggiorna indice**
+   usa le impostazioni già salvate. Salvare non avvia l'indicizzazione:
    l'indice si sincronizza alla successiva ricerca semantica o con il comando
    esplicito. Un cambio di modello o archivio può richiedere un nuovo indice.
 3. Caricare le fonti PDF, TXT o Markdown nel progetto o nella conoscenza

@@ -16,11 +16,27 @@ function sameModel(left: string, right: string) {
   return left.replace(/:latest$/, '') === right.replace(/:latest$/, '')
 }
 
+function indexConfigDiffers(next: RetrievalInput, previous: RetrievalSettings) {
+  return next.embedding_provider !== (previous.embedding_provider ?? 'ollama') ||
+    next.embedding_model !== previous.embedding_model || next.embedding_url !== previous.embedding_url ||
+    next.qdrant_mode !== previous.qdrant_mode ||
+    (next.qdrant_mode === 'remote' && next.qdrant_url !== previous.qdrant_url)
+}
+
+// The embedding service an inventory belongs to: a different key or address needs a new inventory.
+function serviceKey(config: RetrievalInput) {
+  return JSON.stringify([config.embedding_provider, config.embedding_url, config.embedding_api_key, config.clear_embedding_api_key])
+}
+
+type SaveState = { kind: 'idle' | 'saving' | 'saved' | 'incomplete' | 'error'; message?: string }
+
 export function RetrievalSettingsPanel() {
   const [saved, setSaved] = useState<RetrievalSettings | null>(null)
   const [providers, setProviders] = useState<EmbeddingProviderDefinition[]>([])
   const [form, setForm] = useState<RetrievalInput | null>(null)
-  const [busy, setBusy] = useState<'save' | 'check' | 'index' | ''>('')
+  const [busy, setBusy] = useState<'check' | 'index' | ''>('')
+  const [saveState, setSaveState] = useState<SaveState>({ kind: 'idle' })
+  const [commitRequest, setCommitRequest] = useState(0)
   const [error, setError] = useState<string | null>(null)
   const [notice, setNotice] = useState('')
   const [attempt, setAttempt] = useState(0)
@@ -31,13 +47,17 @@ export function RetrievalSettingsPanel() {
   const [modelsError, setModelsError] = useState('')
   const [connection, setConnection] = useState<{ kind: 'checking' | 'success' | 'warning' | 'error'; message: string } | null>(null)
   const modelsRequest = useRef<AbortController | null>(null)
+  const modelsService = useRef('')
   const formRef = useRef<HTMLFormElement>(null)
+  const saving = useRef(false)
+  const saveAgain = useRef(false)
   const embeddingServiceRef = useRef<HTMLDivElement>(null)
 
   async function loadModels(config: RetrievalInput, verify = false) {
     modelsRequest.current?.abort()
     const controller = new AbortController()
     modelsRequest.current = controller
+    modelsService.current = serviceKey(config)
     setModels(null)
     setModelsLoading(true)
     setModelsError('')
@@ -88,12 +108,11 @@ export function RetrievalSettingsPanel() {
   const semantic = form?.backend === 'qdrant'
   const provider = providers.find((item) => item.id === form?.embedding_provider)
   const sameEmbeddingService = saved && form && (saved.embedding_provider ?? 'ollama') === form.embedding_provider && saved.embedding_url === form.embedding_url
-  const indexConfigChanged = !!saved && !!form && (
-    form.embedding_provider !== (saved.embedding_provider ?? 'ollama') ||
-    form.embedding_model !== saved.embedding_model || form.embedding_url !== saved.embedding_url ||
-    form.qdrant_mode !== saved.qdrant_mode ||
-    (form.qdrant_mode === 'remote' && form.qdrant_url !== saved.qdrant_url)
-  )
+  // A saved key is never sent to a changed address: the backend rejects the save until it is replaced or removed.
+  const embeddingKeyPending = !!saved?.has_embedding_api_key && !sameEmbeddingService &&
+    !form?.clear_embedding_api_key && !form?.embedding_api_key?.trim()
+  const qdrantKeyPending = !!saved?.has_qdrant_api_key && !!form && form.qdrant_url !== saved.qdrant_url &&
+    !form.clear_qdrant_api_key && !form.qdrant_api_key?.trim()
   const modelOptions = [...new Set((models ?? []).map((name) =>
     form && (name === form.embedding_model || form.embedding_provider === 'ollama' && sameModel(name, form.embedding_model))
       ? form.embedding_model : name))]
@@ -102,12 +121,60 @@ export function RetrievalSettingsPanel() {
     setConnection(null)
     if ('embedding_provider' in patch || 'embedding_url' in patch || 'embedding_api_key' in patch || 'clear_embedding_api_key' in patch) {
       modelsRequest.current?.abort()
+      modelsService.current = ''
       setModels(null); setModelsLoading(false); setModelsError('')
     }
     setForm((value) => value ? { ...value, ...patch } : value)
     setNotice('')
     setError(null)
+    setSaveState((state) => state.kind === 'saving' ? state : { kind: 'idle' })
   }
+
+  function requestCommit() {
+    setCommitRequest((value) => value + 1)
+  }
+
+  // Selects and checkboxes commit at once, text fields on leaving the field or on Enter, so
+  // half-typed addresses and keys are never stored. Runs after render to read current validity.
+  async function autosave() {
+    if (!form || !saved) return
+    if (!dirty) {
+      setSaveState((state) => state.kind === 'incomplete' ? { kind: 'idle' } : state)
+      return
+    }
+    if (saving.current) { saveAgain.current = true; return }
+    if (embeddingKeyPending || qdrantKeyPending || !formRef.current?.checkValidity()) {
+      setSaveState({ kind: 'incomplete' })
+      return
+    }
+    const snapshot = form
+    const previous = saved
+    saving.current = true
+    setSaveState({ kind: 'saving' })
+    try {
+      const settings = await api.saveRetrievalSettings(snapshot)
+      setSaved(settings)
+      // Edits made while the request was in flight stay in the form and are saved next.
+      setForm((current) => JSON.stringify(current) === JSON.stringify(snapshot) ? formValue(settings) : current)
+      // Reload only a stale inventory: a check already running for this service must not be cancelled.
+      if (serviceKey(formValue(settings)) !== modelsService.current) void loadModels(formValue(settings))
+      setSaveState({ kind: 'saved', message: settings.backend !== 'qdrant'
+        ? 'Impostazioni salvate. La ricerca usa le parole chiave.'
+        : indexConfigDiffers(snapshot, previous)
+          ? 'Impostazioni salvate. L’indice si aggiornerà alla prossima ricerca semantica, oppure con «Aggiorna indice».'
+          : 'Impostazioni salvate.' })
+    } catch (reason) {
+      setSaveState({ kind: 'error', message: `Salvataggio non riuscito: ${reason instanceof Error ? reason.message : 'riprova.'}` })
+    } finally {
+      saving.current = false
+      if (saveAgain.current) { saveAgain.current = false; requestCommit() }
+    }
+  }
+
+  useEffect(() => {
+    if (commitRequest) void autosave()
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- each request saves the form of its own render
+  }, [commitRequest])
 
   function validEmbeddingService() {
     const inputs = embeddingServiceRef.current?.querySelectorAll('input')
@@ -127,25 +194,15 @@ export function RetrievalSettingsPanel() {
     setEmbeddingOpen(true)
   }
 
-  async function perform(action: 'save' | 'check' | 'index') {
+  async function perform(action: 'check' | 'index') {
     if (!form || busy) return
     if (action === 'check' && !formRef.current?.reportValidity()) return
-    if (action === 'index' && (dirty || !semantic || saved?.backend !== 'qdrant')) return
+    if (action === 'index' && (dirty || saving.current || !semantic || saved?.backend !== 'qdrant')) return
     setBusy(action)
     setError(null)
     setNotice('')
     try {
-      if (action === 'save') {
-        const settings = await api.saveRetrievalSettings(form)
-        setSaved(settings)
-        setForm(formValue(settings))
-        if (settings.embedding_url !== saved?.embedding_url || settings.embedding_provider !== saved?.embedding_provider || form.embedding_api_key || form.clear_embedding_api_key) {
-          void loadModels(formValue(settings))
-        }
-        setNotice(settings.backend === 'qdrant'
-          ? 'Impostazioni salvate. L’indice verrà sincronizzato alla prossima ricerca semantica; puoi aggiornarlo prima dalla manutenzione.'
-          : 'Impostazioni salvate. La ricerca usa le parole chiave.')
-      } else if (action === 'check') {
+      if (action === 'check') {
         const result = await api.checkRetrievalConnection(form)
         setNotice(result.message)
       } else {
@@ -153,7 +210,7 @@ export function RetrievalSettingsPanel() {
         setNotice(`Indice aggiornato: ${result.indexed_chunks} frammenti, ${result.updated_chunks} aggiornati e ${result.deleted_chunks} rimossi.`)
       }
     } catch (reason) {
-      const context = { save: 'Salvataggio non riuscito', check: 'Verifica non riuscita', index: 'Aggiornamento indice non riuscito' }
+      const context = { check: 'Verifica non riuscita', index: 'Aggiornamento indice non riuscito' }
       setError(`${context[action]}: ${reason instanceof Error ? reason.message : 'riprova.'}`)
     } finally {
       setBusy('')
@@ -162,7 +219,7 @@ export function RetrievalSettingsPanel() {
 
   function submit(event: FormEvent) {
     event.preventDefault()
-    void perform('save')
+    requestCommit()
   }
 
   return <div className="retrieval-settings">
@@ -174,7 +231,17 @@ export function RetrievalSettingsPanel() {
         }}>Riprova</button></div>}
     </section>}
     {form && <form ref={formRef} className="ai-profile-form retrieval-form" onSubmit={submit}
-      onInvalidCapture={() => { setSearchOpen(true); setEmbeddingOpen(true) }} aria-busy={!!busy}>
+      onChange={(event) => {
+        const target = event.target
+        if (target instanceof HTMLSelectElement || target instanceof HTMLInputElement && target.type === 'checkbox') requestCommit()
+      }}
+      onBlur={requestCommit}
+      onInvalidCapture={(event) => {
+        const details = event.target instanceof Element ? event.target.closest('details') : null
+        if (!details) return
+        if (embeddingServiceRef.current && details.contains(embeddingServiceRef.current)) setEmbeddingOpen(true)
+        else setSearchOpen(true)
+      }} aria-busy={!!busy}>
       <fieldset disabled={!!busy}>
         <section className="settings-card ai-settings retrieval-card" aria-labelledby="embedding-heading">
           <h2 id="embedding-heading">Modelli di embedding</h2>
@@ -212,9 +279,8 @@ export function RetrievalSettingsPanel() {
           {!modelsLoading && models === null && !modelsError &&
             <p className="retrieval-description">Ricarica i modelli dopo aver modificato il provider o il collegamento.</p>}
           {modelsLoading && <p className="retrieval-description" role="status">Lettura dei modelli disponibili…</p>}
-          {semantic && saved?.backend === 'qdrant'
-            ? <p className="retrieval-model-summary">Modello attivo: <strong>{saved.embedding_model}</strong></p>
-            : <p className="retrieval-description">Usato dalla ricerca semantica.</p>}
+          {!(semantic && saved?.backend === 'qdrant') &&
+            <p className="retrieval-description">Usato dalla ricerca semantica.</p>}
           <details className="retrieval-technical" open={embeddingOpen}
             onToggle={(event) => setEmbeddingOpen(event.currentTarget.open)}>
             <summary>Impostazioni avanzate</summary>
@@ -235,11 +301,8 @@ export function RetrievalSettingsPanel() {
                 <input type="checkbox" checked={form.clear_embedding_api_key}
                   onChange={(e) => change({ clear_embedding_api_key: e.target.checked, embedding_api_key: '' })} />Rimuovi chiave embedding
               </label>}
-              {saved?.has_embedding_api_key && !sameEmbeddingService &&
-                !form.clear_embedding_api_key && !form.embedding_api_key?.trim() &&
+              {embeddingKeyPending &&
                 <p className="retrieval-warning">Indirizzo modificato: reinserisci o rimuovi la chiave embedding salvata.</p>}
-              {(form.embedding_provider === 'ollama' || form.embedding_provider === 'compatible') &&
-                <p className="retrieval-description">127.0.0.1 e localhost indicano la macchina del backend, non necessariamente il tuo computer.</p>}
               {form.embedding_provider !== 'ollama' && <p className="retrieval-description">Il servizio scelto riceverà i testi da indicizzare. L’utilizzo può avere un costo.</p>}
               <div className="retrieval-connection">
                 <div className="ai-actions">
@@ -247,7 +310,7 @@ export function RetrievalSettingsPanel() {
                     if (validEmbeddingService()) void loadModels(form, true)
                   }}>{connection?.kind === 'checking' ? 'Verifica…' : 'Verifica collegamento'}</button>
                 </div>
-                <p className="retrieval-description">Controlla l’accesso al servizio e l’elenco dei modelli, senza generare embedding né salvare le modifiche.</p>
+                <p className="retrieval-description">Controlla l’accesso al servizio e l’elenco dei modelli, senza generare embedding.</p>
                 {connection && <p role={connection.kind === 'error' ? 'alert' : 'status'}
                   className={connection.kind === 'error' ? 'ai-error' : connection.kind === 'warning' ? 'retrieval-warning' : 'ai-notice'}>
                   {connection.message}
@@ -265,10 +328,6 @@ export function RetrievalSettingsPanel() {
               <option value="qdrant">Semantica</option>
             </select>
           </label>
-          {semantic && indexConfigChanged && <p className="retrieval-warning">
-            Questa modifica può richiedere un nuovo indice. Il salvataggio non lo prepara:
-            avverrà alla prossima ricerca semantica oppure con «Aggiorna indice».
-          </p>}
           {semantic && <details className="retrieval-technical" open={searchOpen}
             onToggle={(event) => setSearchOpen(event.currentTarget.open)}>
             <summary>Impostazioni avanzate</summary>
@@ -293,8 +352,7 @@ export function RetrievalSettingsPanel() {
                   <input type="checkbox" checked={form.clear_qdrant_api_key}
                     onChange={(e) => change({ clear_qdrant_api_key: e.target.checked, qdrant_api_key: '' })} />Rimuovi chiave Qdrant
                 </label>}
-                {saved?.has_qdrant_api_key && form.qdrant_url !== saved.qdrant_url &&
-                  !form.clear_qdrant_api_key && !form.qdrant_api_key?.trim() &&
+                {qdrantKeyPending &&
                   <p className="retrieval-warning">Indirizzo modificato: reinserisci o rimuovi la chiave Qdrant salvata.</p>}
               </>}
             </fieldset>
@@ -302,27 +360,36 @@ export function RetrievalSettingsPanel() {
               <div className="ai-actions">
                 <button className="ai-button" type="button" onClick={() => void perform('check')}>{busy === 'check' ? 'Verifica…' : 'Verifica ricerca semantica'}</button>
               </div>
-              <p className="retrieval-description">Verifica il modello e l’archivio senza salvare le impostazioni o aggiornare l’indice.</p>
+              <p className="retrieval-description">Verifica il modello e l’archivio senza aggiornare l’indice.</p>
             </div>
             <section className="retrieval-maintenance" aria-labelledby="retrieval-maintenance-heading">
-              <h3 id="retrieval-maintenance-heading">Manutenzione dell’indice</h3>
-              <p className="retrieval-description">L’indice si aggiorna prima delle ricerche semantiche.
-                Puoi prepararlo qui in anticipo, per tutti i progetti e le fonti condivise.</p>
-              <button className="ai-button" type="button" disabled={dirty || saved?.backend !== 'qdrant'}
+              <div className="retrieval-maintenance-head">
+                <h3 id="retrieval-maintenance-heading">Manutenzione dell’indice</h3>
+                <p className="retrieval-description">L’indice si aggiorna prima delle ricerche semantiche.
+                  Puoi prepararlo qui in anticipo, per tutti i progetti e le fonti condivise.</p>
+              </div>
+              <button className="ai-button" type="button" disabled={dirty || saveState.kind === 'saving' || saved?.backend !== 'qdrant'}
                 onClick={() => void perform('index')}>{busy === 'index' ? 'Aggiornamento indice…' : 'Aggiorna indice'}</button>
-              {dirty && <p className="retrieval-description">Salva le impostazioni prima di aggiornare l’indice.</p>}
+              {dirty && <p className="retrieval-description">L’indice si può aggiornare quando le modifiche sono salvate.</p>}
             </section>
           </details>}
-          <div className="ai-actions retrieval-save">
-            <button className="ai-button ai-button-primary" type="submit">{busy === 'save' ? 'Salvataggio…' : 'Salva impostazioni'}</button>
-            {dirty && <span className="retrieval-unsaved">Modifiche non salvate</span>}
-          </div>
           {error && <div className="ai-error" role="alert">{error}</div>}
           {(busy || notice) && <p className="ai-notice" role="status">{busy
-            ? { save: 'Salvataggio delle impostazioni…', check: 'Verifica del collegamento…', index: 'Aggiornamento dell’indice in corso. L’operazione può richiedere tempo.' }[busy]
+            ? { check: 'Verifica del collegamento…', index: 'Aggiornamento dell’indice in corso. L’operazione può richiedere tempo.' }[busy]
             : notice}</p>}
         </section>
 
+        {/* Both cards save themselves; one line below them reports the outcome. */}
+        <div className="retrieval-autosave">
+          {saveState.kind === 'error'
+            ? <div className="ai-error" role="alert">{saveState.message}
+              <button className="ai-button" type="button" onClick={requestCommit}>Riprova</button></div>
+            : <p className="retrieval-autosave-status" aria-live="polite">{{
+              // Nothing to report while idle; the empty region still announces later outcomes.
+              idle: '', saving: 'Salvataggio…',
+              incomplete: 'Modifiche non salvate: completa i campi indicati.', saved: saveState.message,
+            }[saveState.kind]}</p>}
+        </div>
       </fieldset>
     </form>}
   </div>

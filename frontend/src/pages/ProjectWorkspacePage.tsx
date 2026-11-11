@@ -1,10 +1,13 @@
 import {
   ArrowUp,
+  Check,
+  Copy,
   Plus,
   ChevronDown,
   EllipsisVertical,
   FileText,
   LoaderCircle,
+  RotateCcw,
   Trash2,
   X,
 } from 'lucide-react'
@@ -56,10 +59,40 @@ function documentReferenceOf(value: {
   return form ? { document_id: form.form_id, name: form.name, role: 'form' } : null
 }
 
-function ConversationTurn({ turn, assistantContent, processing = false, activity, onReuse }: {
+// The Clipboard API needs a secure context; over plain HTTP on the LAN fall back to a selection.
+async function copyText(text: string) {
+  try {
+    if (window.isSecureContext && navigator.clipboard) {
+      await navigator.clipboard.writeText(text)
+      return true
+    }
+  } catch { /* fall back below */ }
+  const area = document.createElement('textarea')
+  area.value = text
+  area.setAttribute('readonly', '')
+  area.style.position = 'fixed'
+  area.style.opacity = '0'
+  document.body.append(area)
+  area.select()
+  try {
+    return document.execCommand('copy')
+  } catch {
+    return false
+  } finally {
+    area.remove()
+  }
+}
+
+function ConversationTurn({ turn, assistantContent, processing = false, activity }: {
   turn: ChatTurn; assistantContent?: ReactNode; processing?: boolean; activity?: string
-  onReuse?: () => void
 }) {
+  const [copy, setCopy] = useState<'idle' | 'done' | 'failed'>('idle')
+  useEffect(() => {
+    if (copy === 'idle') return
+    const timer = window.setTimeout(() => setCopy('idle'), 1600)
+    return () => window.clearTimeout(timer)
+  }, [copy])
+  const copyLabel = { idle: 'Copia messaggio', done: 'Messaggio copiato', failed: 'Copia non riuscita' }[copy]
   const result = turn.result
   const evidence = result?.evidence ?? []
   const answerTitleId = `answer-title-${turn.id}`
@@ -67,11 +100,19 @@ function ConversationTurn({ turn, assistantContent, processing = false, activity
 
   return (
     <article className="chat-turn">
-      <div className="user-message">
-        <span>Tu</span>
-        <p>{turn.question}</p>
-        {turn.document_reference && <small className="chat-form-reference">@{turn.document_reference.name}</small>}
-        {onReuse && <button type="button" className="button button--compact" onClick={onReuse}>Recupera messaggio</button>}
+      <div className="user-turn">
+        <div className="user-message">
+          <span>Tu</span>
+          <p>{turn.question}</p>
+          {turn.document_reference && <small className="chat-form-reference">@{turn.document_reference.name}</small>}
+        </div>
+        <div className="user-message-actions">
+          <button type="button" className={`message-action${copy === 'idle' ? '' : ' is-active'}`}
+            aria-label={copyLabel} title={copyLabel}
+            onClick={() => { void copyText(turn.question).then((copied) => setCopy(copied ? 'done' : 'failed')) }}>
+            {copy === 'done' ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}
+          </button>
+        </div>
       </div>
 
       <AssistantMessage id={answerTitleId} model={result?.model}
@@ -506,6 +547,11 @@ export function ProjectWorkspacePage() {
 
   const latestTurn = turns.at(-1)
   const sessionProcessing = compilation.processing || compilation.loading
+  // Without a copy in this tab, the latest failed turn is recovered from the server, which keeps
+  // its original request identifier: resending it never records the same decision twice.
+  const failedTurn = !searching && !sessionProcessing && !prompt && !recoverableMessage && latestTurn
+    && (latestTurn.error || ['failed', 'not_configured'].includes(latestTurn.result?.generation_status ?? ''))
+    ? latestTurn : null
   const awaitingSession = Boolean(latestTurn?.result?.compilation && !activeSession
     && compilation.loading && !compilation.error)
   const compilationActivity = compilationActivityLabel(activeSession)
@@ -580,13 +626,17 @@ export function ProjectWorkspacePage() {
       {draftUnavailable && <p role="alert">
         Non riesco a salvare la copia di recupero in questa scheda. Copia il messaggio prima di uscire.
       </p>}
-      {!searching && recoverableMessage && prompt !== recoverableMessage.text && <div className="composer-recovery">
-        <p>Un messaggio è conservato in questa scheda. Recuperarlo non lo invia né conferma decisioni.</p>
-        <button type="button" disabled={Boolean(prompt)} onClick={() => {
+      {!searching && (recoverableMessage ? prompt !== recoverableMessage.text : failedTurn) && <div className="composer-recovery">
+        <p>Messaggio non completato: recuperalo per rivederlo e inviarlo di nuovo.</p>
+        <button type="button" className="button button--compact" disabled={Boolean(prompt)} onClick={() => {
+          if (!recoverableMessage) {
+            if (failedTurn) void reuseTurn(failedTurn)
+            return
+          }
           setPrompt(recoverableMessage.text)
           setDocumentReference(recoverableMessage.document_reference)
           composerInput.current?.focus()
-        }}>Recupera messaggio</button>
+        }}><RotateCcw size={13} aria-hidden="true" />Recupera messaggio</button>
       </div>}
       {compilation.busy && !activeSession && <p role="status">{compilationActivityLabel(null)}</p>}
       <div className="composer-tools">
@@ -712,11 +762,6 @@ export function ProjectWorkspacePage() {
                   <div key={turn.id}>
                     <ConversationTurn
                       turn={turn}
-                      // Only the latest failed turn is still pending; later turns supersede it.
-                      onReuse={!searching && !sessionProcessing && !prompt && !recoverableMessage
-                        && index === turns.length - 1
-                        && (turn.error || ['failed', 'not_configured'].includes(turn.result?.generation_status ?? ''))
-                        ? () => { void reuseTurn(turn) } : undefined}
                       assistantContent={index === turns.length - 1 ? sessionMessage ?? undefined : undefined}
                       processing={index === turns.length - 1 && (
                         Boolean(activeSession) && sessionProcessing || awaitingSession)}

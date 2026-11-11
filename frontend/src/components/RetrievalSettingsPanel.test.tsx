@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { api } from '../api'
-import type { RetrievalSettings } from '../types'
+import type { RetrievalInput, RetrievalSettings } from '../types'
 import { RetrievalSettingsPanel } from './RetrievalSettingsPanel'
 import embeddingProviders from '../../e2e/embedding-providers.fixture.json'
 
@@ -19,6 +19,16 @@ const vectorSettings: RetrievalSettings = { ...settings, backend: 'qdrant' }
 const remoteSettings: RetrievalSettings = { ...vectorSettings, qdrant_mode: 'remote',
   qdrant_url: 'https://qdrant.example', embedding_url: 'https://ollama.example', has_qdrant_api_key: true }
 
+// The backend stores the configuration and returns it without secrets.
+function stored(input: RetrievalInput): RetrievalSettings {
+  const { qdrant_api_key, embedding_api_key, clear_qdrant_api_key, clear_embedding_api_key, ...config } = input
+  return { ...config, has_qdrant_api_key: !clear_qdrant_api_key && !!qdrant_api_key,
+    has_embedding_api_key: !clear_embedding_api_key && !!embedding_api_key }
+}
+
+// Removed idle hint: the line below the cards stays silent until something happens.
+const autosaveHint = 'Le modifiche si salvano automaticamente.'
+
 async function openTechnical() {
   await screen.findByLabelText('Metodo di ricerca')
   for (const summary of screen.getAllByText('Impostazioni avanzate')) fireEvent.click(summary)
@@ -29,6 +39,7 @@ beforeEach(() => {
   vi.resetAllMocks()
   vi.mocked(api.embeddingProviders).mockResolvedValue(embeddingProviders as Awaited<ReturnType<typeof api.embeddingProviders>>)
   vi.mocked(api.retrievalSettings).mockResolvedValue(settings)
+  vi.mocked(api.saveRetrievalSettings).mockImplementation(async (input) => stored(input))
   vi.mocked(api.embeddingModels).mockResolvedValue({ models: ['bge-m3:latest', 'custom', 'custom-embed:latest', 'other-embed', 'another-model', 'changed'] })
 })
 afterEach(cleanup)
@@ -73,30 +84,60 @@ describe('retrieval settings', () => {
     expect(api.embeddingModels).toHaveBeenCalledTimes(2)
   })
 
-  it('shows the reindex warning only in search, even while advanced settings are collapsed', async () => {
+  it('saves a model change at once, even while advanced settings are collapsed, and explains the index', async () => {
     vi.mocked(api.retrievalSettings).mockResolvedValue(vectorSettings)
     vi.mocked(api.embeddingModels).mockResolvedValue({ models: ['bge-m3', 'changed'] })
     render(<RetrievalSettingsPanel />)
     await screen.findByLabelText('Metodo di ricerca')
     await waitFor(() => expect(screen.getByLabelText('Modello di embedding')).toBeEnabled())
+    expect(screen.queryByText(autosaveHint)).not.toBeInTheDocument()
     fireEvent.change(screen.getByLabelText('Modello di embedding'), { target: { value: 'changed' } })
-    const search = screen.getByRole('region', { name: 'Ricerca nelle fonti' })
-    const embedding = screen.getByRole('region', { name: 'Modelli di embedding' })
-    expect(within(search).getByText(/Questa modifica può richiedere/)).toBeVisible()
-    expect(within(embedding).queryByText(/Questa modifica può richiedere/)).not.toBeInTheDocument()
-    fireEvent.change(screen.getByLabelText('Modello di embedding'), { target: { value: 'bge-m3' } })
+    expect(await screen.findByText(/L’indice si aggiornerà alla prossima ricerca semantica/)).toBeVisible()
+    expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({ embedding_model: 'changed' }))
     expect(screen.queryByText(/Questa modifica può richiedere/)).not.toBeInTheDocument()
+    expect(api.updateVectorIndex).not.toHaveBeenCalled()
   })
 
   it('separates the stored Ollama address and port without changing the saved URL', async () => {
-    vi.mocked(api.saveRetrievalSettings).mockResolvedValue(settings)
     render(<RetrievalSettingsPanel />)
     await openTechnical()
     expect(screen.getByLabelText('Indirizzo Ollama')).toHaveValue('127.0.0.1')
     expect(screen.getByLabelText('Porta (opzionale)')).toHaveValue('11434')
-    fireEvent.click(screen.getByRole('button', { name: 'Salva impostazioni' }))
+    fireEvent.blur(screen.getByLabelText('Porta (opzionale)'))
+    expect(api.saveRetrievalSettings).not.toHaveBeenCalled()
+    fireEvent.change(screen.getByLabelText('Metodo di ricerca'), { target: { value: 'qdrant' } })
     await waitFor(() => expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({
-      embedding_url: settings.embedding_url,
+      backend: 'qdrant', embedding_url: settings.embedding_url,
+    })))
+  })
+
+  it('saves a text field only when leaving it, never while typing', async () => {
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    const port = screen.getByLabelText('Porta (opzionale)')
+    fireEvent.change(port, { target: { value: '114' } })
+    fireEvent.change(port, { target: { value: '11435' } })
+    expect(api.saveRetrievalSettings).not.toHaveBeenCalled()
+    fireEvent.blur(port)
+    await waitFor(() => expect(api.saveRetrievalSettings).toHaveBeenCalledTimes(1))
+    expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({ embedding_url: 'http://127.0.0.1:11435' }))
+    expect(await screen.findByText(/Impostazioni salvate/)).toBeVisible()
+  })
+
+  it('does not save incomplete or invalid fields and says what is missing', async () => {
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    fireEvent.change(screen.getByLabelText('Indirizzo Ollama'), { target: { value: '' } })
+    fireEvent.blur(screen.getByLabelText('Indirizzo Ollama'))
+    expect(await screen.findByText('Modifiche non salvate: completa i campi indicati.')).toBeVisible()
+    fireEvent.change(screen.getByLabelText('Porta (opzionale)'), { target: { value: '0' } })
+    fireEvent.submit(screen.getByLabelText('Porta (opzionale)'))
+    expect(api.saveRetrievalSettings).not.toHaveBeenCalled()
+    fireEvent.change(screen.getByLabelText('Indirizzo Ollama'), { target: { value: '192.168.1.20' } })
+    fireEvent.change(screen.getByLabelText('Porta (opzionale)'), { target: { value: '11434' } })
+    fireEvent.submit(screen.getByLabelText('Porta (opzionale)'))
+    await waitFor(() => expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({
+      embedding_url: 'http://192.168.1.20:11434',
     })))
   })
 
@@ -125,7 +166,7 @@ describe('retrieval settings', () => {
     render(<RetrievalSettingsPanel />)
     await openTechnical()
     expect(screen.getByLabelText('Porta (opzionale)')).toHaveValue(url.includes('8443') ? '8443' : '11434')
-    fireEvent.click(screen.getByRole('button', { name: 'Salva impostazioni' }))
+    fireEvent.change(screen.getByLabelText('Metodo di ricerca'), { target: { value: 'qdrant' } })
     await waitFor(() => expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({ embedding_url: url })))
   })
 
@@ -223,7 +264,8 @@ describe('retrieval settings', () => {
     expect(within(search).queryByText('Impostazioni avanzate')).not.toBeInTheDocument()
     expect(screen.getByLabelText('Modello di embedding')).toBeVisible()
     expect(screen.queryByRole('button', { name: 'Aggiorna indice' })).not.toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Salva impostazioni' })).toBeVisible()
+    expect(screen.queryByRole('button', { name: 'Salva impostazioni' })).not.toBeInTheDocument()
+    expect(screen.queryByText(autosaveHint)).not.toBeInTheDocument()
   })
 
   it('saves vector retrieval independently and allows indexing only the saved configuration', async () => {
@@ -236,12 +278,12 @@ describe('retrieval settings', () => {
     fireEvent.change(await screen.findByLabelText('Metodo di ricerca'), { target: { value: 'qdrant' } })
     expect(screen.queryByText(/Modello previsto/)).not.toBeInTheDocument()
     expect(screen.getByLabelText('Tipo di archivio')).not.toBeVisible()
+    expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeDisabled()
     await openTechnical()
     expect(screen.getByLabelText('Modello di embedding')).toHaveValue('bge-m3')
     expect(screen.queryByLabelText(/Prefisso/)).not.toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeDisabled()
-    fireEvent.click(screen.getByRole('button', { name: 'Salva impostazioni' }))
     await waitFor(() => expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeEnabled())
+    expect(api.saveRetrievalSettings).toHaveBeenCalledTimes(1)
     expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({
       backend: 'qdrant', embedding_model: 'bge-m3', query_prefix: 'query:', document_prefix: 'passage:',
     }))
@@ -249,9 +291,10 @@ describe('retrieval settings', () => {
     expect(await screen.findByText(/40 frammenti, 2 aggiornati e 1 rimossi/)).toBeVisible()
     fireEvent.change(screen.getByLabelText('Indirizzo Ollama'), { target: { value: 'https://ollama.example' } })
     expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeDisabled()
+    expect(screen.getByText('L’indice si può aggiornare quando le modifiche sono salvate.')).toBeVisible()
   })
 
-  it('checks remote endpoints without saving and clears keys after saving', async () => {
+  it('checks remote endpoints without saving and clears keys once the key field is saved', async () => {
     vi.mocked(api.retrievalSettings).mockResolvedValue(remoteSettings)
     vi.mocked(api.checkRetrievalConnection).mockResolvedValue({ message: 'Collegamento riuscito', dimensions: 768 })
     vi.mocked(api.saveRetrievalSettings).mockResolvedValue(remoteSettings)
@@ -268,8 +311,9 @@ describe('retrieval settings', () => {
     }))
     expect(key).toHaveAttribute('type', 'password')
     expect(api.updateVectorIndex).not.toHaveBeenCalled()
-    fireEvent.click(screen.getByRole('button', { name: 'Salva impostazioni' }))
+    fireEvent.blur(key)
     await waitFor(() => expect(key).toHaveValue(''))
+    expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({ qdrant_api_key: 'fake-secret' }))
     expect(vi.mocked(api.saveRetrievalSettings).mock.calls[0][0]).not.toHaveProperty('has_qdrant_api_key')
   })
 
@@ -289,7 +333,7 @@ describe('retrieval settings', () => {
     vi.mocked(api.retrievalSettings).mockResolvedValue(vectorSettings)
     render(<RetrievalSettingsPanel />)
     await screen.findByLabelText('Metodo di ricerca')
-    expect(screen.getByText(/Modello attivo:/)).toHaveTextContent('bge-m3')
+    expect(screen.queryByText(/Modello attivo/)).not.toBeInTheDocument()
     expect(screen.getByLabelText('Tipo di archivio')).not.toBeVisible()
     expect(screen.getByRole('region', { name: 'Manutenzione dell’indice' })).not.toBeVisible()
     await openTechnical()
@@ -302,24 +346,22 @@ describe('retrieval settings', () => {
     expect(within(storage).queryByLabelText('Indirizzo Ollama')).not.toBeInTheDocument()
     expect(screen.queryByText(/Qdrant funziona nel backend/)).not.toBeInTheDocument()
     expect(screen.queryByText(/Nome di un modello di embedding già installato/)).not.toBeInTheDocument()
-    expect(screen.getByText(/non necessariamente il tuo computer/)).toBeVisible()
+    expect(screen.queryByText(/non necessariamente il tuo computer/)).not.toBeInTheDocument()
     expect(screen.queryByLabelText('Indirizzo Qdrant')).not.toBeInTheDocument()
     expect(screen.queryByLabelText(/Chiave Qdrant/)).not.toBeInTheDocument()
   })
 
-  it('keeps the active model distinct from an unsaved change and never starts indexing on save', async () => {
+  it('never checks the connection or starts indexing when a model change is saved', async () => {
     const configured = { ...vectorSettings, embedding_model: 'custom-embed:latest' }
     vi.mocked(api.retrievalSettings).mockResolvedValue(configured)
     vi.mocked(api.saveRetrievalSettings).mockResolvedValue({ ...configured, embedding_model: 'other-embed' })
     render(<RetrievalSettingsPanel />)
     await openTechnical()
     fireEvent.change(screen.getByLabelText('Modello di embedding'), { target: { value: 'other-embed' } })
-    expect(screen.getByText(/Modello attivo:/)).toHaveTextContent('custom-embed:latest')
-    expect(screen.getByText(/Questa modifica può richiedere/)).toBeVisible()
     expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeDisabled()
-    fireEvent.click(screen.getByRole('button', { name: 'Salva impostazioni' }))
-    await waitFor(() => expect(screen.getByText(/Modello attivo:/)).toHaveTextContent('other-embed'))
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeEnabled())
     expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({ embedding_model: 'other-embed' }))
+    expect(screen.getByLabelText('Modello di embedding')).toHaveValue('other-embed')
     expect(api.updateVectorIndex).not.toHaveBeenCalled()
     expect(api.checkRetrievalConnection).not.toHaveBeenCalled()
   })
@@ -327,7 +369,6 @@ describe('retrieval settings', () => {
   it('retains hidden vector configuration and credentials when changing method or storage', async () => {
     const configured = { ...remoteSettings, query_prefix: 'query:', document_prefix: 'passage:', embedding_model: 'custom' }
     vi.mocked(api.retrievalSettings).mockResolvedValue(configured)
-    vi.mocked(api.saveRetrievalSettings).mockResolvedValue({ ...configured, backend: 'fts5', qdrant_mode: 'local' })
     render(<RetrievalSettingsPanel />)
     await openTechnical()
     fireEvent.change(screen.getByLabelText('Tipo di archivio'), { target: { value: 'local' } })
@@ -335,9 +376,9 @@ describe('retrieval settings', () => {
     expect(screen.getByLabelText('Indirizzo Ollama')).toHaveValue(configured.embedding_url)
     fireEvent.change(screen.getByLabelText('Metodo di ricerca'), { target: { value: 'fts5' } })
     expect(screen.queryByRole('region', { name: 'Manutenzione dell’indice' })).not.toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: 'Salva impostazioni' }))
     await screen.findByText(/La ricerca usa le parole chiave/)
-    expect(api.saveRetrievalSettings).toHaveBeenCalledWith({
+    expect(api.saveRetrievalSettings).toHaveBeenCalledTimes(2)
+    expect(api.saveRetrievalSettings).toHaveBeenLastCalledWith({
       backend: 'fts5', embedding_provider: 'ollama', qdrant_mode: 'local', qdrant_url: configured.qdrant_url,
       embedding_url: configured.embedding_url, embedding_model: 'custom', query_prefix: 'query:', document_prefix: 'passage:',
       qdrant_api_key: '', embedding_api_key: '', clear_qdrant_api_key: false, clear_embedding_api_key: false,
@@ -356,7 +397,6 @@ describe('retrieval settings', () => {
     fireEvent.click(screen.getByLabelText('Rimuovi chiave Qdrant'))
     expect(key).toHaveValue('')
     expect(key).toBeDisabled()
-    fireEvent.click(screen.getByRole('button', { name: 'Salva impostazioni' }))
     await screen.findByText(/Impostazioni salvate/)
     expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({
       qdrant_api_key: '', clear_qdrant_api_key: true, embedding_api_key: '', clear_embedding_api_key: false,
@@ -387,15 +427,15 @@ describe('retrieval settings', () => {
     expect(screen.getByLabelText('Indirizzo Ollama')).toBeInvalid()
   })
 
-  it.each(['save', 'check', 'index'] as const)('shows progress and prevents duplicate %s actions', async (action) => {
+  it.each(['check', 'index'] as const)('shows progress and prevents duplicate %s actions', async (action) => {
     vi.mocked(api.retrievalSettings).mockResolvedValue(vectorSettings)
     let finish = () => {}
     const pending = new Promise<never>((_resolve, reject) => { finish = () => reject(new Error('Test concluso')) })
-    const method = { save: api.saveRetrievalSettings, check: api.checkRetrievalConnection, index: api.updateVectorIndex }[action]
+    const method = { check: api.checkRetrievalConnection, index: api.updateVectorIndex }[action]
     vi.mocked(method).mockReturnValue(pending)
     render(<RetrievalSettingsPanel />)
     await openTechnical()
-    const label = { save: 'Salva impostazioni', check: 'Verifica ricerca semantica', index: 'Aggiorna indice' }[action]
+    const label = { check: 'Verifica ricerca semantica', index: 'Aggiorna indice' }[action]
     fireEvent.click(screen.getByRole('button', { name: label }))
     expect(screen.getByRole('status')).not.toBeEmptyDOMElement()
     expect(screen.getByLabelText('Metodo di ricerca')).toBeDisabled()
@@ -406,17 +446,54 @@ describe('retrieval settings', () => {
     expect(screen.getByRole('button', { name: label })).toBeEnabled()
   })
 
-  it('reports a failed save without discarding edits or changing the active model', async () => {
+  it('reports a failed save without discarding edits', async () => {
     vi.mocked(api.retrievalSettings).mockResolvedValue(vectorSettings)
     vi.mocked(api.saveRetrievalSettings).mockRejectedValue(new Error('Configurazione non valida'))
     render(<RetrievalSettingsPanel />)
     await openTechnical()
     fireEvent.change(screen.getByLabelText('Modello di embedding'), { target: { value: 'another-model' } })
-    fireEvent.click(screen.getByRole('button', { name: 'Salva impostazioni' }))
     expect(await screen.findByRole('alert')).toHaveTextContent('Salvataggio non riuscito: Configurazione non valida')
     expect(screen.getByLabelText('Modello di embedding')).toHaveValue('another-model')
-    expect(screen.getByText(/Modello attivo:/)).toHaveTextContent('bge-m3')
     expect(screen.getByRole('button', { name: 'Aggiorna indice' })).toBeDisabled()
+    vi.mocked(api.saveRetrievalSettings).mockImplementation(async (input) => stored(input))
+    fireEvent.click(screen.getByRole('button', { name: 'Riprova' }))
+    expect(await screen.findByText(/Impostazioni salvate/)).toBeVisible()
+    expect(api.saveRetrievalSettings).toHaveBeenLastCalledWith(expect.objectContaining({ embedding_model: 'another-model' }))
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+  })
+
+  it('shows save progress and queues a change made while saving without losing it', async () => {
+    vi.mocked(api.retrievalSettings).mockResolvedValue(vectorSettings)
+    let finish = () => {}
+    vi.mocked(api.saveRetrievalSettings).mockImplementationOnce((input) =>
+      new Promise((resolve) => { finish = () => resolve(stored(input)) }))
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    fireEvent.change(screen.getByLabelText('Modello di embedding'), { target: { value: 'custom' } })
+    expect(await screen.findByText('Salvataggio…')).toBeVisible()
+    expect(screen.getByLabelText('Metodo di ricerca')).toBeEnabled()
+    fireEvent.change(screen.getByLabelText('Modello di embedding'), { target: { value: 'other-embed' } })
+    expect(api.saveRetrievalSettings).toHaveBeenCalledTimes(1)
+    finish()
+    await waitFor(() => expect(api.saveRetrievalSettings).toHaveBeenCalledTimes(2))
+    expect(api.saveRetrievalSettings).toHaveBeenLastCalledWith(expect.objectContaining({ embedding_model: 'other-embed' }))
+    await screen.findByText(/Impostazioni salvate/)
+    expect(screen.getByLabelText('Modello di embedding')).toHaveValue('other-embed')
+  })
+
+  it('waits for a decision on a saved key before saving a changed address', async () => {
+    vi.mocked(api.retrievalSettings).mockResolvedValue({ ...remoteSettings, has_embedding_api_key: true })
+    render(<RetrievalSettingsPanel />)
+    await openTechnical()
+    const address = screen.getByLabelText('Indirizzo Ollama')
+    fireEvent.change(address, { target: { value: 'https://different.example' } })
+    fireEvent.blur(address)
+    expect(await screen.findByText('Modifiche non salvate: completa i campi indicati.')).toBeVisible()
+    expect(api.saveRetrievalSettings).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByLabelText('Rimuovi chiave embedding'))
+    await waitFor(() => expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({
+      embedding_url: 'https://different.example', clear_embedding_api_key: true, embedding_api_key: '',
+    })))
   })
 
   it('retries loading and clears an obsolete notice when settings change', async () => {
@@ -531,8 +608,8 @@ describe('retrieval settings', () => {
     fireEvent.change(screen.getByLabelText('Chiave del servizio embedding'), { target: { value: 'cloud-embedding-key' } })
     fireEvent.click(screen.getByRole('button', { name: 'Ricarica modelli' }))
     await screen.findByRole('option', { name: 'text-embedding-3-large' })
+    expect(api.saveRetrievalSettings).not.toHaveBeenCalled()
     fireEvent.change(screen.getByLabelText('Modello di embedding'), { target: { value: 'text-embedding-3-large' } })
-    fireEvent.click(screen.getByRole('button', { name: 'Salva impostazioni' }))
     await screen.findByText(/Impostazioni salvate/)
     expect(api.saveRetrievalSettings).toHaveBeenCalledWith(expect.objectContaining({
       embedding_provider: 'openai', embedding_api_key: 'cloud-embedding-key', embedding_model: 'text-embedding-3-large',

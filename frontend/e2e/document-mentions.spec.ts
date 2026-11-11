@@ -32,7 +32,7 @@ test('document mentions consult sources and preserve the pending form across rel
     const request = route.request()
     const path = new URL(request.url()).pathname
     if (path === '/api/settings/ai') return route.fulfill({ json: { profiles: [], default_profile_id: null } })
-    if (path.endsWith('/ai-model')) return route.fulfill({ json: { profile_id: null, effective_profile: null, thinking: false } })
+    if (path.endsWith('/ai-model')) return route.fulfill({ json: { profile_id: null, effective_profile: null } })
     if (path === root) return route.fulfill({ json: {
       id: 'document-mentions', title: 'Documenti di gara', description: 'Progetto di prova', status: 'Bozza',
       status_tone: 'info', updated_label: '', source_count: 1, model_count: 1, instructions: '',

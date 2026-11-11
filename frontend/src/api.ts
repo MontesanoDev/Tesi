@@ -133,13 +133,9 @@ export const api = {
     }),
   projectAiModel: (projectId: string, signal?: AbortSignal) =>
     request<ProjectAiSelection>(`/projects/${projectId}/ai-model`, { signal }),
-  setProjectAiModel: (projectId: string, profileId: string | null, thinking?: boolean) =>
+  setProjectAiModel: (projectId: string, profileId: string | null) =>
     request<ProjectAiSelection>(`/projects/${projectId}/ai-model`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        profile_id: profileId,
-        ...(thinking === undefined ? {} : { thinking }),
-      }),
+      method: 'PUT', body: JSON.stringify({ profile_id: profileId }),
     }),
   projects: (signal?: AbortSignal) =>
     request<ProjectSummary[]>('/projects', { signal }),

@@ -353,7 +353,6 @@ export interface AiSettings {
 export interface ProjectAiSelection {
   profile_id: string | null
   effective_profile: AiProfile | null
-  thinking: boolean
 }
 
 export type EmbeddingProvider = 'ollama' | 'openai' | 'mistral' | 'compatible'

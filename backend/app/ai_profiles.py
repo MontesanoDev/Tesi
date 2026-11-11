@@ -260,11 +260,9 @@ def project_selection(project_id: str) -> dict:
         if db.execute("SELECT 1 FROM projects WHERE id=?", (project_id,)).fetchone() is None:
             raise LookupError("Progetto non trovato")
         row = db.execute(
-            "SELECT profile_id, thinking_mode FROM project_ai_settings WHERE project_id=?",
-            (project_id,),
+            "SELECT profile_id FROM project_ai_settings WHERE project_id=?", (project_id,),
         ).fetchone()
         selected = row["profile_id"] if row else None
-        thinking = bool(row["thinking_mode"]) if row else False
         default = db.execute("SELECT default_profile_id FROM ai_preferences WHERE id=1").fetchone()[
             0
         ]
@@ -272,30 +270,21 @@ def project_selection(project_id: str) -> dict:
         return {
             "profile_id": selected,
             "effective_profile": _public(_get_row(db, effective)) if effective else None,
-            "thinking": thinking,
         }
 
 
-def select_project_profile(
-    project_id: str, profile_id: str | None, thinking: bool | None = None,
-) -> dict:
+def select_project_profile(project_id: str, profile_id: str | None) -> dict:
     with connection() as db:
         db.execute("BEGIN IMMEDIATE")
         if db.execute("SELECT 1 FROM projects WHERE id=?", (project_id,)).fetchone() is None:
             raise LookupError("Progetto non trovato")
         if profile_id is not None:
             _get_row(db, profile_id)
-        current = db.execute(
-            "SELECT thinking_mode FROM project_ai_settings WHERE project_id=?", (project_id,),
-        ).fetchone()
-        value = current["thinking_mode"] if current else 0
-        if thinking is not None:
-            value = int(thinking)
+        # The legacy thinking_mode column stays in the schema but is no longer read or written.
         db.execute(
-            "INSERT INTO project_ai_settings(project_id, profile_id, thinking_mode) "
-            "VALUES (?, ?, ?) ON CONFLICT(project_id) DO UPDATE SET "
-            "profile_id=excluded.profile_id, thinking_mode=excluded.thinking_mode",
-            (project_id, profile_id, value),
+            "INSERT INTO project_ai_settings(project_id, profile_id) VALUES (?, ?) "
+            "ON CONFLICT(project_id) DO UPDATE SET profile_id=excluded.profile_id",
+            (project_id, profile_id),
         )
     return project_selection(project_id)
 
@@ -308,11 +297,6 @@ def resolve_project_settings(project_id: str) -> AISettings:
             "(SELECT default_profile_id FROM ai_preferences WHERE id=1))",
             (project_id,),
         ).fetchone()
-        preference = db.execute(
-            "SELECT thinking_mode FROM project_ai_settings WHERE project_id=?",
-            (project_id,),
-        ).fetchone()
-        thinking = bool(preference["thinking_mode"]) if preference else False
         if row:
             return AISettings(
                 api_key=_decrypt(row["encrypted_api_key"]),
@@ -321,7 +305,6 @@ def resolve_project_settings(project_id: str) -> AISettings:
                 provider=row["provider"],
                 profile_id=row["id"],
                 context_window=row["context_window"],
-                thinking=thinking,
             )
         managed = db.execute(
             "SELECT 1 FROM app_metadata WHERE key='ai_settings_managed'"
@@ -329,7 +312,7 @@ def resolve_project_settings(project_id: str) -> AISettings:
     if not managed:
         return get_environment_settings()
     # Deleting a profile must never silently reactivate old cloud credentials.
-    return AISettings(api_key=None, model="", base_url="", thinking=thinking)
+    return AISettings(api_key=None, model="", base_url="")
 
 
 @contextmanager
